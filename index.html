@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+        <meta name="theme-color" content="black"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+        
+        <style>
+html, body
+{
+    height : 100%;
+    padding : 0;
+    margin : 0;
+}
+
+header
+{
+    background : blue;
+    padding : 10px;
+    height : auto;
+}
+
+*:not(.selectable),
+.unselectable
+{
+    -moz-user-select : none;
+    -khtml-user-select : none;
+    -webkit-user-select : none;
+    -ms-user-select : none;
+    user-select : none;
+}
+
+img:not(.anti-aliased)
+{
+    image-rendering : -webkit-optimize-contrast;
+    image-rendering : crisp-edges;
+    image-rendering : pixelated;
+    -ms-interpolation-mode : nearest-neighbor;
+}
+
+#btnMenu
+{
+    overflow : hidden;
+    width : 120px;
+    height : 120px;
+    background : red;
+}
+
+@keyframes btnMenu
+{
+    from
+    {
+        transform : none;
+    }
+    
+    to
+    {
+        transform : translate(-960px, 0);
+    }
+}
+        </style>
+    </head>
+    
+    <body>
+        <header>
+            <div id="btnMenu"><img class="unselectable" src="https://calmbubbles.github.io/img/spr_btnMenu.png" alt="Menu"></div>
+        </header>
+        
+        <script>
+let btnMenu = document.querySelector("#btnMenu");
+let btnMenuImg = btnMenu.querySelector("img");
+
+window.onload = () => {
+    btnMenu.onclick = () => {
+        btnMenuImg.style.animation = "btnMenu steps(8) 0.5s";
+        setTimeout(() => {
+            btnMenuImg.style.animation = "none";
+            btnMenuImg.style.transform = "translate(-960px, 0)";
+        }, 500);
+    };
+};
+        </script>
+    </body>
+</html>
