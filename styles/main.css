@@ -1,0 +1,179 @@
+/*----------Variables*/
+:root
+{
+    --pixel-unit : 0.75px;
+}
+
+
+/*----------Elements*/
+html, body
+{
+    padding : 0;
+    margin : 0;
+    font-family : "Archivo Narrow", sans-serif;
+    font-size : 18px;
+}
+
+/*-----Sections*/
+header
+{
+    position : relative;
+    display : flex;
+    flex-direction : row;
+    padding : 10px;
+    height : calc(60 * var(--pixel-unit));
+    z-index : 10;
+    background : white;
+}
+
+main
+{
+    position : relative;
+    min-height : 100vh;
+    overflow-x : hidden;
+    overflow-wrap : break-word;
+    padding : 14px;
+    background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61));
+    color : white;
+}
+
+#menu
+{
+    position : fixed;
+    width : 75%;
+    height : 100%;
+    top : 0;
+    left : 0;
+    padding : calc(120 * var(--pixel-unit)) 0 14px 0;
+    z-index : 9;
+    background : white;
+    color : black;
+}
+
+/*-----Components*/
+a
+{
+    text-decoration : none;
+    color : inherit;
+}
+
+*:not(.selectable),
+.unselectable
+{
+    -moz-user-select : none;
+    -khtml-user-select : none;
+    -webkit-user-select : none;
+    -ms-user-select : none;
+    user-select : none;
+}
+
+img:not(.anti-aliased)
+{
+    image-rendering : -webkit-optimize-contrast;
+    image-rendering : crisp-edges;
+    image-rendering : pixelated;
+    -ms-interpolation-mode : nearest-neighbor;
+}
+
+
+/*----------Instances*/
+/*-----Header and Menu*/
+#logo
+{
+    display : block;
+    margin : auto;
+}
+
+#logo img
+{
+    width : calc(60 * var(--pixel-unit));
+}
+
+#btnMenu
+{
+    position : absolute;
+    overflow : hidden;
+    width : calc(60 * var(--pixel-unit));
+    height : calc(60 * var(--pixel-unit));
+    background : black;
+}
+
+#btnMenu img
+{
+    width : calc(540 * var(--pixel-unit));
+}
+
+#menuOverlay
+{
+    position : fixed;
+    width : 100%;
+    height : 100%;
+    top : 0;
+    left : 0;
+    padding : calc(120 * var(--pixel-unit)) 14px 0;
+    z-index : 8;
+    background : black;
+    border : none;
+    opacity : 0.37;
+}
+
+
+/*----------Classes*/
+.line
+{
+    position : relative;
+    margin : 0;
+    border : none;
+    height : 1px;
+    background : black;
+}
+
+/*-----Menu*/
+.menuList
+{
+    position : relative;
+    width : auto;
+    padding : 15px;
+    font-size : 22px;
+    text-transform : uppercase;
+}
+
+.menuList div
+{
+    position : absolute;
+    display : inline-block;
+    overflow : hidden;
+    top : 8px;
+    right : 12px;
+    width : calc(60 * var(--pixel-unit));
+    height : calc(60 * var(--pixel-unit));
+}
+
+.menuList div img
+{
+    width : calc(540 * var(--pixel-unit));
+}
+
+
+/*----------Keyframes*/
+@keyframes slideX
+{
+    from { transform : translateX(-100%); }
+    
+    to { transform : none; }
+}
+
+/*-----Menu*/
+@keyframes btnMenu
+{
+    from { transform : none; }
+    
+    to { transform : translate(calc(-480 * var(--pixel-unit)), 0); }
+}
+
+@keyframes menuOverlay
+{
+    from { opacity : 0.0; }
+    
+    to { opacity : 0.37; }
+}
