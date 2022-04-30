@@ -8,13 +8,18 @@
 /*----------Elements*/
 html, body
 {
-    height : auto;
-    min-height : 100%;
     padding : 0;
     margin : 0;
-    overflow : hidden;
     font-family : "Archivo Narrow", sans-serif;
     font-size : 18px;
+}
+
+body
+{
+    position : relative;
+    height : auto;
+    min-height : 100%;
+    overflow : hidden;
 }
 
 *:not(.selectable),
