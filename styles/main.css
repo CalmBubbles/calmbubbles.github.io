@@ -33,7 +33,7 @@ body
 /*-----Sections*/
 header
 {
-    position : relative;
+    position : fixed;
     display : flex;
     flex-direction : row;
     padding : 10px;
