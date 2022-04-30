@@ -51,12 +51,6 @@ main
 }
 
 /*-----Components*/
-a
-{
-    text-decoration : none;
-    color : inherit;
-}
-
 *:not(.selectable),
 .unselectable
 {
@@ -73,6 +67,18 @@ img:not(.anti-aliased)
     image-rendering : crisp-edges;
     image-rendering : pixelated;
     -ms-interpolation-mode : nearest-neighbor;
+}
+
+/*Anchors*/
+a
+{
+    text-decoration : none;
+    color : inherit;
+}
+
+main a
+{
+    color : orange;
 }
 
 
