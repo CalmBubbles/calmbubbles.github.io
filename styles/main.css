@@ -48,8 +48,7 @@ main
 {
     position : relative;
     min-height : 100vh;
-    overflow-x : hidden;
-    overflow-wrap : break-word;
+    overflow-x : : break-word;
     top : calc(87 * var(--pixel-unit));
     padding : 14px;
     background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61));
@@ -97,7 +96,7 @@ a
 #logo
 {
     display : inline-block;
-    margin : auto;
+    margin : 100%;
 }
 
 #logo img
@@ -107,7 +106,7 @@ a
 
 #btnMenu
 {
-    position : fixed;
+    position : absolute;
     overflow : hidden;
     width : calc(60 * var(--pixel-unit));
     height : calc(60 * var(--pixel-unit));
