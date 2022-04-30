@@ -72,13 +72,13 @@ img:not(.anti-aliased)
 /*Anchors*/
 a
 {
-    text-decoration : none;
-    color : inherit;
+    color : orange;
 }
 
-main a
+#menu a
 {
-    color : orange;
+    text-decoration : none;
+    color : inherit;
 }
 
 
