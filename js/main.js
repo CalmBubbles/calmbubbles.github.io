@@ -9,19 +9,19 @@ function Menu ()
 
 Menu.SetData = function ()
 {
-    let request = new XMLHttpRequest();
+    /*let request = new XMLHttpRequest();
     
     request.onload = () => {
         if (request.status < 400)
         {
-            this.menuData = JSON.parse(request.responseText);
+            this.menuData = JSON.parse(request.responseText);*/
             
             this.main = document.querySelector("main");
             this.btnMenu = document.querySelector("#btnMenu");
             this.btnMenuImg = btnMenu.querySelector("img");
             
             this.btnMenu.onclick = () => { this.Toggle(); };
-        }
+        /*}
     };
     
     request.onerror = () => {
@@ -30,7 +30,7 @@ Menu.SetData = function ()
     
     request.open("GET", "/data/menuList.json");
     request.overrideMimeType("application/json");
-    request.send();
+    request.send();*/
 };
 
 Menu.Toggle = function ()
