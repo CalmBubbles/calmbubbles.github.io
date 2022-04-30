@@ -46,7 +46,8 @@ main
 {
     position : relative;
     min-height : 100vh;
-    overflow-x : : break-word;
+    overflow-x : hidden;
+    overflow-wrap : break-word;
     top : calc(87 * var(--pixel-unit));
     padding : 14px;
     background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61));
