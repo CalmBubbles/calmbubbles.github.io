@@ -107,7 +107,7 @@ a
 
 #btnMenu
 {
-    position : absolute;
+    position : fixed;
     overflow : hidden;
     width : calc(60 * var(--pixel-unit));
     height : calc(60 * var(--pixel-unit));
