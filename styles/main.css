@@ -50,9 +50,12 @@ main
     min-height : 100vh;
     overflow-x : hidden;
     overflow-wrap : break-word;
+    top : calc(88 * var(--pixel-unit));
     padding : 14px;
     background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61));
     color : white;
+    z-index : 100;
+    opacity : 0.5;
 }
 
 #menu
