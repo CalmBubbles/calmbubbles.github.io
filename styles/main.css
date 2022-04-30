@@ -10,17 +10,11 @@ html, body
 {
     padding : 0;
     margin : 0;
+    overflow-x : hidden;
     font-family : "Archivo Narrow", sans-serif;
     font-size : 18px;
 }
 
-body
-{
-    position : relative;
-    height : auto;
-    min-height : 100%;
-    overflow : hidden;
-}
 
 *:not(.selectable),
 .unselectable
