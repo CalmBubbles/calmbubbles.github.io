@@ -93,7 +93,7 @@ a
 /*-----Header and Menu*/
 #logo
 {
-    display : block;
+    position : absolute;
 }
 
 #logo img
