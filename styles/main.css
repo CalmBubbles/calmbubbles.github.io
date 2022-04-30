@@ -17,6 +17,7 @@ html, body
 body
 {
     overflow-x : hidden;
+    scroll-behavior : smooth;
 }
 
 
@@ -62,6 +63,7 @@ main
     top : 0;
     left : 0;
     padding : calc(120 * var(--pixel-unit)) 0 14px 0;
+    scroll-behavior : smooth;
     z-index : 9;
     background : white;
     color : black;
