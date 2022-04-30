@@ -95,7 +95,7 @@ a
 /*-----Header and Menu*/
 #logo
 {
-    display : inline-block;
+    display : block;
     left : 0;
     margin : auto;
 }
