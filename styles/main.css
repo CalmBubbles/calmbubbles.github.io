@@ -35,8 +35,6 @@ body
 header
 {
     position : fixed;
-    display : flex;
-    flex-direction : row;
     width : 100%;
     height : calc(60 * var(--pixel-unit));
     padding : 10px;
@@ -96,7 +94,6 @@ a
 #logo
 {
     display : block;
-    left : 0;
     margin : auto;
 }
 
