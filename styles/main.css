@@ -10,6 +10,7 @@ html, body
 {
     padding : 0;
     margin : 0;
+    overflow : hidden;
     font-family : "Archivo Narrow", sans-serif;
     font-size : 18px;
 }
