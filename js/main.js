@@ -24,14 +24,13 @@ Menu.SetData = function ()
         }
     };
     
-    request.onerror = function ()
-    {
+    request.onerror = () => {
         ThrowError(3);
     };
     
     request.open("GET", "/data/menuList.json");
     request.overrideMimeType("application/json");
-    request.send();
+    request.send();alert("hi");
 };
 
 Menu.Toggle = function ()
