@@ -39,6 +39,7 @@ header
     flex-direction : row;
     width : 100%;
     height : calc(60 * var(--pixel-unit));
+    left : 0;
     padding : 10px;
     z-index : 10;
     background : white;
