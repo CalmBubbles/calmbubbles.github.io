@@ -1,0 +1,37 @@
+[
+    {
+        "name" : "home",
+        "type" : "link",
+        "content" : "/"
+    },
+    {
+        "name" : "works",
+        "type" : "list",
+        "content" : [
+            {
+                "name" : "js-plugins",
+                "type" : "link",
+                "content" : "/js-plugins"
+            }
+        ]
+    },
+    {
+        "name" : "projects",
+        "type" : "list",
+        "content" : null
+    },
+    {
+        "name" : "about",
+        "type" : "list",
+        "content" : [
+            {
+                "name" : ""
+            }
+        ]
+    },
+    {
+        "name" : "more",
+        "type" : "list",
+        "content" : null
+    }
+]
