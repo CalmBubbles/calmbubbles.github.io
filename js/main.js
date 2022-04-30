@@ -16,6 +16,7 @@ Menu.SetData = function ()
         {
             this.menuData = JSON.parse(request.responseText);
             
+            this.body = document.body;
             this.main = document.querySelector("main");
             this.btnMenu = document.querySelector("#btnMenu");
             this.btnMenuImg = btnMenu.querySelector("img");
@@ -41,6 +42,8 @@ Menu.Toggle = function ()
     
     if (!this.enabled)
     {
+        this.body.style.overflowY = "hidden";
+        
         this.btnMenuImg.style.animation = "btnMenu steps(8) 0.5s";
         
         this.main.innerHTML += `<div id="menu"></div><hr id="menuOverlay">`;
@@ -63,6 +66,8 @@ Menu.Toggle = function ()
     }
     else
     {
+        this.body.style.overflowY = "visible";
+        
         this.btnMenuImg.style.animation = "reverse btnMenu steps(8) 0.25s";
         
         this.menu.style.animation = "reverse slideX 0.25s";
