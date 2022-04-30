@@ -96,7 +96,7 @@ a
 #logo
 {
     display : inline-block;
-    margin : 100%;
+    margin : 0 50%;
 }
 
 #logo img
