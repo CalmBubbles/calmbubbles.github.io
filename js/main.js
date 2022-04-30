@@ -30,7 +30,7 @@ Menu.SetData = function ()
     
     request.open("GET", "/data/menuList.json");
     request.overrideMimeType("application/json");
-    request.send();alert("hi");
+    request.send();
 };
 
 Menu.Toggle = function ()
