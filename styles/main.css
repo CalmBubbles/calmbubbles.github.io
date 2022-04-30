@@ -160,6 +160,12 @@ a
     width : calc(540 * var(--pixel-unit));
 }
 
+/*-----Object*/
+.unselectable
+{
+    pointer-events : none;
+}
+
 
 /*----------Keyframes*/
 @keyframes slideX
