@@ -24,7 +24,8 @@ Menu.SetData = function ()
         }
     };
     
-    request.onerror = () => {
+    request.onerror = function ()
+    {
         ThrowError(3);
     };
     
