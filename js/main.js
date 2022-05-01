@@ -24,12 +24,8 @@ function screenTrans ()
     let fadeEl = document.querySelector(".fadeObject");
     let fadeTime = 1;
     
-    fadeEl.style.opacity = "0.0";
-    fadeEl.style.transition = "opacity 0.5s"
-    
     setTimeout(() => {
-        fadeEl.style.transition = "none"
-        fadeEl.style.pointerEvents = "none";
+        fadeEl.setAttribute("data-fadeState", "0");
         
         setScrolling(true);
     }, (fadeTime * 500));
@@ -44,9 +40,7 @@ function screenTrans ()
             
             setScrolling(false);
             
-            fadeEl.style.pointerEvents = "all";
-            fadeEl.style.opacity = "1.0";
-            fadeEl.style.transition = "opacity 0.5s"
+            fadeEl.setAttribute("data-fadeState", "2");
             
             setTimeout(() => {
                 window.location.href = target;
