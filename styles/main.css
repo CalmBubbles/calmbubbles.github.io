@@ -18,6 +18,8 @@ body
 {
     overflow-x : hidden;
     scroll-behavior : smooth;
+    text-size-adjust : none;
+    background : rgb(15, 60, 134);
 }
 
 
