@@ -30,7 +30,11 @@
         "content" : [
             {
                 "name" : "CalmBubbles",
-                "link" : "/about"
+                "link" : "/bio"
+            },
+            {
+                "name" : "This Site",
+                "link" : "/site-info"
             }
         ]
     },
