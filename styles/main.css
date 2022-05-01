@@ -199,3 +199,19 @@ a
 {
     pointer-events : none;
 }
+
+.fadeObject
+{
+    background : black;
+    border : none;
+    opacity : 1.0;
+    position : fixed;
+    margin : 0;
+    padding : 0;
+    top : 0;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    z-index : 420;
+    pointer-events : all;
+}
