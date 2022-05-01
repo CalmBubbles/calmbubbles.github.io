@@ -17,7 +17,12 @@
     {
         "name" : "Projects",
         "type" : "list",
-        "content" : null
+        "content" : [
+            {
+                "name" : "Bright Light",
+                "link" : null
+            }
+        ]
     },
     {
         "name" : "About",
@@ -30,7 +35,7 @@
         ]
     },
     {
-        "name" : "more",
+        "name" : "More",
         "type" : "list",
         "content" : null
     }
