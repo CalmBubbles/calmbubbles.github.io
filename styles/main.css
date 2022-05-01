@@ -63,7 +63,6 @@ main
     top : 0;
     left : 0;
     padding : calc(120 * var(--pixel-unit)) 0 14px 0;
-    transform : translateX(-100%);
     scroll-behavior : smooth;
     z-index : 9;
     background : white;
@@ -132,7 +131,6 @@ a
     z-index : 8;
     background : black;
     border : none;
-    opacity : 0.0;
 }
 
 
