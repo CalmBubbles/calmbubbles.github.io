@@ -1,0 +1,15 @@
+/*----------Keyframes*/
+@keyframes slideX
+{
+    from { transform : translateX(-100); }
+    
+    to { transform : none; }
+}
+
+/*-----Menu*/
+@keyframes menuOverlay
+{
+    from { opacity : 0.0; }
+    
+    to { opacity : 0.37; }
+}

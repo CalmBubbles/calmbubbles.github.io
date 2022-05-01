@@ -69,6 +69,12 @@ main
     color : black;
 }
 
+#menuNav
+{
+    overflow-y : scroll;
+    max-height : 62%;
+}
+
 /*-----Components*/
 img:not(.anti-aliased)
 {
@@ -130,6 +136,7 @@ a
     padding : calc(120 * var(--pixel-unit)) 14px 0;
     z-index : 8;
     background : black;
+    opacity : 0.37;
     border : none;
 }
 
@@ -168,6 +175,20 @@ a
 .menuList div img
 {
     width : calc(540 * var(--pixel-unit));
+}
+
+.menuDropdown
+{
+    max-height : 0;
+    overflow : hidden;
+}
+
+.menuSubList
+{
+    padding : 13px;
+    margin-left : 30px;
+    font-size : 20px;
+    background : rgba(0, 0, 0, 0.13);
 }
 
 /*-----Object*/
