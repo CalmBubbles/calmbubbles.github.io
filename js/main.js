@@ -24,13 +24,14 @@ function screenTrans ()
     let fadeEl = document.querySelector(".fadeObject");
     let fadeTime = 1;
     
+    fadeEl.style.opacity = "0.0";
+    fadeEl.style.transition = "opacity 0.5s"
+    
     setTimeout(() => {
         fadeEl.style.pointerEvents = "none";
-        fadeEl.style.opacity = "0.0";
-        fadeEl.style.transition = "opacity 0.25s"
         
         setScrolling(true);
-    }, (fadeTime * 250));
+    }, (fadeTime * 500));
     
     for (let i = 0; i < pageAnc.length; i++)
     {
@@ -44,11 +45,11 @@ function screenTrans ()
             
             fadeEl.style.pointerEvents = "all";
             fadeEl.style.opacity = "1.0";
-            fadeEl.style.transition = "opacity 0.25s"
+            fadeEl.style.transition = "opacity 0.5s"
             
             setTimeout(() => {
                 window.location.href = target;
-            }, (fadeTime * 250));
+            }, (fadeTime * 500));
         });
     }
 }
