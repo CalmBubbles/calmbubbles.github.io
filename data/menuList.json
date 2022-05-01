@@ -19,7 +19,7 @@
         "type" : "list",
         "content" : [
             {
-                "name" : "Bright Light",
+                "name" : "Coming Soon",
                 "link" : null
             }
         ]
@@ -37,6 +37,11 @@
     {
         "name" : "More",
         "type" : "list",
-        "content" : null
+        "content" : [
+            {
+                "name" : "Coming Soon",
+                "link" : null
+            }
+        ]
     }
 ]
