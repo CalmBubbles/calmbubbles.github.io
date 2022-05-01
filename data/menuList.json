@@ -1,31 +1,31 @@
 [
     {
-        "name" : "home",
+        "name" : "Home",
         "type" : "link",
         "content" : "/"
     },
     {
-        "name" : "works",
+        "name" : "Works",
         "type" : "list",
         "content" : [
             {
                 "name" : "js-plugins",
-                "type" : "link",
-                "content" : "/js-plugins"
+                "link" : "/js-plugins"
             }
         ]
     },
     {
-        "name" : "projects",
+        "name" : "Projects",
         "type" : "list",
         "content" : null
     },
     {
-        "name" : "about",
+        "name" : "About",
         "type" : "list",
         "content" : [
             {
-                "name" : ""
+                "name" : "CalmBubbles",
+                "link" : "/about"
             }
         ]
     },
