@@ -2,11 +2,14 @@ window.onload = () => {
     Menu.SetData();
 };
 
+
+// ----------Menu
 function Menu ()
 {
     ThrowError(1);
 }
 
+// -----Set Menu
 Menu.SetData = function ()
 {
     let request = new XMLHttpRequest();
@@ -16,12 +19,7 @@ Menu.SetData = function ()
         {
             this.menuData = JSON.parse(request.responseText);
             
-            this.body = document.body;
-            this.main = document.querySelector("main");
-            this.btnMenu = document.querySelector("#btnMenu");
-            this.btnMenuImg = btnMenu.querySelector("img");
-            
-            this.btnMenu.onclick = () => { this.Toggle(); };
+            this.getNavData();
         }
     };
     
@@ -34,6 +32,63 @@ Menu.SetData = function ()
     request.send();
 };
 
+Menu.getNavData = function ()
+{
+    this.navData = "";
+    
+    for (let i = 0; i < this.menuData.length; i++)
+    {
+        var output = "";
+        var link = "/coming-soon";
+        
+        switch (this.menuData[i].type)
+        {
+            case "link":
+                if (this.menuData[i].content != null)
+                {
+                    link = this.menuData[i].content;
+                }
+                
+                output = `<a href="${link}"><div class="menuList">${this.menuData[i].name}</div></a>`;
+                break;
+            case "list":
+                if (this.menuData[i].content != null)
+                {
+                    for (let l = 0; l < this.menuData[i].content.length; l++)
+                    {
+                        var subOutput = "";
+                        
+                        if (this.menuData[i].content[l].link != null)
+                        {
+                            link = this.menuData[i].content[l].link;
+                        }
+                        
+                        subOutput += `<a href="${link}"><div class="menuSubList">${this.menuData[i].content[l].name}</div></a>`;
+                        
+                        if (l == this.menuData[i].content.length - 1)
+                        {
+                            output = `<div id="list_${this.menuData[i].name}" class="menuList">${this.menuData[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${this.menuData[i].name}"></div></div><div id="${this.menuData[i].name}" class="menuDropdown">${subOutput}</div>`;
+                        }
+                    }
+                }
+                break;
+        }
+        
+        this.navData += output;
+        
+        if (i == this.menuData.length - 1)
+        {
+            this.body = document.body;
+            this.main = document.querySelector("main");
+            this.btnMenu = document.querySelector("#btnMenu");
+            this.btnMenuImg = document.querySelector("img");
+            
+            this.btnMenu.onclick = () => { this.Toggle(); };
+        }
+    }
+};
+
+// -----Toggling
 Menu.Toggle = function ()
 {
     if (this.enabled == null) this.enabled = false;
@@ -44,20 +99,34 @@ Menu.Toggle = function ()
     {
         this.body.style.overflowY = "hidden";
         
-        this.btnMenuImg.style.animation = "btnMenu steps(8) 0.5s";
+        this.btnMenuImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
+        this.btnMenuImg.style.transition = "transform steps(8) 0.5s";
         
-        this.main.innerHTML += `<div id="menu"></div><hr id="menuOverlay">`;
+        this.main.innerHTML += `<div id="menu"><div id="menuNav">${this.navData}</div></div><hr id="menuOverlay">`;
         this.menu = this.main.querySelector("#menu");
         this.overlay = this.main.querySelector("#menuOverlay");
-        this.menu.style.animation = "slideX 0.5s";
-        this.overlay.style.animation = "menuOverlay 0.5s";
+        
+        for (let c = 0; c < this.menuData.length; c++)
+        {
+            if (this.menuData[c].type === "list")
+            {
+                if (this.menuData[c].content != null)
+                {
+                    let onloadFunc = Function(`Menu.managed_${this.menuData[c].name} = new menuManaged("${this.menuData[c].name}");`);
+                    onloadFunc();
+                }
+            }
+        }
+        
+        this.menu.style.transform = "none";
+        this.menu.style.transition = "transform 0.5s";
+        this.overlay.style.opacity = "0.37";
+        this.overlay.style.transition = "opacity 0.5s";
         
         setTimeout(() => {
-            this.btnMenuImg.style.animation = "none";
-            this.btnMenuImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
-            
-            this.menu.style.animation = "none";
-            this.overlay.style.animation = "none";
+            this.btnMenuImg.style.transition = "none";
+            this.menu.style.transition = "none";
+            this.overlay.style.transition = "none";
             
             this.enabled = !this.enabled;
             this.btnMenu.onclick = () => { this.Toggle(); };
@@ -68,14 +137,28 @@ Menu.Toggle = function ()
     {
         this.body.style.overflowY = "visible";
         
-        this.btnMenuImg.style.animation = "reverse btnMenu steps(8) 0.25s";
+        this.btnMenuImg.style.transform = "none";
+        this.btnMenuImg.style.transition = "transform steps(8) 0.25s";
         
-        this.menu.style.animation = "reverse slideX 0.25s";
-        this.overlay.style.animation = "reverse menuOverlay 0.25s";
+        for (let i = 0; i < this.menuData.length; i++)
+        {
+            if (this.menuData[i].type === "list")
+            {
+                if (this.menuData[i].content != null)
+                {
+                    let onloadFunc = Function(`if (Menu.managed_${this.menuData[i].name}.enabled) { Menu.managed_${this.menuData[i].name}.Toggle(); }`);
+                    onloadFunc();
+                }
+            }
+        }
+        
+        this.menu.style.transform = "translateX(-100%)";
+        this.menu.style.transition = "transform 0.25s";
+        this.overlay.style.opacity = "0.0";
+        this.overlay.style.transition = "opacity 0.25s";
         
         setTimeout(() => {
-            this.btnMenuImg.style.animation = "none";
-            this.btnMenuImg.style.transform = "none";
+            this.btnMenuImg.style.transition = "none";
             
             this.menu.remove();
             this.overlay.remove();
@@ -85,6 +168,59 @@ Menu.Toggle = function ()
         }, 250);
     }
 };
+
+// -----Managed Class for Sublists
+class menuManaged
+{
+    constructor (name)
+    {
+        this.thisObj = document.querySelector(`#list_${name}`);
+        this.arrowImg = this.thisObj.querySelector("img");
+        this.dropdown = document.querySelector(`#${name}`)
+        
+        this.ddHeight = this.dropdown.scrollHeight;
+        
+        this.thisObj.onclick = () => { this.Toggle(); };
+    }
+    
+    Toggle ()
+    {
+        if (this.enabled == null) this.enabled = false;
+        
+        if (this.thisObj.onclick != null) this.thisObj.onclick = null;
+        
+        if (!this.enabled)
+        {
+            this.arrowImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
+            this.arrowImg.style.transition = "transform steps(8) 0.25s";
+            this.dropdown.style.maxHeight = `${this.ddHeight}px`;
+            this.dropdown.style.transition = "max-height 0.25s";
+            
+            setTimeout(() => {
+                this.arrowImg.style.transition = "none";
+                this.dropdown.style.transition = "none";
+                
+                this.enabled = !this.enabled;
+                this.thisObj.onclick = () => { this.Toggle(); };
+            }, 250);
+        }
+        else
+        {
+            this.arrowImg.style.transform = "none";
+            this.arrowImg.style.transition = "transform steps(8) 0.25s";
+            this.dropdown.style.maxHeight = "0";
+            this.dropdown.style.transition = "max-height 0.25s";
+            
+            setTimeout(() => {
+                this.arrowImg.style.transition = "none";
+                this.dropdown.style.transition = "none";
+                
+                this.enabled = !this.enabled;
+                this.thisObj.onclick = () => { this.Toggle(); };
+            }, 250);
+        }
+    }
+}
 
 
 // ----------Debugging
