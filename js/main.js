@@ -28,6 +28,7 @@ function screenTrans ()
     fadeEl.style.transition = "opacity 0.5s"
     
     setTimeout(() => {
+        fadeEl.style.transition = "none"
         fadeEl.style.pointerEvents = "none";
         
         setScrolling(true);
