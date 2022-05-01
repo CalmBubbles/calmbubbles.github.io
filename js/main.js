@@ -40,6 +40,7 @@ Menu.getNavData = function ()
     {
         var output = "";
         var link = "/coming-soon";
+        var subOutput = "";
         
         switch (this.menuData[i].type)
         {
@@ -56,8 +57,6 @@ Menu.getNavData = function ()
                 {
                     for (let l = 0; l < this.menuData[i].content.length; l++)
                     {
-                        var subOutput = "";
-                        
                         if (this.menuData[i].content[l].link != null)
                         {
                             link = this.menuData[i].content[l].link;
