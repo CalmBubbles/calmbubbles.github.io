@@ -99,6 +99,29 @@ a
     color : inherit;
 }
 
+/*No Script*/
+noscript
+{
+    position : fixed;
+    top : 0;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    z-index : 690;
+    display : flex;
+    flex-direction : column;
+    background : black;
+    pointer-events : all;
+}
+
+noscript div
+{
+    position : relative;
+    text-align : center;
+    margin : auto;
+    animation : linear fadeIO 1s infinite;
+}
+
 
 /*----------Instances*/
 /*-----Header and Menu*/
@@ -154,6 +177,36 @@ a
     background : black;
 }
 
+/*-----Screen Fade*/
+.fadeObject
+{
+    background : rgb(15, 60, 134);
+    border : none;
+    opacity : 0.0;
+    position : fixed;
+    margin : 0;
+    padding : 0;
+    top : 0;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    z-index : 420;
+    pointer-events : none;
+}
+
+.fadeObject[data-fadeState="1"]
+{
+    pointer-events : all;
+    animation : 0.5s fade;
+}
+
+.fadeObject[data-fadeState="2"]
+{
+    opacity : 1.0;
+    pointer-events : all;
+    animation : reverse 0.5s fade ease;
+}
+
 /*-----Menu*/
 .menuList
 {
@@ -198,20 +251,4 @@ a
 .unselectable
 {
     pointer-events : none;
-}
-
-.fadeObject
-{
-    background : rgb(15, 60, 134);
-    border : none;
-    opacity : 1.0;
-    position : fixed;
-    margin : 0;
-    padding : 0;
-    top : 0;
-    bottom : 0;
-    left : 0;
-    right : 0;
-    z-index : 420;
-    pointer-events : all;
 }
