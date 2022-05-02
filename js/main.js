@@ -1,7 +1,7 @@
 window.onload = () => {
     Data.Set();
     
-    screenTrans();
+    screenTrans.Start();
     
     Header.SetData();
     Menu.SetData();
@@ -11,17 +11,28 @@ window.onload = () => {
 // ----------Screen Transition
 function screenTrans ()
 {
-    let pageAnc = document.querySelectorAll("a:not([target='_blank'])");
-    let fadeEl = document.querySelector(".fadeObject");
-    let fadeTime = 1;
+    ThrowError(1);
+}
+
+screenTrans.Start = function ()
+{
+    this fadeEl = document.querySelector(".fadeObject");
+    this.fadeTime = 1;
     
-    fadeEl.style.opacity = "0.0";
-    fadeEl.style.transition = "opacity 0.5s";
+    this.fadeEl.style.opacity = "0.0";
+    this.fadeEl.style.transition = "opacity 0.5s";
     
     setTimeout(() => {
-        fadeEl.style.pointerEvents = "none";
-        fadeEl.style.transition = "none";
-    }, (fadeTime * 500));
+        this.fadeEl.style.pointerEvents = "none";
+        this.fadeEl.style.transition = "none";
+    }, (this.fadeTime * 500));
+    
+    setInterval(() => { this.ScanAnchors }, 2);
+};
+
+screenTrans.ScanAnchors = function ()
+{
+    let pageAnc = document.querySelectorAll("a:not([target='_blank'])");
     
     for (let i = 0; i < pageAnc.length; i++)
     {
@@ -31,16 +42,16 @@ function screenTrans ()
             e.preventDefault();
             let target = e.target.href;
             
-            fadeEl.style.pointerEvents = "all";
-            fadeEl.style.opacity = "1.0";
-            fadeEl.style.transition = "opacity 0.5s";
+            this.fadeEl.style.pointerEvents = "all";
+            this.fadeEl.style.opacity = "1.0";
+            this.fadeEl.style.transition = "opacity 0.5s";
             
             setTimeout(() => {
                 window.location.href = target;
-            }, (fadeTime * 500));
+            }, (this.fadeTime * 500));
         });
     }
-}
+};
 
 
 // ----------Header
