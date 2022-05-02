@@ -3,5 +3,8 @@
         "youtube" : "",
         "twitter" : "eerreeeee",
         "instagram" : ""
+    },
+    "sprites" : {
+        "socials" : "/img/spr_socials.png"
     }
 }
