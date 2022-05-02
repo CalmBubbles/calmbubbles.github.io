@@ -187,7 +187,6 @@ Menu.getNavData = function ()
 // -----Toggling
 Menu.Toggle = function ()
 {
-    return alert(data.socials.twitter);
     if (this.enabled == null) this.enabled = false;
     
     if (this.btnMenu.onclick != null) this.btnMenu.onclick = null;
@@ -199,7 +198,8 @@ Menu.Toggle = function ()
         this.btnMenuImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
         this.btnMenuImg.style.transition = "transform steps(8) 0.5s";
         
-        this.main.innerHTML += `<div id="menu"><div id="menuNav">${this.navData}</div><div id="menuSocials"><a href="/"><img id="menuBtnYt" class="unselectable" src="/img/spr_socials.png"></a><a href="/"><img id="menuBtnTwt" class="unselectable" src="/img/spr_socials.png"></a><a href="/"><img id="menuBtnInsta" class="unselectable" src="/img/spr_socials.png"></a></div></div><hr id="menuOverlay">`;
+        this.main.innerHTML += `<div id="menu"><div id="menuNav">${this.navData}</div><div id="menuSocials"><a href="${data.socials.youtube}"><img id="menuBtnYt" class="unselectable" src="${data.sprites.socials}"></a><a href="${data.socials.twitter}"><img id="menuBtnTwt" class="unselectable" src="${data.sprites.socials}"></a><a href="${data.socials.instagram}"><img id="menuBtnInsta" class="unselectable" src="${data.sprites.socials}"></a></div></div><hr id="menuOverlay">`;
+        
         this.menu = this.main.querySelector("#menu");
         this.overlay = this.main.querySelector("#menuOverlay");
         
