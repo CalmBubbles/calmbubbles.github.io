@@ -187,7 +187,7 @@ Menu.getNavData = function ()
 // -----Toggling
 Menu.Toggle = function ()
 {
-    return alert(window.data.socials.twitter);
+    return alert(data.socials.twitter);
     if (this.enabled == null) this.enabled = false;
     
     if (this.btnMenu.onclick != null) this.btnMenu.onclick = null;
@@ -335,7 +335,7 @@ Data.Set = function ()
     request.onload = () => {
         if (request.status < 400)
         {
-            Data = JSON.parse(request.responseText);
+            data = JSON.parse(request.responseText);
         }
     };
     
