@@ -34,7 +34,7 @@ screenTrans.ScanAnchors = function ()
 {
     let pageAnc = document.querySelectorAll("a:not([target='_blank'])");
     
-    if (this.anchors == pageAnc) return alert("e");
+    if (this.anchors == pageAnc) alert("e");
     
     for (let i = 0; i < pageAnc.length; i++)
     {
