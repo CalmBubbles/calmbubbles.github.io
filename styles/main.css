@@ -74,6 +74,7 @@ main
 
 #menuNav
 {
+    position : relative;
     overflow-y : scroll;
     max-height : 62%;
 }
