@@ -27,7 +27,7 @@ screenTrans.Start = function ()
         this.fadeEl.style.transition = "none";
     }, (this.fadeTime * 500));
     
-    setInterval(() => { this.ScanAnchors(); }, 250);
+    this.interval = setInterval(() => { this.ScanAnchors(); }, 250);
 };
 
 screenTrans.ScanAnchors = function ()
@@ -39,6 +39,8 @@ screenTrans.ScanAnchors = function ()
         let anchor = pageAnc[i];
         
         anchor.addEventListener("click", e => {
+            clearInterval(this.interval);
+            
             e.preventDefault();
             let target = e.target.href;
             
