@@ -11,6 +11,7 @@ var scrollKeys = {
 };
 
 window.onload = () => {
+    setScrolling(false);
     screenTrans();
     Header.SetData();
     Menu.SetData();
