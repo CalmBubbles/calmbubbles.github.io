@@ -15,11 +15,11 @@ function screenTrans ()
     let fadeEl = document.querySelector(".fadeObject");
     let fadeTime = 1;
     
-    fadeEl.style.pointerEvents = "none";
     fadeEl.style.opacity = "0.0";
     fadeEl.style.transition = "opacity 0.5s";
     
     setTimeout(() => {
+        fadeEl.style.pointerEvents = "none";
         fadeEl.style.transition = "none";
     }, (fadeTime * 500));
     
