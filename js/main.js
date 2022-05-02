@@ -338,7 +338,7 @@ Data.Set = function ()
         ThrowError(3);
     };
     
-    request.open("GET", "/data/menuList.json");
+    request.open("GET", "/data/data.json");
     request.overrideMimeType("application/json");
     request.send();
 };
