@@ -16,7 +16,7 @@ function screenTrans ()
 
 screenTrans.Start = function ()
 {
-    this fadeEl = document.querySelector(".fadeObject");
+    this.fadeEl = document.querySelector(".fadeObject");
     this.fadeTime = 1;
     
     this.fadeEl.style.opacity = "0.0";
@@ -27,14 +27,14 @@ screenTrans.Start = function ()
         this.fadeEl.style.transition = "none";
     }, (this.fadeTime * 500));
     
-    //setInterval(() => { this.ScanAnchors(); }, 2);
+    setInterval(() => { this.ScanAnchors(); }, 2);
 };
 
 screenTrans.ScanAnchors = function ()
 {
     let pageAnc = document.querySelectorAll("a:not([target='_blank'])");
     
-    if (this.anchors == pageAnc) return;
+    if (this.anchors == pageAnc) return alert("e");
     
     for (let i = 0; i < pageAnc.length; i++)
     {
