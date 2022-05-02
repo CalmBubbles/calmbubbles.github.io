@@ -74,7 +74,6 @@ main
 
 #menuNav
 {
-    position : relative;
     overflow-y : scroll;
     max-height : 62%;
 }
@@ -170,12 +169,12 @@ noscript div
 /*Socials*/
 #menuSocials
 {
-    position : relative;
+    position : absolute;
     display : flex;
     width : calc(240 * var(--pixel-unit));
     height : calc(60 * var(--pixel-unit));
     padding : 12px;
-    top : 12vh;
+    top : 75vh;
 }
 
 #menuSocials a
