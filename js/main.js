@@ -27,14 +27,12 @@ screenTrans.Start = function ()
         this.fadeEl.style.transition = "none";
     }, (this.fadeTime * 500));
     
-    setInterval(() => { this.ScanAnchors(); }, 2);
+    setInterval(() => { this.ScanAnchors(); }, 100);
 };
 
 screenTrans.ScanAnchors = function ()
 {
     let pageAnc = document.querySelectorAll("a:not([target='_blank'])");
-    
-    if (this.anchors == pageAnc) alert("e");
     
     for (let i = 0; i < pageAnc.length; i++)
     {
