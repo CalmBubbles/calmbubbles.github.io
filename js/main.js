@@ -187,7 +187,7 @@ Menu.getNavData = function ()
 // -----Toggling
 Menu.Toggle = function ()
 {
-    return alert(data.socials.twitter);
+    return alert(window.data.socials.twitter);
     if (this.enabled == null) this.enabled = false;
     
     if (this.btnMenu.onclick != null) this.btnMenu.onclick = null;
