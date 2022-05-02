@@ -166,6 +166,42 @@ noscript div
     border : none;
 }
 
+/*Socials*/
+#menuSocials
+{
+    position : relative;
+    display : flex;
+    width : calc(240 * var(--pixel-unit));
+    height : calc(60 * var(--pixel-unit));
+    padding : 12px;
+    top : 12vh;
+}
+
+#menuSocials a
+{
+    display : block;
+    overflow : hidden;
+    width : calc(60 * var(--pixel-unit));
+    height : calc(60 * var(--pixel-unit));
+    margin : auto;
+}
+
+#menuSocials img
+{
+    position : relative;
+    width : calc(180 * var(--pixel-unit));
+}
+
+#menuBtnTwt
+{
+    left : calc(-60 * var(--pixel-unit));;
+}
+
+#menuBtnInsta
+{
+    left : calc(-120 * var(--pixel-unit));;
+}
+
 
 /*----------Classes*/
 .line
@@ -175,36 +211,6 @@ noscript div
     width : 100%
     height : 1px;
     background : black;
-}
-
-/*-----Screen Fade*/
-.fadeObject
-{
-    background : rgb(15, 60, 134);
-    border : none;
-    opacity : 0.0;
-    position : fixed;
-    margin : 0;
-    padding : 0;
-    top : 0;
-    bottom : 0;
-    left : 0;
-    right : 0;
-    z-index : 420;
-    pointer-events : none;
-}
-
-.fadeObject[data-fadeState="1"]
-{
-    pointer-events : all;
-    animation : 0.5s fade;
-}
-
-.fadeObject[data-fadeState="2"]
-{
-    opacity : 1.0;
-    pointer-events : all;
-    animation : reverse 0.5s fade ease;
 }
 
 /*-----Menu*/
@@ -251,4 +257,19 @@ noscript div
 .unselectable
 {
     pointer-events : none;
+}
+
+.fadeObject
+{
+    background : rgb(15, 60, 134);
+    border : none;
+    position : fixed;
+    margin : 0;
+    padding : 0;
+    top : 0;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    z-index : 420;
+    pointer-events : all;
 }
