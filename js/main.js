@@ -187,7 +187,7 @@ Menu.getNavData = function ()
 // -----Toggling
 Menu.Toggle = function ()
 {
-    return alert(Data.socials.twitter);
+    return alert(data.socials.twitter);
     if (this.enabled == null) this.enabled = false;
     
     if (this.btnMenu.onclick != null) this.btnMenu.onclick = null;
@@ -321,7 +321,12 @@ class menuManaged
 
 
 // ----------Data
-var Data;
+var data;
+
+function Data ()
+{
+    ThrowError(1);
+}
 
 Data.Set = function ()
 {
