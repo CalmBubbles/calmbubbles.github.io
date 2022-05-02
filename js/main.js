@@ -1,18 +1,8 @@
-var scrollKeys = {
-    38 : 1,
-    40 : 1,
-    37 : 1,
-    39 : 1,
-    32 : 1,
-    33 : 1,
-    34 : 1,
-    35 : 1,
-    36 : 1
-};
-
 window.onload = () => {
-    setScrolling(false);
+    Data.Set();
+    
     screenTrans();
+    
     Header.SetData();
     Menu.SetData();
 };
@@ -25,10 +15,12 @@ function screenTrans ()
     let fadeEl = document.querySelector(".fadeObject");
     let fadeTime = 1;
     
+    fadeEl.style.pointerEvents = "none";
+    fadeEl.style.opacity = "0.0";
+    fadeEl.style.transition = "opacity 0.5s";
+    
     setTimeout(() => {
-        fadeEl.setAttribute("data-fadeState", "0");
-        
-        setScrolling(true);
+        fadeEl.style.transition = "none";
     }, (fadeTime * 500));
     
     for (let i = 0; i < pageAnc.length; i++)
@@ -39,61 +31,14 @@ function screenTrans ()
             e.preventDefault();
             let target = e.target.href;
             
-            setScrolling(false);
-            
-            fadeEl.setAttribute("data-fadeState", "2");
+            fadeEl.style.pointerEvents = "all";
+            fadeEl.style.opacity = "1.0";
+            fadeEl.style.transition = "opacity 0.5s";
             
             setTimeout(() => {
                 window.location.href = target;
             }, (fadeTime * 500));
         });
-    }
-}
-
-
-// ----------Scrolling
-function preventDefault(e)
-{
-    e.preventDefault();
-}
-
-function preventDefaultForScrollKeys(e)
-{
-    if (scrollKeys[e.keyCode])
-    {
-        preventDefault(e);
-        return false;
-    }
-}
-
-var supportsPassive = false;
-try
-{
-    window.addEventListener("scrollingToggle", null, Object.defineProperty({}, "passive", {
-        get : function () { supportsPassive = true; } 
-    }));
-}
-catch(e) {}
-
-var wheelOpt = supportsPassive ? { passive: false } : false;
-var wheelEvent = "onwheel" in document.createElement("div") ? "wheel" : "mousewheel";
-
-// -----Toggling
-function setScrolling (toggle)
-{
-    if (toggle)
-    {
-        window.removeEventListener("DOMMouseScroll", preventDefault, false);
-        window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
-        window.removeEventListener("touchmove", preventDefault, wheelOpt);
-        window.removeEventListener("keydown", preventDefaultForScrollKeys, false);
-    }
-    else
-    {
-        window.addEventListener("DOMMouseScroll", preventDefault, false);
-        window.addEventListener(wheelEvent, preventDefault, wheelOpt);
-        window.addEventListener("touchmove", preventDefault, wheelOpt);
-        window.addEventListener("keydown", preventDefaultForScrollKeys, false);
     }
 }
 
@@ -242,6 +187,7 @@ Menu.getNavData = function ()
 // -----Toggling
 Menu.Toggle = function ()
 {
+    return alert(Data.socials.twitter);
     if (this.enabled == null) this.enabled = false;
     
     if (this.btnMenu.onclick != null) this.btnMenu.onclick = null;
@@ -253,7 +199,7 @@ Menu.Toggle = function ()
         this.btnMenuImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
         this.btnMenuImg.style.transition = "transform steps(8) 0.5s";
         
-        this.main.innerHTML += `<div id="menu"><div id="menuNav">${this.navData}</div></div><hr id="menuOverlay">`;
+        this.main.innerHTML += `<div id="menu"><div id="menuNav">${this.navData}</div><div id="menuSocials"><a href="/"><img id="menuBtnYt" class="unselectable" src="/img/spr_socials.png"></a><a href="/"><img id="menuBtnTwt" class="unselectable" src="/img/spr_socials.png"></a><a href="/"><img id="menuBtnInsta" class="unselectable" src="/img/spr_socials.png"></a></div></div><hr id="menuOverlay">`;
         this.menu = this.main.querySelector("#menu");
         this.overlay = this.main.querySelector("#menuOverlay");
         
@@ -372,6 +318,30 @@ class menuManaged
         }
     }
 }
+
+
+// ----------Data
+var Data;
+
+Data.Set = function ()
+{
+    let request = new XMLHttpRequest();
+    
+    request.onload = () => {
+        if (request.status < 400)
+        {
+            Data = JSON.parse(request.responseText);
+        }
+    };
+    
+    request.onerror = () => {
+        ThrowError(3);
+    };
+    
+    request.open("GET", "/data/menuList.json");
+    request.overrideMimeType("application/json");
+    request.send();
+};
 
 
 // ----------Debugging
