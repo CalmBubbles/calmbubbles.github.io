@@ -144,6 +144,7 @@ noscript div
     width : calc(60 * var(--pixel-unit));
     height : calc(60 * var(--pixel-unit));
     left : 10px;
+    cursor : pointer;
     background : black;
 }
 
@@ -221,6 +222,7 @@ noscript div
     padding : 15px;
     font-size : 22px;
     text-transform : uppercase;
+    cursor : pointer;
 }
 
 .menuList div
