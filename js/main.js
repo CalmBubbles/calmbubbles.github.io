@@ -16,6 +16,7 @@ function screenTrans ()
 
 screenTrans.Start = function ()
 {
+    this.body = document.body;
     this.fadeEl = document.querySelector(".fadeObject");
     this.fadeTime = 1;
     
@@ -25,6 +26,8 @@ screenTrans.Start = function ()
     setTimeout(() => {
         this.fadeEl.style.pointerEvents = "none";
         this.fadeEl.style.transition = "none";
+        
+        this.body.style.overflowY = "visible";
     }, (this.fadeTime * 500));
     
     setInterval(() => { this.ScanAnchors(); }, 2);
@@ -41,6 +44,8 @@ screenTrans.ScanAnchors = function ()
         anchor.onclick = e => {
             e.preventDefault();
             let target = anchor.href;
+            
+            this.body.style.overflowY = "hidden";
             
             this.fadeEl.style.pointerEvents = "all";
             this.fadeEl.style.opacity = "1.0";
@@ -243,8 +248,6 @@ Menu.Toggle = function ()
     }
     else
     {
-        this.body.style.overflowY = "visible";
-        
         this.btnMenuImg.style.transform = "none";
         this.btnMenuImg.style.transition = "transform steps(8) 0.25s";
         
@@ -270,6 +273,8 @@ Menu.Toggle = function ()
             
             this.menu.remove();
             this.overlay.remove();
+            
+            this.body.style.overflowY = "visible";
             
             this.enabled = !this.enabled;
             this.btnMenu.onclick = () => { this.Toggle(); };
