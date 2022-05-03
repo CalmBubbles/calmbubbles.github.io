@@ -27,7 +27,7 @@ screenTrans.Start = function ()
         this.fadeEl.style.transition = "none";
     }, (this.fadeTime * 500));
     
-    this.interval = setInterval(() => { this.ScanAnchors(); }, 250);
+    this.interval = setInterval(() => { this.ScanAnchors(); }, 50);
 };
 
 screenTrans.ScanAnchors = function ()
@@ -38,7 +38,11 @@ screenTrans.ScanAnchors = function ()
     {
         let anchor = pageAnc[i];
         
-        anchor.addEventListener("click", e => {
+        anchor.onclick = e => {
+            e.preventDefault();
+        };
+        
+        /*anchor.addEventListener("click", e => {
             clearInterval(this.interval);
             
             e.preventDefault();
@@ -51,7 +55,7 @@ screenTrans.ScanAnchors = function ()
             setTimeout(() => {
                 window.location.href = target;
             }, (this.fadeTime * 500));
-        });
+        });*/
     }
     
     this.anchors = pageAnc;
