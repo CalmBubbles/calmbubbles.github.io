@@ -38,9 +38,9 @@ screenTrans.ScanAnchors = function ()
     {
         let anchor = pageAnc[i];
         
-        anchor.onclick = () => {
+        anchor.onclick = e => {
             clearInterval(this.interval);
-            
+            /*
             e.preventDefault();
             let target = anchor.href;
             
@@ -50,7 +50,7 @@ screenTrans.ScanAnchors = function ()
             
             setTimeout(() => {
                 window.location.href = target;
-            }, (this.fadeTime * 500));
+            }, (this.fadeTime * 500));*/
         };
     }
     
