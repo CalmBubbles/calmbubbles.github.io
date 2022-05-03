@@ -27,7 +27,7 @@ screenTrans.Start = function ()
         this.fadeEl.style.transition = "none";
     }, (this.fadeTime * 500));
     
-    this.interval = setInterval(() => { this.ScanAnchors(); }, 50);
+    this.interval = setInterval(() => { this.ScanAnchors(); }, 2);
 };
 
 screenTrans.ScanAnchors = function ()
