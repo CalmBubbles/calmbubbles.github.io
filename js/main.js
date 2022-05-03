@@ -41,6 +41,7 @@ screenTrans.ScanAnchors = function ()
         anchor.onclick = () => {
             clearInterval(this.interval);
             
+            e.preventDefault();
             let target = anchor.href;
             
             this.fadeEl.style.pointerEvents = "all";
