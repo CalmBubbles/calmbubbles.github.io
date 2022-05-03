@@ -39,7 +39,7 @@ screenTrans.ScanAnchors = function ()
         let anchor = pageAnc[i];
         
         anchor.onclick = e => {
-            e.preventDefault();/*
+            e.preventDefault();
             let target = anchor.href;
             
             this.fadeEl.style.pointerEvents = "all";
@@ -48,7 +48,7 @@ screenTrans.ScanAnchors = function ()
             
             setTimeout(() => {
                 window.location.href = target;
-            }, (this.fadeTime * 500));*/
+            }, (this.fadeTime * 500));
         };
     }
 };
