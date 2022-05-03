@@ -21,14 +21,14 @@ screenTrans.Start = function ()
     this.fadeTime = 1;
     
     this.fadeEl.style.opacity = "0.0";
-    this.fadeEl.style.transition = "opacity 0.5s";
+    this.fadeEl.style.transition = `opacity ${0.5 * this.fadeTime}s`;
     
     setTimeout(() => {
         this.fadeEl.style.pointerEvents = "none";
         this.fadeEl.style.transition = "none";
         
         this.body.style.overflowY = "visible";
-    }, (this.fadeTime * 500));
+    }, (500 * this.fadeTime));
     
     setInterval(() => { this.ScanAnchors(); }, 2);
 };
@@ -49,11 +49,11 @@ screenTrans.ScanAnchors = function ()
             
             this.fadeEl.style.pointerEvents = "all";
             this.fadeEl.style.opacity = "1.0";
-            this.fadeEl.style.transition = "opacity 0.5s";
+            this.fadeEl.style.transition = `opacity ${0.5 * this.fadeTime}s`;
             
             setTimeout(() => {
                 window.location.href = target;
-            }, (this.fadeTime * 500));
+            }, (500 * this.fadeTime));
         };
     }
 };
