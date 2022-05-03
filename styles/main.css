@@ -17,6 +17,7 @@ html, body
 body
 {
     overflow-x : hidden;
+    overflow-y : hidden;
     scroll-behavior : smooth;
     text-size-adjust : none;
     background : rgb(15, 60, 134);
