@@ -42,7 +42,7 @@ screenTrans.ScanAnchors = function ()
             clearInterval(this.interval);
             
             e.preventDefault();
-            let target = e.target.href;
+            let target = e.href;
             
             this.fadeEl.style.pointerEvents = "all";
             this.fadeEl.style.opacity = "1.0";
