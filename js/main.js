@@ -75,11 +75,11 @@ Header.SetData = function ()
     this.mainTop = this.main.style.top;
     
     setInterval(() => {
-        if (this.scrollPos < window.innerHeight)
+        if (this.scrollPos < window.pageYOffset)
         {
             this.Toggle(false);
         }
-        else if (this.scrollPos > window.innerHeight)
+        else if (this.scrollPos > window.pageYOffset)
         {
             this.Toggle(true);
         }
