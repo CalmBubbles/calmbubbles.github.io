@@ -29,7 +29,7 @@
         "type" : "list",
         "content" : [
             {
-                "name" : "Bio",
+                "name" : "CalmBubbles",
                 "link" : "/bio"
             },
             {
