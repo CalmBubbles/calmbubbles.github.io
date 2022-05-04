@@ -169,6 +169,14 @@ noscript div
     border : none;
 }
 
+#menuSiteInfo
+{
+    position : absolute;
+    width : auto;
+    padding : 12px;
+    top : 87vh;
+}
+
 /*Socials*/
 #menuSocials
 {
