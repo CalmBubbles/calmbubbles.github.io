@@ -76,7 +76,7 @@ main
 #menuNav
 {
     overflow-y : scroll;
-    max-height : 62%;
+    height : 62%;
 }
 
 /*-----Components*/
