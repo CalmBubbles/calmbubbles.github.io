@@ -68,6 +68,7 @@ function Header ()
 // -----Set Header
 Header.SetData = function ()
 {
+    this.html = document.documentElement;
     this.header = document.querySelector("header");
     this.hLine = document.querySelector("#headerLine");
     this.main = document.querySelector("main");
@@ -75,16 +76,21 @@ Header.SetData = function ()
     this.mainTop = this.main.style.top;
     
     setInterval(() => {
-        if (this.scrollPos < window.pageYOffset)
+        this.scrollPos = html.scrollTop / (html.scrollHeight - window.innerHeight);
+        
+        if (this.scrollPos <= 1)
         {
-            this.Toggle(false);
-        }
-        else if (this.scrollPos > window.pageYOffset)
-        {
-            this.Toggle(true);
+            if (this.scrollPosOld < this.scrollPos)
+            {
+                this.Toggle(false);
+            }
+            else if (this.scrollPosOld > this.scrollPos)
+            {
+                this.Toggle(true);
+            }
         }
         
-        this.scrollPos = window.pageYOffset;
+        this.scrollPosOld = this.scrollPos;
     }, 100);
 };
 
