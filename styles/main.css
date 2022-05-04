@@ -71,6 +71,7 @@ main
     z-index : 9;
     background : white;
     color : black;
+    filter : none;
 }
 
 #menuNav
