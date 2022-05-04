@@ -214,7 +214,7 @@ Menu.Toggle = function ()
         this.btnMenuImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
         this.btnMenuImg.style.transition = "transform steps(8) 0.5s";
         
-        this.main.innerHTML += `<div id="menu"><div id="menuNav">${this.navData}</div><div id="menuSocials"><a href="${data.socials.youtube}" target="_blank" rel="noreferrer noopener"><img id="menuBtnYt" class="unselectable" src="${data.sprites.socials}"></a><a href="${data.socials.twitter}" target="_blank" rel="noreferrer noopener"><img id="menuBtnTwt" class="unselectable" src="${data.sprites.socials}"></a><a href="${data.socials.instagram}" target="_blank" rel="noreferrer noopener"><img id="menuBtnInsta" class="unselectable" src="${data.sprites.socials}"></a></div><div id="menuSiteInfo">About this site</div></div><hr id="menuOverlay">`;
+        this.main.innerHTML += `<div id="menu"><div id="menuNav">${this.navData}</div><div id="menuSocials"><a href="${data.socials.youtube}" target="_blank" rel="noreferrer noopener"><img id="menuBtnYt" class="unselectable" src="${data.sprites.socials}"></a><a href="${data.socials.twitter}" target="_blank" rel="noreferrer noopener"><img id="menuBtnTwt" class="unselectable" src="${data.sprites.socials}"></a><a href="${data.socials.instagram}" target="_blank" rel="noreferrer noopener"><img id="menuBtnInsta" class="unselectable" src="${data.sprites.socials}"></a></div><div id="menuSiteInfo">&#9432; About this site</div></div><hr id="menuOverlay">`;
         
         this.menu = this.main.querySelector("#menu");
         this.overlay = this.main.querySelector("#menuOverlay");
