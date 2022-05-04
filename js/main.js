@@ -21,14 +21,14 @@ screenTrans.Start = function ()
     this.fadeTime = 1;
     
     this.fadeEl.style.opacity = "0.0";
-    this.fadeEl.style.transition = `opacity ${0.5 * this.fadeTime}s`;
+    this.fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
     
     setTimeout(() => {
         this.fadeEl.style.pointerEvents = "none";
         this.fadeEl.style.transition = "none";
         
         this.body.style.overflowY = "visible";
-    }, (500 * this.fadeTime));
+    }, (250 * this.fadeTime));
     
     setInterval(() => { this.ScanAnchors(); }, 2);
 };
@@ -49,11 +49,11 @@ screenTrans.ScanAnchors = function ()
             
             this.fadeEl.style.pointerEvents = "all";
             this.fadeEl.style.opacity = "1.0";
-            this.fadeEl.style.transition = `opacity ${0.5 * this.fadeTime}s`;
+            this.fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
             
             setTimeout(() => {
                 window.location.href = target;
-            }, (500 * this.fadeTime));
+            }, (250 * this.fadeTime));
         };
     }
 };
@@ -79,7 +79,7 @@ Header.SetData = function ()
         {
             this.Toggle(false);
         }
-        else if (this.scrollPos > window.pageYOffset )
+        else if (this.scrollPos > window.pageYOffset)
         {
             this.Toggle(true);
         }
