@@ -234,7 +234,7 @@ Menu.Toggle = function ()
         this.menu.style.transform = "none";
         this.menu.style.transition = "transform 0.5s";
         this.overlay.style.opacity = "0.37";
-        this.overlay.style.backdropFilter = "blur(2px)";
+        this.overlay.style.backdropFilter = "blur(50px)";
         this.overlay.style.transition = "opacity 0.5s, backdrop-filter 0.5s";
         
         
