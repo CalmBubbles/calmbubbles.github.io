@@ -236,6 +236,9 @@ Menu.Toggle = function ()
         this.overlay.style.opacity = "0.37";
         this.overlay.style.transition = "opacity 0.5s";
         
+        this.main.style.filter = "blur(2px)";
+        this.main.style.transition = "filter 0.5s";
+        
         setTimeout(() => {
             this.btnMenuImg.style.transition = "none";
             this.menu.style.transition = "none";
@@ -267,6 +270,9 @@ Menu.Toggle = function ()
         this.menu.style.transition = "transform 0.25s";
         this.overlay.style.opacity = "0.0";
         this.overlay.style.transition = "opacity 0.25s";
+        
+        this.main.style.filter = "none";
+        this.main.style.transition = "filter 0.25s";
         
         setTimeout(() => {
             this.btnMenuImg.style.transition = "none";
