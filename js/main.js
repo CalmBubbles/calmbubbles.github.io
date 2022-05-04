@@ -231,8 +231,10 @@ Menu.Toggle = function ()
             }
         }
         
+        this.menu.style.filter = "blur(0)";
         this.menu.style.transform = "none";
         this.menu.style.transition = "transform 0.5s";
+        this.overlay.style.filter = "blur(0)";
         this.overlay.style.opacity = "0.37";
         this.overlay.style.transition = "opacity 0.5s";
         
