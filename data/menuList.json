@@ -29,12 +29,12 @@
         "type" : "list",
         "content" : [
             {
-                "name" : "CalmBubbles",
+                "name" : "Bio",
                 "link" : "/bio"
             },
             {
-                "name" : "This Site",
-                "link" : "/site-info"
+                "name" : "FAQ",
+                "link" : "/faq"
             }
         ]
     },
