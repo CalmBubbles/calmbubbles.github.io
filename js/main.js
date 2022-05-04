@@ -234,7 +234,8 @@ Menu.Toggle = function ()
         this.menu.style.transform = "none";
         this.menu.style.transition = "transform 0.5s";
         this.overlay.style.opacity = "0.37";
-        this.overlay.style.transition = "opacity 0.5s";
+        this.overlay.style.backdropFilter = "blur(2px)";
+        this.overlay.style.transition = "opacity 0.5s, backdrop-filter 0.5s";
         
         
         setTimeout(() => {
@@ -267,7 +268,8 @@ Menu.Toggle = function ()
         this.menu.style.transform = "translateX(-100%)";
         this.menu.style.transition = "transform 0.25s";
         this.overlay.style.opacity = "0.0";
-        this.overlay.style.transition = "opacity 0.25s";
+        this.overlay.style.backdropFilter = "none";
+        this.overlay.style.transition = "opacity 0.25s, backdrop-filter 0.25s";
         
         setTimeout(() => {
             this.btnMenuImg.style.transition = "none";
