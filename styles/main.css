@@ -174,7 +174,7 @@ noscript div
     position : absolute;
     width : auto;
     padding : 18px;
-    top : calc(75vh + (120 * var(--pixel-unit)));
+    top : calc(75vh + (90 * var(--pixel-unit)));
 }
 
 /*Socials*/
