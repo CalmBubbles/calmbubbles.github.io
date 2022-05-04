@@ -84,7 +84,7 @@ Header.SetData = function ()
             this.Toggle(true);
         }
         
-        this.scrollPos = window.innerHeight;
+        this.scrollPos = window.pageYOffset;
     }, 100);
 };
 
