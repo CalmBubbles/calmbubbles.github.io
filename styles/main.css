@@ -225,8 +225,10 @@ noscript div
 /*-----Markdown*/
 .quote
 {
+    position : relative;
     width : 87%;
-    transform : translateX(20px);
+    top : 15px;
+    left : 20px;
 }
 
 /*-----Menu*/
