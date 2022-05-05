@@ -213,6 +213,7 @@ noscript div
 
 
 /*----------Classes*/
+/*-----Markdown*/
 .line
 {
     margin : 0;
@@ -222,13 +223,13 @@ noscript div
     background : black;
 }
 
-/*-----Markdown*/
 .quote
 {
     position : relative;
     width : 87%;
-    top : 15px;
-    left : 20px;
+    margin : 15px 0 15px 6px;
+    border-left : 4px solid white;
+    padding-left : 10px;
 }
 
 /*-----Menu*/
