@@ -222,6 +222,13 @@ noscript div
     background : black;
 }
 
+/*-----Markdown*/
+.quote
+{
+    width : 75%;
+    transform : translateX(12%);
+}
+
 /*-----Menu*/
 .menuList
 {
@@ -263,7 +270,7 @@ noscript div
     background : rgba(0, 0, 0, 0.13);
 }
 
-/*-----Object*/
+/*-----Objects*/
 .unselectable
 {
     pointer-events : none;
