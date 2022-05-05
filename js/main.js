@@ -77,7 +77,7 @@ Header.SetData = function ()
     setInterval(() => {
         if (this.scrollPos < window.pageYOffset)
         {
-            this.Toggle(false);
+            if (!Menu.enabled) this.Toggle(false);
         }
         else if (this.scrollPos > window.pageYOffset)
         {
@@ -206,6 +206,8 @@ Menu.Toggle = function ()
     if (this.enabled == null) this.enabled = false;
     
     if (this.btnMenu.onclick != null) this.btnMenu.onclick = null;
+    
+    if (!Header.enabled) Header.Toggle(true);
     
     if (!this.enabled)
     {
