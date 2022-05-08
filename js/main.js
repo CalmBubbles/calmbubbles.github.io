@@ -30,7 +30,7 @@ screenTrans.Start = function ()
         this.body.style.overflowY = "visible";
     }, (250 * this.fadeTime));
     
-    setInterval(() => { this.ScanAnchors(); }, 2);
+    setInterval(() => { this.ScanAnchors(); }, 16.67);
 };
 
 screenTrans.ScanAnchors = function ()
@@ -85,7 +85,7 @@ Header.SetData = function ()
         }
         
         this.scrollPos = window.pageYOffset;
-    }, 100);
+    }, 16.67);
 };
 
 // -----Toggling
