@@ -49,7 +49,6 @@ header
 main
 {
     position : relative;
-    min-height : calc(100vh - (87 * var(--pixel-unit));
     overflow-x : hidden;
     overflow-wrap : break-word;
     top : calc(87 * var(--pixel-unit));
