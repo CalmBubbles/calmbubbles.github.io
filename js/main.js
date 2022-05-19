@@ -72,8 +72,9 @@ Header.SetData = function ()
     this.hLine = document.querySelector("#headerLine");
     this.main = document.querySelector("main");
     this.hLineTop = this.hLine.style.top;
-    this.mainTop = this.main.style.top;
+    this.mainTop = "calc(87 * var(--pixel-unit))";
     
+    this.main.style.top = this.mainTop;
     this.main.style.minHeight = `calc(100% - ${this.mainTop})`;
     
     this.enabled = true;
@@ -104,7 +105,7 @@ Header.Toggle = function (state)
         this.hLine.style.top = "0";
         this.hLine.style.transition = "top 0.25s";
         this.main.style.top = "34px";
-        this.main.style.minHeight = "calc(100% - 34px)";
+        this.main.style.minHeight = "calc(100vh - 62px)";
         this.main.style.transition = "top 0.25s, min-height 0.25";
     }
     else
@@ -114,7 +115,7 @@ Header.Toggle = function (state)
         this.hLine.style.top = this.hLineTop;
         this.hLine.style.transition = "top 0.25s";
         this.main.style.top = this.mainTop;
-        this.main.style.minHeight = `calc(100% - ${this.mainTop})`;
+        this.main.style.minHeight = `calc(100vh - ${this.mainTop})`;
         this.main.style.transition = "top 0.25s, min-height 0.25s";
     }
     
