@@ -72,7 +72,7 @@ Header.SetData = function ()
     this.hLine = document.querySelector("#headerLine");
     this.main = document.querySelector("main");
     this.hLineTop = this.hLine.style.top;
-    this.mainTop = "calc(125 * var(--pixel-unit)";
+    this.mainTop = "calc(163 * var(--pixel-unit)";
     
     this.main.style.top = this.mainTop;
     this.main.style.minHeight = `calc(100vh - ${this.mainTop})`;
