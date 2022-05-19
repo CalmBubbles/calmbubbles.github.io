@@ -74,7 +74,9 @@ Header.SetData = function ()
     this.hLineTop = this.hLine.style.top;
     this.mainTop = this.main.style.top;
     
-    this.main.style.minHeight = `calc(87vh - ${this.mainTop})`;
+    this.main.style.minHeight = `calc(100% - ${this.mainTop})`;
+    
+    this.enabled = true;
     
     setInterval(() => {
         if (this.scrollPos < window.pageYOffset)
@@ -102,7 +104,7 @@ Header.Toggle = function (state)
         this.hLine.style.top = "0";
         this.hLine.style.transition = "top 0.25s";
         this.main.style.top = "34px";
-        this.main.style.minHeight = "calc(87vh - 34px)";
+        this.main.style.minHeight = "calc(100% - 34px)";
         this.main.style.transition = "top 0.25s, min-height 0.25";
     }
     else
@@ -112,7 +114,7 @@ Header.Toggle = function (state)
         this.hLine.style.top = this.hLineTop;
         this.hLine.style.transition = "top 0.25s";
         this.main.style.top = this.mainTop;
-        this.main.style.minHeight = `calc(87vh - ${this.mainTop})`;
+        this.main.style.minHeight = `calc(100% - ${this.mainTop})`;
         this.main.style.transition = "top 0.25s, min-height 0.25s";
     }
     
