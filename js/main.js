@@ -74,7 +74,6 @@ Header.SetData = function ()
     this.hLineTop = this.hLine.style.top;
     this.mainTop = this.main.style.top;
     
-    this.main.style.top = this.mainTop;
     this.main.style.minHeight = "calc(100vh - (125 * var(--pixel-unit))";
     
     this.enabled = true;
