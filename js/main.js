@@ -75,7 +75,7 @@ Header.SetData = function ()
     this.mainTop = "calc(87 * var(--pixel-unit))";
     
     this.main.style.top = this.mainTop;
-    this.main.style.minHeight = `calc(100% - ${this.mainTop})`;
+    this.main.style.minHeight = `calc(100vh - ${this.mainTop})`;
     
     this.enabled = true;
     
@@ -106,7 +106,7 @@ Header.Toggle = function (state)
         this.hLine.style.transition = "top 0.25s";
         this.main.style.top = "34px";
         this.main.style.minHeight = "calc(100vh - 62px)";
-        this.main.style.transition = "top 0.25s, min-height 0.25";
+        this.main.style.transition = "top 0.25s";
     }
     else
     {
@@ -116,7 +116,7 @@ Header.Toggle = function (state)
         this.hLine.style.transition = "top 0.25s";
         this.main.style.top = this.mainTop;
         this.main.style.minHeight = `calc(100vh - ${this.mainTop})`;
-        this.main.style.transition = "top 0.25s, min-height 0.25s";
+        this.main.style.transition = "top 0.25s";
     }
     
     this.enabled = state;
