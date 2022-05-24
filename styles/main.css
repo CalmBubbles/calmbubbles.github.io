@@ -222,6 +222,11 @@ noscript div
     background : rgba(255, 255, 255, 0.75);
 }
 
+.small-text
+{
+    font-size:13px;
+}
+
 .quote
 {
     width : 87%;
