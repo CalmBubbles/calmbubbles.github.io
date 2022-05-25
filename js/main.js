@@ -4,7 +4,6 @@ window.onload = () => {
     screenTrans.Start();
     
     Header.SetData();
-    Menu.SetData();
 };
 
 
@@ -131,61 +130,39 @@ function Menu ()
 // -----Set Menu
 Menu.SetData = function ()
 {
-    let request = new XMLHttpRequest();
-    
-    request.onload = () => {
-        if (request.status < 400)
-        {
-            this.menuData = JSON.parse(request.responseText);
-            
-            this.getNavData();
-        }
-    };
-    
-    request.onerror = () => {
-        ThrowError(3);
-    };
-    
-    request.open("GET", "/data/menuList.json");
-    request.overrideMimeType("application/json");
-    request.send();
-};
-
-Menu.getNavData = function ()
-{
     this.navData = "";
     
-    for (let i = 0; i < this.menuData.length; i++)
+    for (let i = 0; i < data.menuList.length; i++)
     {
         var output = "";
         var link = "/coming-soon";
         var subOutput = "";
         
-        switch (this.menuData[i].type)
+        switch (data.menuList[i].type)
         {
             case "link":
-                if (this.menuData[i].content != null)
+                if (data.menuList[i].content != null)
                 {
-                    link = this.menuData[i].content;
+                    link = data.menuList[i].content;
                 }
                 
-                output = `<a href="${link}"><div class="menuList">${this.menuData[i].name}</div></a>`;
+                output = `<a href="${link}"><div class="menuList">${data.menuList[i].name}</div></a>`;
                 break;
             case "list":
-                if (this.menuData[i].content != null)
+                if (data.menuList[i].content != null)
                 {
-                    for (let l = 0; l < this.menuData[i].content.length; l++)
+                    for (let l = 0; l < data.menuList[i].content.length; l++)
                     {
-                        if (this.menuData[i].content[l].link != null)
+                        if (data.menuList[i].content[l].link != null)
                         {
-                            link = this.menuData[i].content[l].link;
+                            link = data.menuList[i].content[l].link;
                         }
                         
-                        subOutput += `<a href="${link}"><div class="menuSubList">${this.menuData[i].content[l].name}</div></a>`;
+                        subOutput += `<a href="${link}"><div class="menuSubList">${data.menuList[i].content[l].name}</div></a>`;
                         
-                        if (l == this.menuData[i].content.length - 1)
+                        if (l == data.menuList[i].content.length - 1)
                         {
-                            output = `<div id="list_${this.menuData[i].name}" class="menuList">${this.menuData[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${this.menuData[i].name}"></div></div><div id="${this.menuData[i].name}" class="menuDropdown">${subOutput}</div>`;
+                            output = `<div id="list_${data.menuList[i].name}" class="menuList">${data.menuList[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${data.menuList[i].name}"></div></div><div id="${data.menuList[i].name}" class="menuDropdown">${subOutput}</div>`;
                         }
                     }
                 }
@@ -194,7 +171,7 @@ Menu.getNavData = function ()
         
         this.navData += output;
         
-        if (i == this.menuData.length - 1)
+        if (i == data.menuList.length - 1)
         {
             this.body = document.body;
             this.main = document.querySelector("main");
@@ -227,13 +204,13 @@ Menu.Toggle = function ()
         this.menu = this.main.querySelector("#menu");
         this.overlay = this.main.querySelector("#menuOverlay");
         
-        for (let c = 0; c < this.menuData.length; c++)
+        for (let c = 0; c < data.menuList.length; c++)
         {
-            if (this.menuData[c].type === "list")
+            if (data.menuList[c].type === "list")
             {
-                if (this.menuData[c].content != null)
+                if (data.menuList[c].content != null)
                 {
-                    let onloadFunc = Function(`Menu.managed_${this.menuData[c].name} = new menuManaged("${this.menuData[c].name}");`);
+                    let onloadFunc = Function(`Menu.managed_${data.menuList[c].name} = new menuManaged("${data.menuList[c].name}");`);
                     onloadFunc();
                 }
             }
@@ -260,13 +237,13 @@ Menu.Toggle = function ()
         this.btnMenuImg.style.transform = "none";
         this.btnMenuImg.style.transition = "transform steps(8) 0.25s";
         
-        for (let i = 0; i < this.menuData.length; i++)
+        for (let i = 0; i < data.menuList.length; i++)
         {
-            if (this.menuData[i].type === "list")
+            if (data.menuList[i].type === "list")
             {
-                if (this.menuData[i].content != null)
+                if (data.menuList[i].content != null)
                 {
-                    let onloadFunc = Function(`if (Menu.managed_${this.menuData[i].name}.enabled) { Menu.managed_${this.menuData[i].name}.Toggle(); }`);
+                    let onloadFunc = Function(`if (Menu.managed_${data.menuList[i].name}.enabled) { Menu.managed_${data.menuList[i].name}.Toggle(); }`);
                     onloadFunc();
                 }
             }
@@ -361,6 +338,8 @@ Data.Set = function ()
         if (request.status < 400)
         {
             data = JSON.parse(request.responseText);
+            
+            this.afterLoad();
         }
     };
     
@@ -371,6 +350,11 @@ Data.Set = function ()
     request.open("GET", "/data/data.json");
     request.overrideMimeType("application/json");
     request.send();
+};
+
+Data.afterLoad = function ()
+{
+    Menu.SetData();
 };
 
 
