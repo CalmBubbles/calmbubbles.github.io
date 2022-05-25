@@ -1,10 +1,22 @@
 window.onload = () => {
+    loadScene();
+    
     Data.Set();
     
     screenTrans.Start();
     
     Header.SetData();
 };
+
+function loadScene ()
+{
+    var currentPage = document.title;
+    
+    if (currentPage == "FAQ | CalmBubbles")
+    {
+        FAQ.load();
+    }
+}
 
 
 // ----------Screen Transition
