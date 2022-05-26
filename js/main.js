@@ -174,7 +174,7 @@ Menu.SetData = function ()
                         
                         if (l == data.menuList[i].content.length - 1)
                         {
-                            output = `<div id="list_${data.menuList[i].name}" class="menuList">${data.menuList[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${data.menuList[i].name}"></div></div><div id="${data.menuList[i].name}" class="menuDropdown">${subOutput}</div>`;
+                            output = `<div id="menuList_${i}" class="menuList">${data.menuList[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${data.menuList[i].name}"></div></div><div id="menuDropdown_${i}" class="menuDropdown">${subOutput}</div>`;
                         }
                     }
                 }
@@ -222,7 +222,7 @@ Menu.Toggle = function ()
             {
                 if (data.menuList[c].content != null)
                 {
-                    let onloadFunc = Function(`Menu.managed_${data.menuList[c].name} = new menuManaged("${data.menuList[c].name}");`);
+                    let onloadFunc = Function(`Menu.managed_${c} = new menuManaged("${c}");`);
                     onloadFunc();
                 }
             }
@@ -255,7 +255,7 @@ Menu.Toggle = function ()
             {
                 if (data.menuList[i].content != null)
                 {
-                    let onloadFunc = Function(`if (Menu.managed_${data.menuList[i].name}.enabled) { Menu.managed_${data.menuList[i].name}.Toggle(); }`);
+                    let onloadFunc = Function(`if (Menu.managed_${i}.enabled) { Menu.managed_${i}.Toggle(); }`);
                     onloadFunc();
                 }
             }
@@ -283,11 +283,11 @@ Menu.Toggle = function ()
 // -----Managed Class for Sublists
 class menuManaged
 {
-    constructor (name)
+    constructor (id)
     {
-        this.thisObj = document.querySelector(`#list_${name}`);
+        this.thisObj = document.querySelector(`#menuList_${id}`);
         this.arrowImg = this.thisObj.querySelector("img");
-        this.dropdown = document.querySelector(`#${name}`)
+        this.dropdown = document.querySelector(`#menuDropdown${id}`)
         
         this.ddHeight = this.dropdown.scrollHeight;
         
@@ -379,8 +379,7 @@ Data.checkSiteIndex = function ()
             request.onload = () => {
                 if (request.status < 400)
                 {
-                    let tempData = JSON.parse(request.responseText);
-                    data.menuList = tempData.menuList;
+                    data.menuList = JSON.parse(request.responseText).menuList;
                     
                     this.afterLoad();
                 }
