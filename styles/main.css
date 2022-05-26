@@ -224,7 +224,7 @@ noscript div
 
 .small-text
 {
-    font-size:13px;
+    font-size : 13px;
 }
 
 .quote
@@ -280,11 +280,13 @@ noscript div
 .faq-question
 {
     background : red;
+    margin-top : 0;
 }
 
 .faq-answer
 {
-   background : green; 
+   background : green;
+   margin-top : 2px;
 }
 
 /*-----Objects*/
