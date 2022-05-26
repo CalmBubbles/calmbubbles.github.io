@@ -366,7 +366,7 @@ Data.Set = function ()
 
 Data.checkSiteIndex = function ()
 {
-    let siteIndex = document.body.getAttribute("data-siteIndex");
+    let siteIndex = parseInt(document.body.getAttribute("data-siteIndex"));
     
     switch (siteIndex)
     {
@@ -379,8 +379,7 @@ Data.checkSiteIndex = function ()
             request.onload = () => {
                 if (request.status < 400)
                 {
-                    let tempData = JSON.parse(request.responseText);
-                    data.menuList = tempData.menuList;
+                    data.menuList = JSON.parse(request.responseText).menuList;
                     
                     this.afterLoad();
                 }
