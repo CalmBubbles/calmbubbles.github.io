@@ -276,6 +276,17 @@ noscript div
     background : rgba(0, 0, 0, 0.13);
 }
 
+/*-----FAQ*/
+.faq-question
+{
+    background : red;
+}
+
+.faq-answer
+{
+   background : green; 
+}
+
 /*-----Objects*/
 .unselectable
 {
