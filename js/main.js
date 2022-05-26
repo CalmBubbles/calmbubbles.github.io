@@ -379,7 +379,8 @@ Data.checkSiteIndex = function ()
             request.onload = () => {
                 if (request.status < 400)
                 {
-                    data.menuList = JSON.parse(request.responseText).menuList;
+                    let tempData = JSON.parse(request.responseText);
+                    data.menuList = tempData.menuList;
                     
                     this.afterLoad();
                 }
