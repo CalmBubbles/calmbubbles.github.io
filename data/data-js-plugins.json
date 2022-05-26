@@ -1,0 +1,34 @@
+{
+    "menuList" : [
+        {
+            "name" : "Home",
+            "type" : "link",
+            "content" : "/"
+        },
+        {
+            "name" : "js-plugins",
+            "type" : "link",
+            "content" : "/works/js-plugins"
+        },
+        {
+            "name" : "Documentation",
+            "type" : "list",
+            "content" : [
+                {
+                    "name" : "dialogueSys.js",
+                    "link" : "/docs/js-plugins/dialogueSys"
+                }
+            ]
+        },
+        {
+            "name" : "Scripting API",
+            "type" : "list",
+            "content" : [
+                {
+                    "name" : "dialogueSys.js",
+                    "link" : "/apis/js-plugins/dialogueSys"
+                }
+            ]
+        }
+    ]
+}
