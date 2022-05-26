@@ -287,7 +287,7 @@ class menuManaged
     {
         this.thisObj = document.querySelector(`#menuList_${id}`);
         this.arrowImg = this.thisObj.querySelector("img");
-        this.dropdown = document.querySelector(`#menuDropdown${id}`)
+        this.dropdown = document.querySelector(`#menuDropdown_${id}`)
         
         this.ddHeight = this.dropdown.scrollHeight;
         
