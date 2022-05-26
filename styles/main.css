@@ -149,6 +149,19 @@ noscript div
     width : calc(60 * var(--pixel-unit));
 }
 
+#sidelogo
+{
+    position : absolute;
+    display : inline-block;
+    right : 10px;
+    margin : auto;
+}
+
+#sidelogo img
+{
+    width : calc(60 * var(--pixel-unit));
+}
+
 #btnMenu
 {
     position : absolute;
