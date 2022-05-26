@@ -87,6 +87,12 @@ img:not(.anti-aliased)
     -ms-interpolation-mode : nearest-neighbor;
 }
 
+code
+{
+    border-radius : 10px;
+    font-size : 12px;
+}
+
 /*Anchors*/
 a
 {
