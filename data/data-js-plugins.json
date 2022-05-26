@@ -26,7 +26,7 @@
             "content" : [
                 {
                     "name" : "dialogueSys.js",
-                    "link" : "/apis/js-plugins/dialogueSys"
+                    "link" : "/api-docs/js-plugins/dialogueSys"
                 }
             ]
         }
