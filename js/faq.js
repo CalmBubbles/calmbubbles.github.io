@@ -30,6 +30,6 @@ FAQ.setFaq = function ()
     
     for (let i = 0; i < this.faqData.length; i++)
     {
-        this.mainContent.innerHTML += `<h3>${this.faqData[i].question}</h3><div>${this.faqData[i].answer}</div>`;
+        this.mainContent.innerHTML += `<h3 class="faq-question">${this.faqData[i].question}</h3><div class="faq-answer quote">${this.faqData[i].answer}</div>`;
     }
 };
