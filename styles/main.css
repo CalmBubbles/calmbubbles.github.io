@@ -280,7 +280,7 @@ noscript div
 .faq-question
 {
     background : red;
-    margin-top : 0;
+    margin : 0;
 }
 
 .faq-answer
