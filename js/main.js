@@ -351,7 +351,7 @@ Data.Set = function ()
         {
             data = JSON.parse(request.responseText);
             
-            this.afterLoad();
+            this.checkSiteIndex();
         }
     };
     
@@ -362,6 +362,38 @@ Data.Set = function ()
     request.open("GET", "/data/data.json");
     request.overrideMimeType("application/json");
     request.send();
+};
+
+Data.checkSiteIndex = function ()
+{
+    let siteIndex = document.body.getAttribute("data-siteIndex");
+    
+    switch (siteIndex)
+    {
+        case 0:
+            this.afterLoad();
+            break;
+        case 1:
+            let request = new XMLHttpRequest();
+            
+            request.onload = () => {
+                if (request.status < 400)
+                {
+                    data.menuList = JSON.parse(request.responseText).menuList;
+                    
+                    this.afterLoad();
+                }
+            };
+            
+            request.onerror = () => {
+                ThrowError(3);
+            };
+            
+            request.open("GET", "/data/data-js-plugins.json");
+            request.overrideMimeType("application/json");
+            request.send();
+            break;
+    }
 };
 
 Data.afterLoad = function ()
