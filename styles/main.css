@@ -98,6 +98,18 @@ code
     background : #22272e;
 }
 
+iframe
+{
+    display : block;
+    border : 1px solid black;
+    background : white;
+}
+
+h1, h2
+{
+    margin : 4px auto 8px;
+}
+
 /*Anchors*/
 a
 {
@@ -311,6 +323,45 @@ noscript div
     margin-top : 4px;
 }
 
+/*-----Docs Related*/
+.doc h3
+{
+    margin : 16px auto 8px;
+}
+
+.doc-embed
+{
+    overflow : auto;
+    margin : 12px auto;
+    padding : 12px;
+    border : 1px solid white;
+    border-radius : 4px;
+    color : black;
+    background : rgba(255, 255, 255, 0.5);
+}
+
+.doc-embed a
+{
+    color : green;
+}
+
+.doc-embed.link-list
+{
+    color : green;
+}
+
+.doc-embed.link-list a
+{
+    display : block;
+    margin : 3px auto;
+}
+
+.doc-embed .doc-sublink-list a
+{
+    display : block;
+    margin : 3px auto 3px 24px;
+}
+
 /*-----Objects*/
 .unselectable
 {
@@ -330,4 +381,23 @@ noscript div
     right : 0;
     z-index : 420;
     pointer-events : all;
+}
+
+/*Code Output Frame*/
+.codeoutputframe
+{
+    display : table;
+    padding : 16px;
+    border-radius : 4px;
+    background : white;
+}
+
+.codeoutputframe div
+{
+    display : inline-block;
+    margin-bottom : 8px;
+    padding : 10px;
+    border-radius : 4px;
+    cursor : pointer;
+    background : black;
 }
