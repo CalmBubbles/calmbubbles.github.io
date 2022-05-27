@@ -12,13 +12,13 @@ html, body
     margin : 0;
     font-family : "Archivo Narrow", sans-serif;
     font-size : 18px;
+    scroll-behavior : smooth;
 }
 
 body
 {
     overflow-x : hidden;
     overflow-y : hidden;
-    scroll-behavior : smooth;
     text-size-adjust : none;
     background : rgb(15, 60, 134);
 }
@@ -308,7 +308,7 @@ noscript div
 
 .faq-answer
 {
-   margin-top : 4px;
+    margin-top : 4px;
 }
 
 /*-----Objects*/
