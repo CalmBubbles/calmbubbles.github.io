@@ -50,6 +50,7 @@ screenTrans.ScanAnchors = function ()
     
     for (let i = 0; i < pageAnc.length; i++)
     {
+        console.log(pageAnc[i].href[0]);
         if (pageAnc[i].href[0] != "#")
         {
             pageAnc[i].onclick = e => {
