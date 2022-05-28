@@ -101,6 +101,7 @@ code
 iframe
 {
     display : block;
+    min-width : 208px;
     border : none;
     background : white;
 }
@@ -387,6 +388,8 @@ noscript div
 .codeoutputframe
 {
     display : table;
+    min-width : 210px;
+    margin-bottom : 14px;
     padding : 16px;
     border-radius : 4px;
     background : white;
@@ -395,7 +398,7 @@ noscript div
 .codeoutputframe .codebtn
 {
     display : inline-block;
-    margin-bottom : 8px;
+    margin : auto 8px 8px auto;
     padding : 10px;
     border-radius : 4px;
     cursor : pointer;
@@ -404,6 +407,8 @@ noscript div
 
 .codeoutputframe .codeframe
 {
+    overflow : auto;
+    max-width : 83vw;
     border : 1px solid black;
-    background : black;
+    background : rgba(0, 0, 0, 0.25);
 }
