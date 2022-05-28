@@ -50,8 +50,14 @@ screenTrans.ScanAnchors = function ()
     
     for (let i = 0; i < pageAnc.length; i++)
     {
-        console.clear(); console.log(pageAnc[i].href);
-        if (pageAnc[i].href[0] != "#")
+        var valid = true;
+        
+        for (let c = 0; c < pageAnc[i].href.length; c++)
+        {
+            if (pageAnc[i].href[c] == "#") valid = false;
+        }
+        
+        if (valid)
         {
             pageAnc[i].onclick = e => {
                 e.preventDefault();
