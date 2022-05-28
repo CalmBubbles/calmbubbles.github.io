@@ -101,7 +101,6 @@ code
 iframe
 {
     display : block;
-    border : 1px solid black;
     background : white;
 }
 
@@ -392,12 +391,18 @@ noscript div
     background : white;
 }
 
-.codeoutputframe div
+.codeoutputframe .codebtn
 {
     display : inline-block;
     margin-bottom : 8px;
     padding : 10px;
     border-radius : 4px;
     cursor : pointer;
+    background : black;
+}
+
+.codeoutputframe .codeframe
+{
+    border : 1px solid black;
     background : black;
 }
