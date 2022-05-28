@@ -41,23 +41,15 @@
         
         <!------------Styles-->
         <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:400,700" rel="stylesheet" type="text/css">
-        <link href="https://calmbubbles.github.io/styles/main.css" rel="stylesheet" type="text/css">
+        <link href="/styles/main.css" rel="stylesheet" type="text/css">
         <link href="/styles/rules.css" rel="stylesheet" type="text/css">
         <link href="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/github-dark-dimmed.min.css" rel="stylesheet" type="text/css">
-        
-        <style>
-body { overflow-y : visible; }
-
-iframe
-{
-    width : 82vw;
-    height : 50vw;
-}
-        </style>
     </head>
     
     <body data-siteIndex="1">
         <noscript><div>This site requires the use of JavaScript</div></noscript>
+        
+        <hr class="fadeObject">
         
         <header>
             <div id="btnMenu"><img class="unselectable" src="/img/spr_btnMenu.png" alt="Menu"></div>
@@ -99,7 +91,7 @@ iframe
             
             Let's see what does that look like...
             
-            <iframe src="https://calmbubbles.github.io/docs-html-examples/js-plugins/dialogueSys/0"></iframe>
+            <div class="codeoutputframe" data-src="/docs-html-examples/js-plugins/dialogueSys/0" data-width="360px" data-height="134px"></div>
             
             What am I looking at?
             
@@ -140,55 +132,14 @@ body
 }
             </code></pre>
             
-            <div class="codeoutputframe" data-refreshable="true" data-src="https://calmbubbles.github.io/docs-html-examples/js-plugins/dialogueSys/1"></div>
+            <div class="codeoutputframe" data-src="/docs-html-examples/js-plugins/dialogueSys/1" data-width="360px" data-height="134px"></div>
             
             <h3 id="dialogue-system-object">Making a Dialogue System Object</h3>
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+       <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js"></script>
-        <script>
-window.addEventListener("load", () => {
-    CodeOutputs.scan();
-});
-
-function CodeOutputs ()
-{
-    ThrowError(1);
-}
-
-CodeOutputs.scan = function ()
-{
-    this.codeframes = document.querySelectorAll(".codeoutputframe");
-    
-    for (let i = 0; i < this.codeframes.length; i++)
-    {
-        this.codeframes[i].id = `codeOutput_${i}`;
-        
-        let onloadFunc = Function(`CodeOutputs.managed_${i} = new codeOutputManaged("${i}", ${this.codeframes[i].getAttribute("data-refreshable") ?? false});`);
-        onloadFunc();
-    }
-};
-
-
-// -----Managed Class for CodeOutputs
-class codeOutputManaged
-{
-    constructor (id, refreshable)
-    {
-        this.codeOutput = document.querySelector(`#codeOutput_${id}`);
-        
-        if (refreshable)
-        {
-            this.codeOutput.innerHTML += `<div class="codebtn codeRefresh">Run</div>`;
-            
-            this.refreshBtn = this.codeOutput.querySelector(".codeRefresh");
-        }
-        
-        this.codeOutput.innerHTML += `<div class="codebtn">Size -</div><div class="codebtn">Size +</div>`;
-    }
-}
-        </script>
         <script>hljs.highlightAll();</script>
     </body>
 </html>
