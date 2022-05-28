@@ -50,22 +50,23 @@ screenTrans.ScanAnchors = function ()
     
     for (let i = 0; i < pageAnc.length; i++)
     {
-        let anchor = pageAnc[i];
-        
-        anchor.onclick = e => {
-            e.preventDefault();
-            let target = anchor.href;
-            
-            this.body.style.overflowY = "hidden";
-            
-            this.fadeEl.style.pointerEvents = "all";
-            this.fadeEl.style.opacity = "1.0";
-            this.fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
-            
-            setTimeout(() => {
-                window.location.href = target;
-            }, (250 * this.fadeTime));
-        };
+        if (pageAnc[i].href[0] != "#")
+        {
+            pageAnc[i].onclick = e => {
+                e.preventDefault();
+                let target = pageAnc[i].href;
+                
+                this.body.style.overflowY = "hidden";
+                
+                this.fadeEl.style.pointerEvents = "all";
+                this.fadeEl.style.opacity = "1.0";
+                this.fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
+                
+                setTimeout(() => {
+                    window.location.href = target;
+                }, (250 * this.fadeTime));
+            };
+        }
     }
 };
 
@@ -143,6 +144,7 @@ function Menu ()
 Menu.SetData = function ()
 {
     this.navData = "";
+    this.listCount = 0;
     
     for (let i = 0; i < data.menuList.length; i++)
     {
@@ -174,7 +176,9 @@ Menu.SetData = function ()
                         
                         if (l == data.menuList[i].content.length - 1)
                         {
-                            output = `<div id="menuList_${i}" class="menuList">${data.menuList[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${data.menuList[i].name}"></div></div><div id="menuDropdown_${i}" class="menuDropdown">${subOutput}</div>`;
+                            output = `<div id="menuList_${this.listCount}" class="menuList">${data.menuList[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${data.menuList[i].name}"></div></div><div id="menuDropdown_${this.listCount}" class="menuDropdown">${subOutput}</div>`;
+                            
+                            listCount++;
                         }
                     }
                 }
@@ -216,16 +220,10 @@ Menu.Toggle = function ()
         this.menu = this.main.querySelector("#menu");
         this.overlay = this.main.querySelector("#menuOverlay");
         
-        for (let c = 0; c < data.menuList.length; c++)
+        for (let i = 0; i < this.listCount; i++)
         {
-            if (data.menuList[c].type === "list")
-            {
-                if (data.menuList[c].content != null)
-                {
-                    let onloadFunc = Function(`Menu.managed_${c} = new menuManaged("${c}");`);
-                    onloadFunc();
-                }
-            }
+            let onloadFunc = Function(`Menu.managed_${i} = new menuManaged("${i}");`);
+            onloadFunc();
         }
         
         this.menu.style.transform = "none";
@@ -249,16 +247,10 @@ Menu.Toggle = function ()
         this.btnMenuImg.style.transform = "none";
         this.btnMenuImg.style.transition = "transform steps(8) 0.25s";
         
-        for (let i = 0; i < data.menuList.length; i++)
+        for (let i = 0; i < this.listCount; i++)
         {
-            if (data.menuList[i].type === "list")
-            {
-                if (data.menuList[i].content != null)
-                {
-                    let onloadFunc = Function(`if (Menu.managed_${i}.enabled) { Menu.managed_${i}.Toggle(); }`);
-                    onloadFunc();
-                }
-            }
+            let onloadFunc = Function(`if (Menu.managed_${i}.enabled) { Menu.managed_${i}.Toggle(); }`);
+            onloadFunc();
         }
         
         this.menu.style.transform = "translateX(-100%)";
