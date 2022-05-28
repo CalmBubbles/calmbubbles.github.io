@@ -178,7 +178,7 @@ Menu.SetData = function ()
                         {
                             output = `<div id="menuList_${this.listCount}" class="menuList">${data.menuList[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${data.menuList[i].name}"></div></div><div id="menuDropdown_${this.listCount}" class="menuDropdown">${subOutput}</div>`;
                             
-                            listCount++;
+                            this.listCount++;
                         }
                     }
                 }
