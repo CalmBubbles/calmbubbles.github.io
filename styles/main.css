@@ -101,6 +101,7 @@ code
 iframe
 {
     display : block;
+    border : none;
     background : white;
 }
 
