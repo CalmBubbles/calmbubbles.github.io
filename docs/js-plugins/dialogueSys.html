@@ -64,7 +64,7 @@
             
             
             
-            <hr class="line" style="margin : 4px auto">
+            <hr class="line" style="margin : 16px auto">
             
             
             
@@ -80,7 +80,7 @@
             
             
             
-            <hr class="line" style="margin : 4px auto">
+            <hr class="line" style="margin : 16px auto">
             
             
             
@@ -99,7 +99,7 @@
             Or by <a href="https://github.com/CalmBubbles/js-plugins"><div class="textbtn">Getting It Here</div></a>
             
             
-            <hr class="line" style="height : 1px; margin : 4px auto 8px;">
+            <hr class="line" style="height : 1px; margin : 8px auto 16px;">
             
             
             <h3 id="first-steps">First Few Steps</h3>
@@ -120,19 +120,11 @@
             
             What am I looking at?
             
-            <br><br>
+            <br><br><br>
             
             Let's add style so we can actually see something. We will also add the font we are going to use.
             
             <br><br>
-            
-            HTML:
-            
-            <pre><code class="language-html">
-&lt;div class="text-box"&gt;&lt;/div&gt;
-            </code></pre>
-            
-            <br>
             
             CSS:
             
@@ -146,6 +138,7 @@ body
     line-height : 30px;
 }
 
+/* I'm going to name my div's class "text-box" */
 .text-box
 {
     background : black;
@@ -165,12 +158,63 @@ body
 }
             </code></pre>
             
+            <br>
+            
+            HTML:
+            
+            <pre><code class="language-html">
+&lt;!-- add the class you made --&gt;
+&lt;div class="text-box"&gt;&lt;/div&gt;
+            </code></pre>
+            
             <div class="codeoutputframe" data-src="/docs-html-examples/js-plugins/dialogueSys/1" data-width="360px" data-height="134px"></div>
             
             That's better
             
+            <br><br><br>
             
-            <hr class="line" style="height : 1px; margin : 4px auto 8px;">
+            Now let's ready our css animations and dialogue box disabled state
+            
+            <br><br>
+            
+            Added CSS:
+            
+            <pre><code class="language-css">
+/* I'm going to name my 'in' animation "textBoxIn" */
+@keyframes textBoxIn
+{
+    from { transform : scale(1, 0); }
+    
+    to { transform : none; }
+}
+
+/* I'm going to name my 'out' animation "textBoxOut" */
+@keyframes textBoxIn
+{
+    from { transform : none; }
+    
+    to { transform : translate(0, -100%); }
+}
+
+
+/*
+When the dialogue box is disabled these values
+will be given to the div
+
+The attribute 'data-disabled' tells us if the
+dialogue box is diabled
+*/
+.text-box[data-disabled="true"]
+{
+    transform : scale(1, 0);
+}
+            </code></pre>
+            
+            <div class="codeoutputframe" data-src="/docs-html-examples/js-plugins/dialogueSys/2" data-width="360px" data-height="134px"></div>
+            
+            If we run the code, we will see nothing has changed. This is because we haven't made a dialogueSys object yet.
+            
+            <hr class="line" style="height : 1px; margin : 8px auto 16px;">
             
             
             <h3 id="dialogue-system-object">Making a Dialogue System Object</h3>
