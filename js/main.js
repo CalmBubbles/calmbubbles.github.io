@@ -150,40 +150,77 @@ function Menu ()
 // -----Set Menu
 Menu.SetData = function ()
 {
-    this.navData = "";
+    this.navData = document.createElement("div");
     this.listCount = 0;
+    
+    this.navData.id = "menuNav";
     
     for (let i = 0; i < data.menuList.length; i++)
     {
-        var output = "";
         var link = "/coming-soon";
-        var subOutput = "";
+        var subOutput;
         
         switch (data.menuList[i].type)
         {
             case "link":
+                let aObject = document.createElement("a");
+                let divObject = document.createElement("div");
+                
                 if (data.menuList[i].content != null)
                 {
                     link = data.menuList[i].content;
                 }
                 
-                output = `<a href="${link}"><div class="menuList">${data.menuList[i].name}</div></a>`;
+                aObject.href = link;
+                
+                divObject.classList.add("menuList");
+                divObject.innerHTML = data.menuList[i].name;
+                
+                aObject.append(divObject);
+                this.navData.append(aObject);
                 break;
             case "list":
                 if (data.menuList[i].content != null)
                 {
+                    subOutput = document.createElement("div");
+                    subOutput.id = `menuDropdown_${this.listCount}`;
+                    subOutput.classList.add("menuDropdown");
+                    
                     for (let l = 0; l < data.menuList[i].content.length; l++)
                     {
+                        let aObject = document.createElement("a");
+                        let divObject = document.createElement("div");
+                        
                         if (data.menuList[i].content[l].link != null)
                         {
                             link = data.menuList[i].content[l].link;
                         }
                         
-                        subOutput += `<a href="${link}"><div class="menuSubList">${data.menuList[i].content[l].name}</div></a>`;
+                        aObject.href = link;
+                        
+                        divObject.classList.add("menuSubList");
+                        divObject.innerHTML = data.menuList[i].content[l].name;
+                        
+                        aObject.append(divObject);
+                        subOutput.append(aObject);
                         
                         if (l == data.menuList[i].content.length - 1)
                         {
-                            output = `<div id="menuList_${this.listCount}" class="menuList">${data.menuList[i].name}<div><img class="unselectable" src="/img/spr_menuDropdown.png" alt="${data.menuList[i].name}"></div></div><div id="menuDropdown_${this.listCount}" class="menuDropdown">${subOutput}</div>`;
+                            let menuList = document.createElement("div");
+                            let dropDiv = document.createElement("div");
+                            let dropImg = document.createElement("img");
+                            
+                            menuList.id = `menuList_${this.listCount}`;
+                            menuList.classList.add("menuList");
+                            menuList.innerHTML = data.menuList[i].name;
+                            
+                            dropImg.classList.add("unselectable");
+                            dropImg.src = "/img/spr_menuDropdown.png";
+                            dropImg.alt = data.menuList[i].name;
+                            
+                            dropDiv.append(dropImg);
+                            menuList.append(dropDiv);
+                            this.navData.append(menuList, subOutput);
                             
                             this.listCount++;
                         }
@@ -191,8 +228,6 @@ Menu.SetData = function ()
                 }
                 break;
         }
-        
-        this.navData += output;
         
         if (i == data.menuList.length - 1)
         {
@@ -222,7 +257,62 @@ Menu.Toggle = function ()
         this.btnMenuImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
         this.btnMenuImg.style.transition = "transform steps(8) 0.5s";
         
-        this.main.innerHTML += `<div id="menu"><div id="menuNav">${this.navData}</div><div id="menuSocials"><a href="${data.socials.youtube}" target="_blank" rel="noreferrer noopener"><img id="menuBtnYt" class="unselectable" src="${data.sprites.socials}"></a><a href="${data.socials.twitter}" target="_blank" rel="noreferrer noopener"><img id="menuBtnTwt" class="unselectable" src="${data.sprites.socials}"></a><a href="${data.socials.instagram}" target="_blank" rel="noreferrer noopener"><img id="menuBtnInsta" class="unselectable" src="${data.sprites.socials}"></a></div><div id="menuSiteInfo"><a href="/site-info">&#9432; About this site</a></div></div><hr id="menuOverlay">`;
+        let newMenu = document.createElement("div");
+        let menuSocials = document.createElement("div");
+        
+        let aSocialBtn = [
+            document.createElement("a"),
+            document.createElement("a"),
+            document.createElement("a")
+        ];
+        
+        let imgSocialBtn = [
+            document.createElement("img"),
+            document.createElement("img"),
+            document.createElement("img")
+        ];
+        
+        let divSiteInfo = document.createElement("div");
+        let aSiteInfo = document.createElement("a");
+        let newOverlay = document.createElement("hr");
+        
+        newMenu.id = "menu";
+        menuSocials.id = "menuSocials";
+        
+        aSocialBtn[0].href = data.socials.youtube;
+        aSocialBtn[1].href = data.socials.twitter;
+        aSocialBtn[2].href = data.socials.instagram;
+        
+        for (let i = 0; i < aSocialBtn.length; i++)
+        {
+            aSocialBtn[i].target = "_blank";
+            aSocialBtn[i].rel = "noreferrer noopener";
+        }
+        
+        imgSocialBtn[0].id = "menuBtnYt";
+        imgSocialBtn[1].id = "menuBtnTwt";
+        imgSocialBtn[2].id = "menuBtnInsta";
+        
+        for (let i = 0; i < imgSocialBtn.length; i++)
+        {
+            imgSocialBtn[i].classList.add("unselectable");
+            imgSocialBtn[i].src = data.sprites.socials;
+            
+            aSocialBtn[i].append(imgSocialBtn[i]);
+            menuSocials.append(aSocialBtn[i]);
+        }
+        
+        divSiteInfo.id = "menuSiteInfo";
+        
+        aSiteInfo.href = "/site-info";
+        aSiteInfo.innerHTML = "&#9432; About this site";
+        
+        divSiteInfo.append(aSiteInfo);
+        
+        newOverlay.id = "menuOverlay";
+        
+        newMenu.append(this.navData, menuSocials, divSiteInfo);
+        this.main.append(newMenu, newOverlay);
         
         this.menu = this.main.querySelector("#menu");
         this.overlay = this.main.querySelector("#menuOverlay");
