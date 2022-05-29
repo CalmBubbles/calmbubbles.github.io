@@ -211,7 +211,7 @@ Menu.Toggle = function ()
 {
     if (this.enabled == null) this.enabled = false;
     
-    if (this.btnMenu.onclick != null) this.btnMenu.onclick = null;
+    if (this.btnMenu.onclick != null) this.btnMenu.onclick = () => { };
     
     if (!Header.enabled) Header.Toggle(true);
     
