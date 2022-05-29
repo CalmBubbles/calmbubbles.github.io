@@ -39,7 +39,7 @@ class codeOutputManaged
         {
             let refreshElement = document.createElement("div");
             
-            refreshElement.classList.add("codebtn", "coderefresh");
+            refreshElement.classList.add("textbtn", "coderefresh");
             refreshElement.innerHTML = "Run";
             
             refreshElement.onclick = () => {
@@ -62,8 +62,8 @@ class codeOutputManaged
             document.createElement("div")
         ];
         
-        sizeElement[0].classList.add("codebtn", "codedec");
-        sizeElement[1].classList.add("codebtn", "codeinc");
+        sizeElement[0].classList.add("textbtn", "codedec");
+        sizeElement[1].classList.add("textbtn", "codeinc");
         
         sizeElement[0].innerHTML = "Size -";
         sizeElement[1].innerHTML = "Size +";
