@@ -26,7 +26,7 @@ body
 *:not(.selectable, code),
 *:not(.selectable, code) > *,
 .unselectable,
-.unselectable  *
+.unselectable > *
 {
     -moz-user-select : none;
     -khtml-user-select : none;
