@@ -95,11 +95,11 @@ code
     padding : 12px;
     border-radius : 10px;
     font-size : 12px;
-    -moz-user-select : auto;
-    -khtml-user-select : auto;
-    -webkit-user-select : auto;
-    -ms-user-select : auto;
-    user-select : auto;
+    -moz-user-select : text;
+    -khtml-user-select : text;
+    -webkit-user-select :text;
+    -ms-user-select : text;
+    user-select : text;
     color : #adbac7;
     background : #22272e;
 }
