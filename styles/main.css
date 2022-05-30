@@ -23,7 +23,7 @@ body
     background : rgb(15, 60, 134);
 }
 
-body > * > *:not(.selectable, code),
+*:not(.selectable),
 .unselectable
 {
     -moz-user-select : none;
@@ -96,6 +96,15 @@ code
     font-size : 12px;
     color : #adbac7;
     background : #22272e;
+}
+
+code > *
+{
+    -moz-user-select : text;
+    -khtml-user-select : text;
+    -webkit-user-select : text;
+    -ms-user-select : text;
+    user-select : text;
 }
 
 iframe
