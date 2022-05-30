@@ -23,8 +23,8 @@ body
     background : rgb(15, 60, 134);
 }
 
-/*:not(.selectable, code),*
-*:not(.selectable, code) > *,*/
+/*:not(.selectable, code),*/
+:not(.selectable, code) > *,
 .unselectable,
 .unselectable > *
 {
