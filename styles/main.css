@@ -23,7 +23,7 @@ body
     background : rgb(15, 60, 134);
 }
 
-body * > *:not(.selectable, code),
+body > * > *:not(.selectable, code),
 .unselectable
 {
     -moz-user-select : none;
