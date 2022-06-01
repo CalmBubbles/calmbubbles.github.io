@@ -23,8 +23,8 @@ body
     background : rgb(15, 60, 134);
 }
 
-.unselectable,
-.textbtn,
+:not(.selectable),
+.unselectable:not(.selectable)
 {
     -moz-user-select : none;
     -khtml-user-select : none;
