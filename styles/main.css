@@ -20,7 +20,7 @@ body
     overflow-x : hidden;
     overflow-y : hidden;
     text-size-adjust : none;
-    background : rgb(15, 60, 134);
+    animation : linear 10s body infinite;
 }
 
 :not(.selectable),
