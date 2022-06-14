@@ -53,7 +53,7 @@ main
     top : calc(87 * var(--pixel-unit));
     padding : 14px;
     background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61), rgba(3, 0, 31));
-    background-size : 100% 150%;
+    background-size : 100% 200%;
     color : white;
     animation : linear 10s bg infinite;
 }
