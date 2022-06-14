@@ -8,6 +8,16 @@
     100% { opacity : 1.0; }
 }
 
+/*-----Background*/
+@keyframes body
+{
+    0% { background : rgb(15, 60, 134); }
+    
+    50% { background : rgba(13, 5, 61); }
+    
+    100% { background : rgb(15, 60, 134); }
+}
+
 @keyframes bg
 {
     0% { background-position : 0% 0%; }
