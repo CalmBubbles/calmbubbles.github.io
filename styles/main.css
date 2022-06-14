@@ -52,7 +52,6 @@ main
     overflow-wrap : break-word;
     top : calc(87 * var(--pixel-unit));
     padding : 14px;
-    b
     background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61), rgba(3, 0, 31));
     background-size : 100% 150%;
     color : white;
