@@ -66,6 +66,7 @@ main
     top : 0;
     left : 0;
     padding : calc(120 * var(--pixel-unit)) 0 14px 0;
+    border-right : 1px solid black;
     transform : translateX(-100%);
     scroll-behavior : smooth;
     z-index : 9;
