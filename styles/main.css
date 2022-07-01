@@ -20,7 +20,7 @@ body
     overflow-x : hidden;
     overflow-y : hidden;
     text-size-adjust : none;
-    animation : linear 10s body infinite;
+    animation : linear 60s body infinite;
 }
 
 :not(.selectable),
@@ -56,7 +56,7 @@ main
     background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61), rgba(3, 0, 31));
     background-size : 100% 200%;
     color : white;
-    animation : linear 10s bg infinite;
+    animation : linear 60s bg infinite;
 }
 
 #menu
