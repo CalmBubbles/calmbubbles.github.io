@@ -10,8 +10,8 @@
             "type" : "list",
             "content" : [
                 {
-                "name" : "js-plugins",
-                "link" : "/js-plugins"
+                    "name" : "js-plugins",
+                    "link" : "/js-plugins"
                 }
             ]
         },

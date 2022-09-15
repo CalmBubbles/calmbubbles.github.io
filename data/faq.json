@@ -2,5 +2,13 @@
     {
         "question" : "Where are you from?",
         "answer" : "Philippines, Asia"
+    },
+    {
+        "question" : "What programs do you use for art and animations?",
+        "answer" : "I mainly use FlipaClip, and Pixel Studio for pixelated stuff"
+    },
+    {
+        "question" : "Can you work for my game?",
+        "answer" : "Depends if I know you or if I'm not busy"
     }
 ]

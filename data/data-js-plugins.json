@@ -11,12 +11,12 @@
             "content" : "/works/js-plugins"
         },
         {
-            "name" : "Documentation",
+            "name" : "Manual",
             "type" : "list",
             "content" : [
                 {
                     "name" : "dialogueSys.js",
-                    "link" : "/docs/js-plugins/dialogueSys"
+                    "link" : "/docs/js-plugins/manual/dialogueSys"
                 }
             ]
         },
@@ -26,7 +26,7 @@
             "content" : [
                 {
                     "name" : "dialogueSys.js",
-                    "link" : "/api-docs/js-plugins/dialogueSys"
+                    "link" : "/docs/js-plugins/scripting-api/dialogueSys"
                 }
             ]
         }
