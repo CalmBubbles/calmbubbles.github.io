@@ -1,491 +1,583 @@
 window.onload = () => {
-    loadScene();
-    
     Data.Set();
-    
-    screenTrans.Start();
-    
-    Header.SetData();
 };
 
-function loadScene ()
+
+var data = {
+    html : {
+        body : null,
+        main : null
+    },
+    menuList : null,
+    socials : null,
+    sprites : null,
+    faq : null,
+    get performance () {
+        if (performance.now() < 500) return performance.now() / 2;
+        
+        return 0;
+    }
+};
+
+
+class Data
 {
-    var currentPage = document.title;
+    static #loaded = false;
+    static #OnDataLoad = [];
+    static #WhileDataLoading = [];
     
-    if (currentPage == "FAQ | CalmBubbles")
+    static get isLoaded ()
     {
-        FAQ.load();
+        return this.#loaded;
+    }
+    
+    static async #hasLoaded ()
+    {
+        for (let i = 0; i < this.#WhileDataLoading.length; i++)
+        {
+            await this.#WhileDataLoading[i]();
+        }
+        
+        this.#loaded = true;
+        
+        for (let i = 0; i < this.#OnDataLoad.length; i++)
+        {
+            this.#OnDataLoad[i]();
+        }
+    }
+    
+    static Set ()
+    {
+        data.html.body = document.body;
+        data.html.main = document.querySelector("main");
+        
+        let request = new XMLHttpRequest();
+        
+        request.onload = () => {
+            if (request.status < 400)
+            {
+                var newData = JSON.parse(request.responseText);
+                
+                data.menuList = newData.menuList;
+                data.socials = newData.socials;
+                data.sprites = newData.sprites;
+                
+                this.checkSiteIndex();
+            }
+        };
+        
+        request.onerror = () => { ThrowError(2); };
+        
+        request.open("GET", "/data/data.json");
+        request.overrideMimeType("application/json");
+        request.send();
+    }
+    
+    static addEventListener (event, callback)
+    {
+        if (event == null || callback == null) throw ThrowError(0);
+        
+        switch (event)
+        {
+            case "OnDataLoad":
+                if (this.#OnDataLoad.length == 0) this.#OnDataLoad[0] = callback;
+                else this.#OnDataLoad.push(callback);
+                break;
+            case "WhileDataLoading":
+                if (this.#WhileDataLoading.length == 0) this.#WhileDataLoading[0] = callback;
+                else this.#WhileDataLoading.push(callback);
+                break;
+        }
+    }
+    
+    static checkSiteIndex ()
+    {
+        let siteIndex = parseInt(document.body.getAttribute("data-siteIndex"));
+        
+        switch (siteIndex)
+        {
+            case 1:
+                let request = new XMLHttpRequest();
+                
+                request.onload = () => {
+                    if (request.status < 400)
+                    {
+                        data.menuList = JSON.parse(request.responseText).menuList;
+                        
+                        this.#hasLoaded();
+                    }
+                };
+                
+                request.onerror = () => { ThrowError(2); };
+                
+                request.open("GET", "/data/data-js-plugins.json");
+                request.overrideMimeType("application/json");
+                request.send();
+                return null;
+        }
+        
+        this.#hasLoaded();
     }
 }
 
-
-// ----------Screen Transition
-function screenTrans ()
+class Background
 {
-    ThrowError(1);
+    static Set ()
+    {
+        setInterval(() => {
+            if (this.innerHeight == window.innerHeight && this.scrollHeight == data.html.body.scrollHeight) return null;
+            
+            this.innerHeight = window.innerHeight;
+            this.scrollHeight = data.html.body.scrollHeight;
+            
+            this.Update();
+        }, 16.67);
+    }
+    
+    static Update ()
+    {
+        let newTime = 60 - (1 - this.scrollHeight / this.innerHeight) * 60;
+        
+        data.html.main.style.animation = `${newTime}s linear bg infinite`;
+        data.html.body.style.animation = `${newTime}s linear body infinite`;
+    }
 }
 
-screenTrans.Start = function ()
+class Header
 {
-    this.body = document.body;
-    this.fadeEl = document.querySelector(".fadeObject");
-    this.fadeTime = 1;
+    static #enabled = true;
+    static #header = null;
+    static #mainTop = null;
+    static #scrollPos = null;
     
-    this.fadeEl.style.opacity = "0.0";
-    this.fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
-    
-    setTimeout(() => {
-        this.fadeEl.style.pointerEvents = "none";
-        this.fadeEl.style.transition = "none";
-        
-        this.body.style.overflowY = "visible";
-    }, (250 * this.fadeTime));
-    
-    setInterval(() => { this.ScanAnchors(); }, 16.67);
-};
-
-screenTrans.ScanAnchors = function ()
-{
-    let pageAnc = document.querySelectorAll("a:not([target='_blank'])");
-    
-    for (let i = 0; i < pageAnc.length; i++)
+    static get isEnabled ()
     {
-        var valid = true;
+        return this.#enabled;
+    }
+    
+    static Set ()
+    {
+        this.#header = document.querySelector("header");
+        this.#mainTop = data.html.main.style.top;
         
-        for (let c = 0; c < pageAnc[i].href.length; c++)
+        data.html.main.style.minHeight = "calc(100vh - (125 * var(--pixel-unit))";
+        
+        setInterval(() => {
+            if (this.#scrollPos < window.pageYOffset)
+            {
+                if (!Menu.isEnabled) this.Toggle(false);
+            }
+            else if (this.#scrollPos > window.pageYOffset)
+            {
+                this.Toggle(true);
+            }
+            
+            this.#scrollPos = window.pageYOffset;
+        }, 16.67);
+    }
+    
+    static Toggle (state)
+    {
+        if (this.#enabled == state) return;
+        
+        if (!state)
         {
-            if (pageAnc[i].href[c] == "#") valid = false;
+            this.#header.style.transform = "translateY(-100%)";
+            this.#header.style.transition = "transform 0.25s";
+            data.html.main.style.top = "34px";
+            data.html.main.style.minHeight = "calc(100vh - 62px)";
+            data.html.main.style.transition = "top 0.25s";
+        }
+        else
+        {
+            this.#header.style.transform = "none";
+            this.#header.style.transition = "transform 0.25s";
+            data.html.main.style.top = this.#mainTop;
+            data.html.main.style.minHeight = "calc(100vh - (125 * var(--pixel-unit))";
+            data.html.main.style.transition = "top 0.25s";
         }
         
-        if (valid)
+        this.#enabled = state;
+    }
+}
+
+class Menu
+{
+    static #menuSection = null;
+    static #navData = null;
+    static #listIndex = 0;
+    static #btnMenu = null;
+    static #btnMenuImg = null;
+    static #enabled = false;
+    static #menu = null;
+    static #overlay = null;
+    static #dropdowns = [];
+    
+    static get listCount ()
+    {
+        return this.#listIndex;
+    }
+    
+    static get isEnabled ()
+    {
+        return this.#enabled;
+    }
+    
+    static #managed = class
+    {
+        #thisObj = null;
+        #arrowImg = null;
+        #dropdown = null;
+        #ddHeight = null;
+        #enabled = false;
+        
+        get isEnabled ()
         {
-            pageAnc[i].onclick = e => {
-                e.preventDefault();
-                let target = pageAnc[i].href;
-                
-                this.body.style.overflowY = "hidden";
-                
-                this.fadeEl.style.pointerEvents = "all";
-                this.fadeEl.style.opacity = "1.0";
-                this.fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
+            return this.#enabled;
+        }
+        
+        constructor (id)
+        {
+            this.#thisObj = document.querySelector(`#menuList_${id}`);
+            this.#arrowImg = this.#thisObj.querySelector("img");
+            this.#dropdown = document.querySelector(`#menuDropdown_${id}`);
+            
+            this.#ddHeight = this.#dropdown.scrollHeight;
+            
+            this.#thisObj.onclick = () => { this.Toggle(); };
+        }
+        
+        Toggle ()
+        {
+            if (this.#thisObj.onclick != null) this.#thisObj.onclick = () => { };
+            
+            if (!this.#enabled)
+            {
+                this.#arrowImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
+                this.#arrowImg.style.transition = "transform steps(8) 0.25s";
+                this.#dropdown.style.maxHeight = `${this.#ddHeight}px`;
+                this.#dropdown.style.transition = "max-height 0.25s";
                 
                 setTimeout(() => {
-                    window.location.href = target;
-                }, (250 * this.fadeTime));
-            };
+                    this.#arrowImg.style.transition = "none";
+                    this.#dropdown.style.transition = "none";
+                    
+                    this.#enabled = true;
+                    this.#thisObj.onclick = () => { this.Toggle(); };
+                }, 250 + data.performance);
+                
+                return null;
+            }
+            
+            this.#arrowImg.style.transform = "none";
+            this.#arrowImg.style.transition = "transform steps(8) 0.25s";
+            this.#dropdown.style.maxHeight = "0";
+            this.#dropdown.style.transition = "max-height 0.25s";
+            
+            setTimeout(() => {
+                this.#arrowImg.style.transition = "none";
+                this.#dropdown.style.transition = "none";
+                
+                this.#enabled = false;
+                this.#thisObj.onclick = () => { this.Toggle(); };
+            }, 250 + data.performance);
         }
     }
-};
-
-
-// ----------Header
-function Header ()
-{
-    ThrowError(1);
-}
-
-// -----Set Header
-Header.SetData = function ()
-{
-    this.header = document.querySelector("header");
-    this.main = document.querySelector("main");
-    this.mainTop = this.main.style.top;
     
-    this.main.style.minHeight = "calc(100vh - (125 * var(--pixel-unit))";
-    
-    this.enabled = true;
-    
-    setInterval(() => {
-        if (this.scrollPos < window.pageYOffset)
-        {
-            if (!Menu.enabled) this.Toggle(false);
-        }
-        else if (this.scrollPos > window.pageYOffset)
-        {
-            this.Toggle(true);
-        }
+    static Set ()
+    {
+        data.html.main.setAttribute("data-menuEnabled", "false");
         
-        this.scrollPos = window.pageYOffset;
-    }, 16.67);
-};
-
-// -----Toggling
-Header.Toggle = function (state)
-{
-    if (this.enabled == state) return;
-    
-    if (!state)
-    {
-        this.header.style.transform = "translateY(-100%)";
-        this.header.style.transition = "transform 0.25s";
-        this.main.style.top = "34px";
-        this.main.style.minHeight = "calc(100vh - 62px)";
-        this.main.style.transition = "top 0.25s";
-    }
-    else
-    {
-        this.header.style.transform = "none";
-        this.header.style.transition = "transform 0.25s";
-        this.main.style.top = this.mainTop;
-        this.main.style.minHeight = "calc(100vh - (125 * var(--pixel-unit))";
-        this.main.style.transition = "top 0.25s";
-    }
-    
-    this.enabled = state;
-}
-
-
-// ----------Menu
-function Menu ()
-{
-    ThrowError(1);
-}
-
-// -----Set Menu
-Menu.SetData = function ()
-{
-    this.navData = document.createElement("div");
-    this.listCount = 0;
-    
-    this.navData.id = "menuNav";
-    
-    for (let i = 0; i < data.menuList.length; i++)
-    {
-        var link = "/coming-soon";
-        var subOutput;
+        this.#menuSection = data.html.body.querySelector("#menuSection");
+        this.#navData = document.createElement("div");
+        this.#listIndex = 0;
         
-        switch (data.menuList[i].type)
+        this.#navData.id = "menuNav";
+        
+        for (let iA = 0; iA < data.menuList.length; iA++)
         {
-            case "link":
-                let aObject = document.createElement("a");
-                let divObject = document.createElement("div");
-                
-                if (data.menuList[i].content != null)
-                {
-                    link = data.menuList[i].content;
-                }
-                
-                aObject.href = link;
-                
-                divObject.classList.add("menuList");
-                divObject.innerHTML = data.menuList[i].name;
-                
-                aObject.append(divObject);
-                this.navData.append(aObject);
-                break;
-            case "list":
-                if (data.menuList[i].content != null)
-                {
+            var link = "/coming-soon";
+            var subOutput;
+            
+            switch (data.menuList[iA].type)
+            {
+                case "link":
+                    let aObject = document.createElement("a");
+                    let divObject = document.createElement("div");
+                    
+                    if (data.menuList[iA].content != null) link = data.menuList[iA].content;
+                    
+                    aObject.href = link;
+                    
+                    divObject.classList.add("menuList");
+                    divObject.append(data.menuList[iA].name);
+                    
+                    aObject.appendChild(divObject);
+                    this.#navData.appendChild(aObject);
+                    break;
+                case "list":
+                    if (data.menuList[iA].content == null) return null;
+                    
                     subOutput = document.createElement("div");
-                    subOutput.id = `menuDropdown_${this.listCount}`;
+                    subOutput.id = `menuDropdown_${this.#listIndex}`;
                     subOutput.classList.add("menuDropdown");
                     
-                    for (let l = 0; l < data.menuList[i].content.length; l++)
+                    for (let iB = 0; iB < data.menuList[iA].content.length; iB++)
                     {
                         let aObject = document.createElement("a");
                         let divObject = document.createElement("div");
                         
-                        if (data.menuList[i].content[l].link != null)
+                        if (data.menuList[iA].content[iB].link != null)
                         {
-                            link = data.menuList[i].content[l].link;
+                            link = data.menuList[iA].content[iB].link;
                         }
                         
                         aObject.href = link;
                         
                         divObject.classList.add("menuSubList");
-                        divObject.innerHTML = data.menuList[i].content[l].name;
+                        divObject.append(data.menuList[iA].content[iB].name);
                         
-                        aObject.append(divObject);
-                        subOutput.append(aObject);
+                        aObject.appendChild(divObject);
+                        subOutput.appendChild(aObject);
                         
-                        if (l == data.menuList[i].content.length - 1)
+                        if (iB == data.menuList[iA].content.length - 1)
                         {
                             let menuList = document.createElement("div");
                             let dropDiv = document.createElement("div");
                             let dropImg = document.createElement("img");
                             
-                            menuList.id = `menuList_${this.listCount}`;
+                            menuList.id = `menuList_${this.#listIndex}`;
                             menuList.classList.add("menuList");
-                            menuList.innerHTML = data.menuList[i].name;
+                            menuList.append(data.menuList[iA].name);
                             
                             dropImg.classList.add("unselectable");
                             dropImg.src = "/img/spr_menuDropdown.png";
-                            dropImg.alt = data.menuList[i].name;
+                            dropImg.alt = data.menuList[iA].name;
                             
-                            dropDiv.append(dropImg);
-                            menuList.append(dropDiv);
-                            this.navData.append(menuList, subOutput);
+                            dropDiv.appendChild(dropImg);
+                            menuList.appendChild(dropDiv);
+                            this.#navData.append(menuList, subOutput);
                             
-                            this.listCount++;
+                            this.#listIndex++;
                         }
                     }
-                }
-                break;
-        }
-        
-        if (i == data.menuList.length - 1)
-        {
-            this.body = document.body;
-            this.main = document.querySelector("main");
-            this.btnMenu = document.querySelector("#btnMenu");
-            this.btnMenuImg = document.querySelector("img");
+                    break;
+            }
             
-            this.btnMenu.onclick = () => { this.Toggle(); };
+            if (iA != data.menuList.length - 1) continue;
+            
+            this.#btnMenu = document.querySelector("#btnMenu");
+            this.#btnMenuImg = document.querySelector("img");
+            
+            this.#btnMenu.onclick = () => { this.Toggle(); };
         }
     }
-};
-
-// -----Toggling
-Menu.Toggle = function ()
-{
-    if (this.enabled == null) this.enabled = false;
     
-    if (this.btnMenu.onclick != null) this.btnMenu.onclick = () => { };
-    
-    if (!Header.enabled) Header.Toggle(true);
-    
-    if (!this.enabled)
+    static Toggle ()
     {
-        this.body.style.overflowY = "hidden";
+        if (this.#btnMenu.onclick != null) this.#btnMenu.onclick = () => { };
         
-        this.btnMenuImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
-        this.btnMenuImg.style.transition = "transform steps(8) 0.5s";
+        if (!Header.isEnabled) Header.Toggle(true);
         
-        let newMenu = document.createElement("div");
-        let menuSocials = document.createElement("div");
-        
-        let aSocialBtn = [
-            document.createElement("a"),
-            document.createElement("a"),
-            document.createElement("a")
-        ];
-        
-        let imgSocialBtn = [
-            document.createElement("img"),
-            document.createElement("img"),
-            document.createElement("img")
-        ];
-        
-        let divSiteInfo = document.createElement("div");
-        let aSiteInfo = document.createElement("a");
-        let newOverlay = document.createElement("hr");
-        
-        newMenu.id = "menu";
-        menuSocials.id = "menuSocials";
-        
-        aSocialBtn[0].href = data.socials.youtube;
-        aSocialBtn[1].href = data.socials.twitter;
-        aSocialBtn[2].href = data.socials.instagram;
-        
-        for (let i = 0; i < aSocialBtn.length; i++)
+        if (!this.#enabled)
         {
-            aSocialBtn[i].target = "_blank";
-            aSocialBtn[i].rel = "noreferrer noopener";
-        }
-        
-        imgSocialBtn[0].id = "menuBtnYt";
-        imgSocialBtn[1].id = "menuBtnTwt";
-        imgSocialBtn[2].id = "menuBtnInsta";
-        
-        for (let i = 0; i < imgSocialBtn.length; i++)
-        {
-            imgSocialBtn[i].classList.add("unselectable");
-            imgSocialBtn[i].src = data.sprites.socials;
+            data.html.body.setAttribute("data-scrollable", "false, menu");
             
-            aSocialBtn[i].append(imgSocialBtn[i]);
-            menuSocials.append(aSocialBtn[i]);
+            this.#btnMenuImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
+            this.#btnMenuImg.style.transition = "transform steps(8) 0.5s";
+            
+            this.#menu = document.createElement("div");
+            let menuSocials = document.createElement("div");
+            
+            let aSocialBtn = [
+                document.createElement("a"),
+                document.createElement("a"),
+                document.createElement("a")
+            ];
+            
+            let imgSocialBtn = [
+                document.createElement("img"),
+                document.createElement("img"),
+                document.createElement("img")
+            ];
+            
+            let divSiteInfo = document.createElement("div");
+            let aSiteInfo = document.createElement("a");
+            this.#overlay = document.createElement("hr");
+            
+            this.#menu.id = "menu";
+            menuSocials.id = "menuSocials";
+            
+            aSocialBtn[0].href = data.socials.youtube;
+            aSocialBtn[1].href = data.socials.twitter;
+            aSocialBtn[2].href = data.socials.instagram;
+            
+            for (let i = 0; i < aSocialBtn.length; i++)
+            {
+                aSocialBtn[i].target = "_blank";
+                aSocialBtn[i].rel = "noreferrer noopener";
+            }
+            
+            imgSocialBtn[0].id = "menuBtnYt";
+            imgSocialBtn[1].id = "menuBtnTwt";
+            imgSocialBtn[2].id = "menuBtnInsta";
+            
+            for (let i = 0; i < imgSocialBtn.length; i++)
+            {
+                imgSocialBtn[i].classList.add("unselectable");
+                imgSocialBtn[i].src = data.sprites.socials;
+                
+                aSocialBtn[i].appendChild(imgSocialBtn[i]);
+                menuSocials.appendChild(aSocialBtn[i]);
+            }
+            
+            divSiteInfo.id = "menuSiteInfo";
+            
+            aSiteInfo.href = "/site-info";
+            aSiteInfo.innerHTML = "&#9432; About this site";
+            
+            divSiteInfo.appendChild(aSiteInfo);
+            
+            this.#overlay.id = "menuOverlay";
+            
+            this.#menu.append(this.#navData, menuSocials, divSiteInfo);
+            this.#menuSection.append(this.#menu, this.#overlay);
+            
+            for (let i = 0; i < this.#listIndex; i++)
+            {
+                if (this.#dropdowns.length == 0) this.#dropdowns[0] = new this.#managed(i);
+                else this.#dropdowns.push(new this.#managed(i));
+            }
+            
+            this.#menu.style.transform = "none";
+            this.#menu.style.transition = "transform 0.5s";
+            this.#overlay.style.background = "rgba(0, 0, 0, 0.37)";
+            this.#overlay.style.transition = "background 0.5s";
+            
+            data.html.main.setAttribute("data-menuEnabled", "true");
+            
+            data.html.main.style.transition = "max-width 0.5s, transform 0.5s";
+            
+            setTimeout(() => {
+                this.#btnMenuImg.style.transition = "initial";
+                this.#menu.style.transition = "initial";
+                this.#overlay.style.transition = "initial";
+                
+                data.html.main.style.transition = "initial";
+                
+                this.#enabled = true;
+                this.#btnMenu.onclick = () => { this.Toggle(); };
+                this.#overlay.onclick = () => { this.Toggle(); };
+            }, 500 + data.performance);
+            
+            return null;
         }
         
-        divSiteInfo.id = "menuSiteInfo";
-        
-        aSiteInfo.href = "/site-info";
-        aSiteInfo.innerHTML = "&#9432; About this site";
-        
-        divSiteInfo.append(aSiteInfo);
-        
-        newOverlay.id = "menuOverlay";
-        
-        newMenu.append(this.navData, menuSocials, divSiteInfo);
-        this.main.append(newMenu, newOverlay);
-        
-        this.menu = this.main.querySelector("#menu");
-        this.overlay = this.main.querySelector("#menuOverlay");
+        this.#btnMenuImg.style.transform = "none";
+        this.#btnMenuImg.style.transition = "transform steps(8) 0.25s";
         
         for (let i = 0; i < this.listCount; i++)
         {
-            let onloadFunc = Function(`Menu.managed_${i} = new menuManaged("${i}");`);
-            onloadFunc();
+            if (this.#dropdowns[i].isEnabled) this.#dropdowns[i].Toggle();
         }
         
-        this.menu.style.transform = "none";
-        this.menu.style.transition = "transform 0.5s";
-        this.overlay.style.background = "rgba(0, 0, 0, 0.37)";
-        this.overlay.style.transition = "background 0.5s";
+        this.#menu.style.transform = "translateX(-100%)";
+        this.#menu.style.transition = "transform 0.25s";
+        this.#overlay.style.background = "none";
+        this.#overlay.style.transition = "background 0.25s";
         
+        data.html.main.setAttribute("data-menuEnabled", "false");
         
-        setTimeout(() => {
-            this.btnMenuImg.style.transition = "none";
-            this.menu.style.transition = "none";
-            this.overlay.style.transition = "none";
-            
-            this.enabled = !this.enabled;
-            this.btnMenu.onclick = () => { this.Toggle(); };
-            this.overlay.onclick = () => { this.Toggle(); };
-        }, 500);
-    }
-    else
-    {
-        this.btnMenuImg.style.transform = "none";
-        this.btnMenuImg.style.transition = "transform steps(8) 0.25s";
-        
-        for (let i = 0; i < this.listCount; i++)
-        {
-            let onloadFunc = Function(`if (Menu.managed_${i}.enabled) { Menu.managed_${i}.Toggle(); }`);
-            onloadFunc();
-        }
-        
-        this.menu.style.transform = "translateX(-100%)";
-        this.menu.style.transition = "transform 0.25s";
-        this.overlay.style.background = "none";
-        this.overlay.style.transition = "background 0.25s";
+        data.html.main.style.transition = "max-width 0.25s, transform 0.25s";
         
         setTimeout(() => {
-            this.btnMenuImg.style.transition = "none";
+            this.#btnMenuImg.style.transition = "none";
             
-            this.menu.remove();
-            this.overlay.remove();
+            this.#menu.remove();
+            this.#overlay.remove();
             
-            this.body.style.overflowY = "visible";
+            data.html.body.setAttribute("data-scrollable", "true");
             
-            this.enabled = !this.enabled;
-            this.btnMenu.onclick = () => { this.Toggle(); };
-        }, 250);
+            data.html.main.style.transition = "initial";
+            
+            this.#enabled = false;
+            this.#btnMenu.onclick = () => { this.Toggle(); };
+        }, 250 + data.performance);
     }
-};
+}
 
-// -----Managed Class for Sublists
-class menuManaged
+class screenTrans
 {
-    constructor (id)
+    static #clickedId = false;
+    static #fadeEl = null;
+    
+    static fadeTime = 1;
+    
+    static get clickedIdAnchor ()
     {
-        this.thisObj = document.querySelector(`#menuList_${id}`);
-        this.arrowImg = this.thisObj.querySelector("img");
-        this.dropdown = document.querySelector(`#menuDropdown_${id}`)
-        
-        this.ddHeight = this.dropdown.scrollHeight;
-        
-        this.thisObj.onclick = () => { this.Toggle(); };
+        return this.#clickedId;
     }
     
-    Toggle ()
+    static Set ()
     {
-        if (this.enabled == null) this.enabled = false;
+        this.#fadeEl = document.querySelector(".fadeObject");
         
-        if (this.thisObj.onclick != null) this.thisObj.onclick = null;
+        this.#fadeEl.style.opacity = "0.0";
+        this.#fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
         
-        if (!this.enabled)
-        {
-            this.arrowImg.style.transform = "translate(calc(-480 * var(--pixel-unit)), 0)";
-            this.arrowImg.style.transition = "transform steps(8) 0.25s";
-            this.dropdown.style.maxHeight = `${this.ddHeight}px`;
-            this.dropdown.style.transition = "max-height 0.25s";
+        setTimeout(() => {
+            this.#fadeEl.style.pointerEvents = "none";
+            this.#fadeEl.style.transition = "initial";
             
-            setTimeout(() => {
-                this.arrowImg.style.transition = "none";
-                this.dropdown.style.transition = "none";
-                
-                this.enabled = !this.enabled;
-                this.thisObj.onclick = () => { this.Toggle(); };
-            }, 250);
-        }
-        else
+            data.html.body.setAttribute("data-scrollable", "true");
+        }, (250 * this.fadeTime));
+        
+        setInterval(() => { this.ScanAnchors(); }, 16.67);
+    }
+    
+    static ScanAnchors ()
+    {
+        let pageAnc = document.querySelectorAll("a:not([target='_blank'])");
+        
+        for (let iA = 0; iA < pageAnc.length; iA++)
         {
-            this.arrowImg.style.transform = "none";
-            this.arrowImg.style.transition = "transform steps(8) 0.25s";
-            this.dropdown.style.maxHeight = "0";
-            this.dropdown.style.transition = "max-height 0.25s";
+            var valid = true;
             
-            setTimeout(() => {
-                this.arrowImg.style.transition = "none";
-                this.dropdown.style.transition = "none";
+            for (let iB = 0; iB < pageAnc[iA].href.length; iB++)
+            {
+                if (pageAnc[iA].href[iB] == "#") valid = false;
+            }
+            
+            if (!valid) return null;
+            
+            pageAnc[iA].onclick = e => {
+                e.preventDefault();
+                let target = pageAnc[iA].href;
                 
-                this.enabled = !this.enabled;
-                this.thisObj.onclick = () => { this.Toggle(); };
-            }, 250);
+                data.html.body.setAttribute("data-scrollable", "false");
+                
+                this.#fadeEl.style.pointerEvents = "all";
+                this.#fadeEl.style.opacity = "1.0";
+                this.#fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
+                
+                setTimeout(() => {
+                    window.location.href = target;
+                }, 250 * this.fadeTime + data.performance);
+            };
         }
     }
 }
 
 
-// ----------Data
-var data;
-
-function Data ()
-{
-    ThrowError(1);
-}
-
-Data.Set = function ()
-{
-    let request = new XMLHttpRequest();
+Data.addEventListener("OnDataLoad", () => {
+    Background.Set();
+    Header.Set();
+    Menu.Set();
     
-    request.onload = () => {
-        if (request.status < 400)
-        {
-            data = JSON.parse(request.responseText);
-            
-            this.checkSiteIndex();
-        }
-    };
-    
-    request.onerror = () => {
-        ThrowError(3);
-    };
-    
-    request.open("GET", "/data/data.json");
-    request.overrideMimeType("application/json");
-    request.send();
-};
-
-Data.checkSiteIndex = function ()
-{
-    let siteIndex = parseInt(document.body.getAttribute("data-siteIndex"));
-    
-    switch (siteIndex)
-    {
-        case 0:
-            this.afterLoad();
-            break;
-        case 1:
-            let request = new XMLHttpRequest();
-            
-            request.onload = () => {
-                if (request.status < 400)
-                {
-                    data.menuList = JSON.parse(request.responseText).menuList;
-                    
-                    this.afterLoad();
-                }
-            };
-            
-            request.onerror = () => {
-                ThrowError(3);
-            };
-            
-            request.open("GET", "/data/data-js-plugins.json");
-            request.overrideMimeType("application/json");
-            request.send();
-            break;
-    }
-};
-
-Data.afterLoad = function ()
-{
-    Menu.SetData();
-};
+    screenTrans.Set();
+});
 
 
-// ----------Debugging
 function ThrowError (errorCode)
 {
     var errorText;
@@ -493,16 +585,13 @@ function ThrowError (errorCode)
     switch (errorCode)
     {
         case 0:
-            errorText = "Value was unassigned or invalid";
+            errorText = "Value is unassigned or invalid";
             break;
         case 1:
-            errorText = "Using static class as a function";
+            errorText = "No instance to work with";
             break;
         case 2:
-            errorText = "There is no instance to work with";
-            break;
-        case 3:
-            errorText = "File or source is invalid";
+            errorText = "File cannot be loaded";
             break;
     }
     

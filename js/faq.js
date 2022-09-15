@@ -1,44 +1,55 @@
-function FAQ ()
-{
-    ThrowError(1);
-}
+Data.addEventListener("WhileDataLoading", () => {
+    FAQ.Set();
+});
 
-FAQ.load = function ()
-{
-    let request = new XMLHttpRequest();
-    
-    request.onload = () => {
-        if (request.status < 400)
-        {
-            this.faqData = JSON.parse(request.responseText);
-            this.setFaq();
-        }
-    };
-    
-    request.onerror = () => {
-        ThrowError(3);
-    };
-    
-    request.open("GET", "/data/faq.json");
-    request.overrideMimeType("application/json");
-    request.send();
-};
 
-FAQ.setFaq = function ()
+class FAQ
 {
-    this.mainContent = document.querySelector("#faq");
+    static #mainContent = null;
+    static #loaded = false;
     
-    for (let i = 0; i < this.faqData.length; i++)
+    static get isLoaded ()
     {
-        let question = document.createElement("h3");
-        let answer = document.createElement("div");
-        
-        question.classList.add("faq-question");
-        question.innerHTML = this.faqData[i].question;
-        
-        answer.classList.add("faq-answer", "quote");
-        answer.innerHTML = this.faqData[i].answer;
-        
-        this.mainContent.append(question, answer);
+        return this.#loaded;
     }
-};
+    
+    static Set ()
+    {
+        this.#mainContent = document.querySelector("#faq");
+        
+        let request = new XMLHttpRequest();
+        
+        request.onload = () => {
+            if (request.status < 400)
+            {
+                data.faq = JSON.parse(request.responseText);
+                this.setFAQ();
+            }
+        };
+        
+        request.onerror = () => { ThrowError(2); };
+        
+        request.open("GET", "/data/faq.json");
+        request.overrideMimeType("application/json");
+        request.send();
+    }
+    
+    static setFAQ ()
+    {
+        for (let i = 0; i < data.faq.length; i++)
+        {
+            let question = document.createElement("h3");
+            let answer = document.createElement("div");
+            
+            question.classList.add("faq-question");
+            question.append(data.faq[i].question);
+            
+            answer.classList.add("faq-answer", "quote");
+            answer.append(data.faq[i].answer);
+            
+            this.#mainContent.append(question, answer);
+        }
+        
+        this.#loaded = true;
+    }
+}
