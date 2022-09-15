@@ -20,7 +20,16 @@ body
     overflow-x : hidden;
     overflow-y : hidden;
     text-size-adjust : none;
-    animation : linear 60s body infinite;
+}
+
+body[data-scrollable="true"]
+{
+    overflow-y : visible;
+}
+
+body[data-scrollable="false, menu"]
+{
+    overflow-y : visible;
 }
 
 :not(.selectable),
@@ -51,18 +60,24 @@ main
     position : relative;
     overflow-x : hidden;
     overflow-wrap : break-word;
+    max-width : 100%;
     top : calc(87 * var(--pixel-unit));
     padding : 14px;
     background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61), rgba(3, 0, 31));
     background-size : 100% 200%;
     color : white;
-    animation : linear 60s bg infinite;
+}
+
+main[data-menuEnabled="true"]
+{
+    max-width : calc(100% - 329px);
+    transform : translateX(301px);
 }
 
 #menu
 {
     position : fixed;
-    width : 75%;
+    width : 300px;
     height : 100%;
     top : 0;
     left : 0;
@@ -154,29 +169,26 @@ noscript div
 
 /*----------Instances*/
 /*-----Header and Menu*/
-#logo
+#icon
 {
     position : relative;
-    display : inline-block;
+    display : none;
     margin : auto;
 }
 
-#logo img
+#icon_freeaspect
 {
-    height : calc(60 * var(--pixel-unit));
+    position : relative;
+    display : inline-block;
+    margin : auto auto auto calc(90 * var(--pixel-unit));
 }
 
-#sidelogo
+#sideicon
 {
     position : absolute;
     display : inline-block;
     right : 10px;
     margin : auto;
-}
-
-#sidelogo img
-{
-    height : calc(60 * var(--pixel-unit));
 }
 
 #btnMenu
@@ -198,6 +210,7 @@ noscript div
 #menuOverlay
 {
     position : fixed;
+    display : none;
     width : 100%;
     height : 100%;
     top : 0;
@@ -371,6 +384,11 @@ noscript div
 .unselectable
 {
     pointer-events : none;
+}
+
+.icon img
+{
+    height : calc(60 * var(--pixel-unit));
 }
 
 .fadeObject

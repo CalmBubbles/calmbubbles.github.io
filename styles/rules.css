@@ -26,3 +26,39 @@
     
     100% { background-position : 0% 0%; }
 }
+
+
+/*----------Media Queries*/
+@media only screen and (max-width : 1024px)
+{
+    body[data-scrollable="false, menu"]
+    {
+        overflow-y : hidden;
+    }
+    
+    main[data-menuEnabled="true"]
+    {
+        max-width : initial;
+        transform : initial;
+    }
+    
+    #icon
+    {
+        display : inline-block;
+    }
+    
+    #icon_freeaspect
+    {
+        display : none;
+    }
+    
+    #menu
+    {
+        width : 75%;
+    }
+    
+    #menuOverlay
+    {
+        display : initial;
+    }
+}
