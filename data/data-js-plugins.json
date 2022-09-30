@@ -17,6 +17,14 @@
                 {
                     "name" : "dialogueSys.js",
                     "link" : "/docs/js-plugins/manual/dialogueSys"
+                },
+                {
+                    "name" : "betterAudio.js",
+                    "link" : "/docs/js-plugins/manual/betterAudio"
+                },
+                {
+                    "name" : "countdown.js",
+                    "link" : "/docs/js-plugins/manual/countdown"
                 }
             ]
         },
@@ -27,6 +35,14 @@
                 {
                     "name" : "dialogueSys.js",
                     "link" : "/docs/js-plugins/scripting-api/dialogueSys"
+                },
+                {
+                    "name" : "betterAudio.js",
+                    "link" : "/docs/js-plugins/scripting-api/betterAudio"
+                },
+                {
+                    "name" : "countdown.js",
+                    "link" : "/docs/js-plugins/scripting-api/countdown"
                 }
             ]
         }
