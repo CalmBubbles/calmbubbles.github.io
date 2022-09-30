@@ -105,18 +105,6 @@ img:not(.anti-aliased)
     -ms-interpolation-mode : nearest-neighbor;
 }
 
-code
-{
-    display : block;
-    overflow : auto;
-    max-width : 84vw;
-    padding : 12px;
-    border-radius : 10px;
-    font-size : 12px;
-    color : #adbac7;
-    background : #22272e;
-}
-
 iframe
 {
     display : block;
@@ -140,6 +128,68 @@ a
 {
     text-decoration : none;
     color : inherit;
+}
+
+/*Tables*/
+table
+{
+   display : inline-block;
+   margin : 12px 0 10px;
+   max-width : 100%;
+   color : black;
+   border : 1px solid white;
+   border-collapse : collapse;
+   overflow : auto;
+}
+
+tr, td
+{
+    padding : 10px;
+    border : 1px solid white;
+}
+
+tr
+{
+    background : rgba(255, 255, 255, 0.5);
+}
+
+tr a
+{
+    color : darkgreen;
+}
+
+tr:nth-child(even)
+{
+    background-color: rgba(255, 255, 255, 0.37);
+}
+
+tr:nth-child(even) a
+{
+    color : lightgreen;
+}
+
+td:nth-child(2)
+{
+    vertical-align : top;
+}
+
+/*Code*/
+code
+{
+    padding : 12px;
+    border-radius : 10px;
+    color : #adbac7;
+    background : #22272e;
+}
+
+pre code
+{
+    display : block;
+    overflow : auto;
+    max-width : 84vw;
+    padding : 12px;
+    border-radius : 10px;
+    font-size : 12px;
 }
 
 /*No Script*/
@@ -342,9 +392,19 @@ noscript div
 }
 
 /*-----Docs Related*/
+.doc h2 a
+{
+    text-decoration : none;
+}
+
 .doc h3
 {
     margin : 16px auto 8px;
+}
+
+.doc p
+{
+    margin : 0 0 24px;
 }
 
 .doc-embed
@@ -360,12 +420,12 @@ noscript div
 
 .doc-embed a
 {
-    color : green;
+    color : darkgreen;
 }
 
 .doc-embed.link-list
 {
-    color : green;
+    color : darkgreen;
 }
 
 .doc-embed.link-list a
@@ -378,6 +438,18 @@ noscript div
 {
     display : block;
     margin : 3px auto 3px 24px;
+}
+
+.doc-info
+{
+    margin : -10px 0 40px;
+    color : rgb(190, 190, 190);
+    font-size : 17px;
+}
+
+.doc-declare
+{
+    margin : 20px 0 40px;
 }
 
 /*-----Objects*/
