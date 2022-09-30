@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+Data.once("OnDataLoad", () => {
     CodeOutputs.Set();
 });
 
@@ -91,13 +91,13 @@ class CodeOutputs
                     
                     this.#codeOutput.querySelector(".codedec").style.cursor = "default";
                     this.#codeOutput.querySelector(".codedec").style.background = "rgba(0, 0, 0, 0.50)";
-                    return null;
+                    return;
                 case 2:
                     this.#codeOutput.querySelector(".codeinc").onclick = () => { };
                     
                     this.#codeOutput.querySelector(".codeinc").style.cursor = "default";
                     this.#codeOutput.querySelector(".codeinc").style.background = "rgba(0, 0, 0, 0.50)";
-                    return null;
+                    return;
             }
             
             this.#codeOutput.querySelector(".codedec").onclick = () => { this.sizeDown(); };

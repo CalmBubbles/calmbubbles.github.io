@@ -4,6 +4,7 @@ window.onload = () => {
 
 
 var data = {
+    siteIndex : 0,
     html : {
         body : null,
         main : null
@@ -23,101 +24,219 @@ var data = {
 class Data
 {
     static #loaded = false;
-    static #OnDataLoad = [];
-    static #WhileDataLoading = [];
+    static #events = [];
+    static #event = null;
     
     static get isLoaded ()
     {
         return this.#loaded;
     }
     
-    static async #hasLoaded ()
+    static get currentEvent ()
     {
-        for (let i = 0; i < this.#WhileDataLoading.length; i++)
-        {
-            await this.#WhileDataLoading[i]();
-        }
-        
-        this.#loaded = true;
-        
-        for (let i = 0; i < this.#OnDataLoad.length; i++)
-        {
-            this.#OnDataLoad[i]();
-        }
+        return this.#event;
     }
     
-    static Set ()
+    static #compareMethod (lhs, rhs)
     {
-        data.html.body = document.body;
-        data.html.main = document.querySelector("main");
+        var lhs = `${lhs}`;
+        var rhs = `${rhs}`;
+        var a = "";
+        var b = "";
         
-        let request = new XMLHttpRequest();
+        for (let i = 0; i < lhs.length; i++)
+        {
+            if (lhs[i] == "\n") continue;
+            if (lhs[i - 1] == " " && lhs[i] == " ") continue;
+            if (lhs[i + 1] == " " && lhs[i] == " ") continue;
+            if (lhs[i - 1] == "{" && lhs[i] == " ") continue;
+            if (lhs[i + 1] == "}" && lhs[i] == " ") continue;
+            if (lhs[i - 1] == "(" && lhs[i] == " ") continue;
+            if (lhs[i + 1] == ")" && lhs[i] == " ") continue;
+            if (lhs[i - 1] == "," && lhs[i] == " ") continue;
+            if (lhs[i + 1] == "," && lhs[i] == " ") continue;
+            
+            a += lhs[i];
+        }
         
-        request.onload = () => {
-            if (request.status < 400)
-            {
-                var newData = JSON.parse(request.responseText);
-                
-                data.menuList = newData.menuList;
-                data.socials = newData.socials;
-                data.sprites = newData.sprites;
-                
-                this.checkSiteIndex();
-            }
-        };
+        for (let i = 0; i < rhs.length; i++)
+        {
+            if (rhs[i] == "\n") continue;
+            if (rhs[i - 1] == " " && rhs[i] == " ") continue;
+            if (rhs[i + 1] == " " && rhs[i] == " ") continue;
+            if (rhs[i - 1] == "{" && rhs[i] == " ") continue;
+            if (rhs[i + 1] == "}" && rhs[i] == " ") continue;
+            if (rhs[i - 1] == "(" && rhs[i] == " ") continue;
+            if (rhs[i + 1] == ")" && rhs[i] == " ") continue;
+            if (rhs[i - 1] == "," && rhs[i] == " ") continue;
+            if (rhs[i + 1] == "," && rhs[i] == " ") continue;
+            
+            b += rhs[i];
+        }
         
-        request.onerror = () => { ThrowError(2); };
-        
-        request.open("GET", "/data/data.json");
-        request.overrideMimeType("application/json");
-        request.send();
+        return a === b;
     }
     
-    static addEventListener (event, callback)
+    static on (event, callback)
     {
         if (event == null || callback == null) throw ThrowError(0);
         
-        switch (event)
+        let listener = {
+            event : event,
+            callback : callback,
+            recallable : true,
+            called : false
+        };
+        
+        for (let iA = 0; iA < this.#events.length; iA++)
         {
-            case "OnDataLoad":
-                if (this.#OnDataLoad.length == 0) this.#OnDataLoad[0] = callback;
-                else this.#OnDataLoad.push(callback);
-                break;
-            case "WhileDataLoading":
-                if (this.#WhileDataLoading.length == 0) this.#WhileDataLoading[0] = callback;
-                else this.#WhileDataLoading.push(callback);
-                break;
+            let equalEvent = listener.event === this.#events[iA].event;
+            let equalMethod = this.#compareMethod(listener.callback, this.#events[iA].callback);
+            let equalRecall = listener.recallable === this.#events[iA].recallable;
+            
+            if (equalEvent && equalMethod && equalRecall)
+            {
+                var newEvents = [];
+                
+                for (let iB = 0; iB < this.#events.length; iB++)
+                {
+                    if (iB == iA) continue;
+                    
+                    if (newEvents.length == 0) newEvents[0] = this.#events[iB];
+                    else newEvents.push(this.#events[iB]);
+                }
+                
+                this.#events = newEvents;
+                
+                return;
+            }
         }
+        
+        if (this.#events.length == 0) this.#events[0] = listener;
+        else this.#events.push(listener);
     }
     
-    static checkSiteIndex ()
+    static once (event, callback)
     {
-        let siteIndex = parseInt(document.body.getAttribute("data-siteIndex"));
+        if (event == null || callback == null) throw ThrowError(0);
         
-        switch (siteIndex)
+        let listener = {
+            event : event,
+            callback : callback,
+            recallable : false,
+            called : false
+        };
+        
+        for (let iA = 0; iA < this.#events.length; iA++)
+        {
+            let equalEvent = listener.event === this.#events[iA].event;
+            let equalMethod = this.#compareMethod(listener.callback, this.#events[iA].callback);
+            let equalRecall = listener.recallable === this.#events[iA].recallable;
+            
+            if (equalEvent && equalMethod && equalRecall)
+            {
+                var newEvents = [];
+                
+                for (let iB = 0; iB < this.#events.length; iB++)
+                {
+                    if (iB == iA) continue;
+                    
+                    if (newEvents.length == 0) newEvents[0] = this.#events[iB];
+                    else newEvents.push(this.#events[iB]);
+                }
+                
+                this.#events = newEvents;
+                
+                return;
+            }
+        }
+        
+        if (this.#events.length == 0) this.#events[0] = listener;
+        else this.#events.push(listener);
+    }
+    
+    static async Set ()
+    {
+        var dataSrc = null;
+        var newData = null;
+        
+        data.siteIndex = parseInt(document.body.getAttribute("data-siteIndex")) ?? 0;
+        
+        data.html.body = document.body;
+        data.html.main = document.querySelector("main");
+        
+        let dataRequest = await fetch("/data/data.json");
+        newData = await dataRequest.json();
+        
+        switch (data.siteIndex)
         {
             case 1:
-                let request = new XMLHttpRequest();
-                
-                request.onload = () => {
-                    if (request.status < 400)
-                    {
-                        data.menuList = JSON.parse(request.responseText).menuList;
-                        
-                        this.#hasLoaded();
-                    }
-                };
-                
-                request.onerror = () => { ThrowError(2); };
-                
-                request.open("GET", "/data/data-js-plugins.json");
-                request.overrideMimeType("application/json");
-                request.send();
-                return null;
+                dataSrc = "/data/data-js-plugins.json";
+                break;
         }
+        
+        if (dataSrc != null)
+        {
+            let dataRequestExtend = await fetch(dataSrc);
+            let newDataExtend = await dataRequestExtend.json();
+            
+            if (newDataExtend.menuList != null) newData.menuList = newDataExtend.menuList;
+            if (newDataExtend.socials != null) newData.socials = newDataExtend.socials;
+            if (newDataExtend.sprites != null) newData.sprites = newDataExtend.sprites;
+        }
+        
+        data.menuList = newData.menuList;
+        data.socials = newData.socials;
+        data.sprites = newData.sprites;
         
         this.#hasLoaded();
     }
+    
+    static async #callEvents ()
+    {
+        let event = this.#event;
+        var mustRemove = null;
+        
+        for (let iA = 0; iA < this.#events.length; iA++)
+        {
+            let listener = this.#events[iA];
+            let callable = listener.recallable || !listener.called;
+            
+            if (listener.event !== event) continue;
+            
+            if (!callable)
+            {
+                var newEvents = [];
+                
+                for (let iB = 0; iB < this.#events.length; iB++)
+                {
+                    if (iB == iA) continue;
+                    
+                    if (newEvents.length == 0) newEvents[0] = this.#events[iB];
+                    else newEvents.push(this.#events[iB]);
+                }
+                
+                this.#events = newEvents;
+                
+                continue;
+            }
+            
+            await listener.callback();
+            listener.called = true;
+        }
+    }
+    
+    static async #hasLoaded ()
+    {
+        this.#event = "WhileDataLoading";
+        await this.#callEvents();
+        
+        this.#event = "OnDataLoad";
+        await this.#callEvents();
+        
+        this.#event = null;
+    }
+    
 }
 
 class Background
@@ -125,7 +244,7 @@ class Background
     static Set ()
     {
         setInterval(() => {
-            if (this.innerHeight == window.innerHeight && this.scrollHeight == data.html.body.scrollHeight) return null;
+            if (this.innerHeight == window.innerHeight && this.scrollHeight == data.html.body.scrollHeight) return;
             
             this.innerHeight = window.innerHeight;
             this.scrollHeight = data.html.body.scrollHeight;
@@ -266,7 +385,7 @@ class Menu
                     this.#thisObj.onclick = () => { this.Toggle(); };
                 }, 250 + data.performance);
                 
-                return null;
+                return;
             }
             
             this.#arrowImg.style.transform = "none";
@@ -316,7 +435,7 @@ class Menu
                     this.#navData.appendChild(aObject);
                     break;
                 case "list":
-                    if (data.menuList[iA].content == null) return null;
+                    if (data.menuList[iA].content == null) return;
                     
                     subOutput = document.createElement("div");
                     subOutput.id = `menuDropdown_${this.#listIndex}`;
@@ -470,7 +589,7 @@ class Menu
                 this.#overlay.onclick = () => { this.Toggle(); };
             }, 500 + data.performance);
             
-            return null;
+            return;
         }
         
         this.#btnMenuImg.style.transform = "none";
@@ -548,7 +667,7 @@ class screenTrans
                 if (pageAnc[iA].href[iB] == "#") valid = false;
             }
             
-            if (!valid) return null;
+            if (!valid) return;
             
             pageAnc[iA].onclick = e => {
                 e.preventDefault();
@@ -569,7 +688,7 @@ class screenTrans
 }
 
 
-Data.addEventListener("OnDataLoad", () => {
+Data.once("OnDataLoad", () => {
     Background.Set();
     Header.Set();
     Menu.Set();

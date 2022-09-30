@@ -1,5 +1,5 @@
-Data.addEventListener("WhileDataLoading", () => {
-    FAQ.Set();
+Data.once("WhileDataLoading", () => {
+    FAQ.();
 });
 
 
@@ -11,27 +11,6 @@ class FAQ
     static get isLoaded ()
     {
         return this.#loaded;
-    }
-    
-    static Set ()
-    {
-        this.#mainContent = document.querySelector("#faq");
-        
-        let request = new XMLHttpRequest();
-        
-        request.onload = () => {
-            if (request.status < 400)
-            {
-                data.faq = JSON.parse(request.responseText);
-                this.setFAQ();
-            }
-        };
-        
-        request.onerror = () => { ThrowError(2); };
-        
-        request.open("GET", "/data/faq.json");
-        request.overrideMimeType("application/json");
-        request.send();
     }
     
     static setFAQ ()
@@ -51,5 +30,16 @@ class FAQ
         }
         
         this.#loaded = true;
+    }
+    
+    static async Set ()
+    {
+        this.#mainContent = document.querySelector("#faq");
+        
+        let faqResponse = await fetch("/data/faq.json");
+        
+        data.faq = await faqResponse.json();
+        
+        this.setFAQ();
     }
 }
