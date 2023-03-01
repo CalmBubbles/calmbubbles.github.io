@@ -25,7 +25,7 @@ class CodeOutputs
             
             if (refreshable)
             {
-                let refreshElement = document.createElement("div");
+                const refreshElement = document.createElement("div");
                 
                 refreshElement.classList.add("textbtn", "coderefresh");
                 refreshElement.textContent = "Run";
@@ -46,7 +46,7 @@ class CodeOutputs
         
         runOutput ()
         {
-            var sizeElement = [
+            let sizeElement = [
                 document.createElement("div"),
                 document.createElement("div")
             ];
@@ -62,7 +62,7 @@ class CodeOutputs
             
             this.#codeOutput.append(sizeElement[0], sizeElement[1]);
             
-            var frameElement = document.createElement("div");
+            let frameElement = document.createElement("div");
             this.#codeFrame = document.createElement("iframe");
             
             frameElement.classList.add("codeframe");
@@ -129,14 +129,15 @@ class CodeOutputs
         {
             this.#frames[i].id = `codeOutput_${i}`;
             
-            let source = this.#frames[i].getAttribute("data-src");
-            let refreshable = this.#frames[i].getAttribute("data-refreshable") ?? false;
-            let width = this.#frames[i].getAttribute("data-width");
-            let height = this.#frames[i].getAttribute("data-height");
-            let scale = this.#frames[i].getAttribute("data-scale");
+            const source = this.#frames[i].getAttribute("data-src");
+            const refreshable = this.#frames[i].getAttribute("data-refreshable") ?? false;
+            const width = this.#frames[i].getAttribute("data-width");
+            const height = this.#frames[i].getAttribute("data-height");
+            const scale = this.#frames[i].getAttribute("data-scale");
             
-            if (this.#outputs.length == 0) this.#outputs[0] = new this.#managed(i, source, refreshable, width, height, scale);
+            if (this.#outputs.length === 0) this.#outputs[0] = new this.#managed(i, source, refreshable, width, height, scale);
             else this.#outputs.push(new this.#managed(i, source, refreshable, width, height, scale));
         }
     }
 }
+//supyer bago beh

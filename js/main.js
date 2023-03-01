@@ -11,12 +11,14 @@ var data = {
     },
     menuList : null,
     socials : null,
-    sprites : null,
     faq : null,
     get performance () {
         if (performance.now() < 500) return performance.now() / 2;
         
         return 0;
+    },
+    delay : async (time) => {
+        return new Promise(resolve => setTimeout(resolve, time + data.performance));
     }
 };
 
@@ -39,39 +41,40 @@ class Data
     
     static #compareMethod (lhs, rhs)
     {
-        var lhs = `${lhs}`;
-        var rhs = `${rhs}`;
-        var a = "";
-        var b = "";
+        const lS = `${lhs}`;
+        const rS = `${rhs}`;
         
-        for (let i = 0; i < lhs.length; i++)
+        let a = "";
+        let b = "";
+        
+        for (let i = 0; i < lS.length; i++)
         {
-            if (lhs[i] == "\n") continue;
-            if (lhs[i - 1] == " " && lhs[i] == " ") continue;
-            if (lhs[i + 1] == " " && lhs[i] == " ") continue;
-            if (lhs[i - 1] == "{" && lhs[i] == " ") continue;
-            if (lhs[i + 1] == "}" && lhs[i] == " ") continue;
-            if (lhs[i - 1] == "(" && lhs[i] == " ") continue;
-            if (lhs[i + 1] == ")" && lhs[i] == " ") continue;
-            if (lhs[i - 1] == "," && lhs[i] == " ") continue;
-            if (lhs[i + 1] == "," && lhs[i] == " ") continue;
+            if (lS[i] === "\n") continue;
+            if (lS[i - 1] === " " && lS[i] === " ") continue;
+            if (lS[i + 1] === " " && lS[i] === " ") continue;
+            if (lS[i - 1] === "{" && lS[i] === " ") continue;
+            if (lS[i + 1] === "}" && lS[i] === " ") continue;
+            if (lS[i - 1] === "(" && lS[i] === " ") continue;
+            if (lS[i + 1] === ")" && lS[i] === " ") continue;
+            if (lS[i - 1] === "," && lS[i] === " ") continue;
+            if (lS[i + 1] === "," && lS[i] === " ") continue;
             
-            a += lhs[i];
+            a += lS[i];
         }
         
-        for (let i = 0; i < rhs.length; i++)
+        for (let i = 0; i < rS.length; i++)
         {
-            if (rhs[i] == "\n") continue;
-            if (rhs[i - 1] == " " && rhs[i] == " ") continue;
-            if (rhs[i + 1] == " " && rhs[i] == " ") continue;
-            if (rhs[i - 1] == "{" && rhs[i] == " ") continue;
-            if (rhs[i + 1] == "}" && rhs[i] == " ") continue;
-            if (rhs[i - 1] == "(" && rhs[i] == " ") continue;
-            if (rhs[i + 1] == ")" && rhs[i] == " ") continue;
-            if (rhs[i - 1] == "," && rhs[i] == " ") continue;
-            if (rhs[i + 1] == "," && rhs[i] == " ") continue;
+            if (rS[i] === "\n") continue;
+            if (rS[i - 1] === " " && rS[i] === " ") continue;
+            if (rS[i + 1] === " " && rS[i] === " ") continue;
+            if (rS[i - 1] === "{" && rS[i] === " ") continue;
+            if (rS[i + 1] === "}" && rS[i] === " ") continue;
+            if (rS[i - 1] === "(" && rS[i] === " ") continue;
+            if (rS[i + 1] === ")" && rS[i] === " ") continue;
+            if (rS[i - 1] === "," && rS[i] === " ") continue;
+            if (rS[i + 1] === "," && rS[i] === " ") continue;
             
-            b += rhs[i];
+            b += rS[i];
         }
         
         return a === b;
@@ -79,9 +82,9 @@ class Data
     
     static on (event, callback)
     {
-        if (event == null || callback == null) throw ThrowError(0);
+        if (event == null || callback == null) throw new Error("Data needed for js-plugins class method 'countdown.on' is undefined");
         
-        let listener = {
+        const listener = {
             event : event,
             callback : callback,
             recallable : true,
@@ -90,19 +93,19 @@ class Data
         
         for (let iA = 0; iA < this.#events.length; iA++)
         {
-            let equalEvent = listener.event === this.#events[iA].event;
-            let equalMethod = this.#compareMethod(listener.callback, this.#events[iA].callback);
-            let equalRecall = listener.recallable === this.#events[iA].recallable;
+            const equalEvent = listener.event === this.#events[iA].event;
+            const equalMethod = this.#compareMethod(listener.callback, this.#events[iA].callback);
+            const equalRecall = listener.recallable === this.#events[iA].recallable;
             
             if (equalEvent && equalMethod && equalRecall)
             {
-                var newEvents = [];
+                let newEvents = [];
                 
                 for (let iB = 0; iB < this.#events.length; iB++)
                 {
-                    if (iB == iA) continue;
+                    if (iB === iA) continue;
                     
-                    if (newEvents.length == 0) newEvents[0] = this.#events[iB];
+                    if (newEvents.length === 0) newEvents[0] = this.#events[iB];
                     else newEvents.push(this.#events[iB]);
                 }
                 
@@ -112,15 +115,15 @@ class Data
             }
         }
         
-        if (this.#events.length == 0) this.#events[0] = listener;
+        if (this.#events.length === 0) this.#events[0] = listener;
         else this.#events.push(listener);
     }
     
     static once (event, callback)
     {
-        if (event == null || callback == null) throw ThrowError(0);
+        if (event == null || callback == null) throw new Error("Data needed for js-plugins class method 'countdown.once' is undefined");
         
-        let listener = {
+        const listener = {
             event : event,
             callback : callback,
             recallable : false,
@@ -129,19 +132,19 @@ class Data
         
         for (let iA = 0; iA < this.#events.length; iA++)
         {
-            let equalEvent = listener.event === this.#events[iA].event;
-            let equalMethod = this.#compareMethod(listener.callback, this.#events[iA].callback);
-            let equalRecall = listener.recallable === this.#events[iA].recallable;
+            const equalEvent = listener.event === this.#events[iA].event;
+            const equalMethod = this.#compareMethod(listener.callback, this.#events[iA].callback);
+            const equalRecall = listener.recallable === this.#events[iA].recallable;
             
             if (equalEvent && equalMethod && equalRecall)
             {
-                var newEvents = [];
+                let newEvents = [];
                 
                 for (let iB = 0; iB < this.#events.length; iB++)
                 {
-                    if (iB == iA) continue;
+                    if (iB === iA) continue;
                     
-                    if (newEvents.length == 0) newEvents[0] = this.#events[iB];
+                    if (newEvents.length === 0) newEvents[0] = this.#events[iB];
                     else newEvents.push(this.#events[iB]);
                 }
                 
@@ -151,68 +154,71 @@ class Data
             }
         }
         
-        if (this.#events.length == 0) this.#events[0] = listener;
+        if (this.#events.length === 0) this.#events[0] = listener;
         else this.#events.push(listener);
     }
     
     static async Set ()
     {
-        var dataSrc = null;
-        var newData = null;
+        let dataSrc = null;
         
         data.siteIndex = parseInt(document.body.getAttribute("data-siteIndex")) ?? 0;
         
         data.html.body = document.body;
         data.html.main = document.querySelector("main");
         
-        let dataRequest = await fetch("/data/data.json");
-        newData = await dataRequest.json();
+        const dataRequest = await fetch("/data/data.json");
+        
+        let newData = await dataRequest.json();
         
         switch (data.siteIndex)
         {
             case 1:
-                dataSrc = "/data/data-js-plugins.json";
+                dataSrc = "/data/js-plugins.json";
                 break;
         }
         
         if (dataSrc != null)
         {
-            let dataRequestExtend = await fetch(dataSrc);
-            let newDataExtend = await dataRequestExtend.json();
+            const dataRequestExtend = await fetch(dataSrc);
+            const newDataExtend = await dataRequestExtend.json();
             
             if (newDataExtend.menuList != null) newData.menuList = newDataExtend.menuList;
-            if (newDataExtend.socials != null) newData.socials = newDataExtend.socials;
-            if (newDataExtend.sprites != null) newData.sprites = newDataExtend.sprites;
         }
         
         data.menuList = newData.menuList;
         data.socials = newData.socials;
-        data.sprites = newData.sprites;
+        
+        const socialImg = await fetch(data.socials.img);
+        const socialImgBlob = await socialImg.blob();
+        
+        data.socials.imgCached = await URL.createObjectURL(socialImgBlob);
         
         this.#hasLoaded();
     }
     
     static async #callEvents ()
     {
-        let event = this.#event;
-        var mustRemove = null;
+        const event = this.#event;
+        
+        let mustRemove = null;
         
         for (let iA = 0; iA < this.#events.length; iA++)
         {
-            let listener = this.#events[iA];
-            let callable = listener.recallable || !listener.called;
+            const listener = this.#events[iA];
+            const callable = listener.recallable || !listener.called;
             
             if (listener.event !== event) continue;
             
             if (!callable)
             {
-                var newEvents = [];
+                let newEvents = [];
                 
                 for (let iB = 0; iB < this.#events.length; iB++)
                 {
-                    if (iB == iA) continue;
+                    if (iB === iA) continue;
                     
-                    if (newEvents.length == 0) newEvents[0] = this.#events[iB];
+                    if (newEvents.length === 0) newEvents[0] = this.#events[iB];
                     else newEvents.push(this.#events[iB]);
                 }
                 
@@ -222,6 +228,7 @@ class Data
             }
             
             await listener.callback();
+            
             listener.called = true;
         }
     }
@@ -239,23 +246,56 @@ class Data
     
 }
 
+class Loop
+{
+    static #loaded = false;
+    static #calls = [];
+    
+    static #requestUpdate ()
+    {
+        requestAnimationFrame(this.#update.bind(this));
+    }
+    
+    static #update ()
+    {
+        const currentCalls = this.#calls;
+        
+        for (let i = 0; i < currentCalls.length; i++) currentCalls[i]();
+        
+        this.#requestUpdate();
+    }
+    
+    static init ()
+    {
+        if (this.#loaded) return;
+        
+        this.#loaded = true;
+        
+        this.#requestUpdate();
+    }
+    
+    static append (callback)
+    {
+        if (this.#calls.length === 0) this.#calls[0] = callback;
+        else this.#calls.push(callback);
+    }
+}
+
 class Background
 {
     static Set ()
     {
-        setInterval(() => {
-            if (this.innerHeight == window.innerHeight && this.scrollHeight == data.html.body.scrollHeight) return;
-            
-            this.innerHeight = window.innerHeight;
-            this.scrollHeight = data.html.body.scrollHeight;
-            
-            this.Update();
-        }, 16.67);
+        Loop.append(() => { this.Update(); });
     }
     
     static Update ()
     {
-        let newTime = 60 - (1 - this.scrollHeight / this.innerHeight) * 60;
+        if (this.innerHeight === window.innerHeight && this.scrollHeight === data.html.body.scrollHeight) return;
+        
+        this.innerHeight = window.innerHeight;
+        this.scrollHeight = data.html.body.scrollHeight;
+        
+        const newTime = 60 - (1 - this.scrollHeight / this.innerHeight) * 60;
         
         data.html.main.style.animation = `${newTime}s linear bg infinite`;
         data.html.body.style.animation = `${newTime}s linear body infinite`;
@@ -281,23 +321,20 @@ class Header
         
         data.html.main.style.minHeight = "calc(100vh - (125 * var(--pixel-unit))";
         
-        setInterval(() => {
-            if (this.#scrollPos < window.pageYOffset)
-            {
-                if (!Menu.isEnabled) this.Toggle(false);
-            }
-            else if (this.#scrollPos > window.pageYOffset)
-            {
-                this.Toggle(true);
-            }
-            
-            this.#scrollPos = window.pageYOffset;
-        }, 16.67);
+        Loop.append(() => { this.Update(); });
+    }
+    
+    static Update ()
+    {
+        if (this.#scrollPos < window.pageYOffset && !Menu.isEnabled) this.Toggle(false);
+        else if (this.#scrollPos > window.pageYOffset) this.Toggle(true);
+        
+        this.#scrollPos = window.pageYOffset;
     }
     
     static Toggle (state)
     {
-        if (this.#enabled == state) return;
+        if (this.#enabled === state) return;
         
         if (!state)
         {
@@ -328,6 +365,7 @@ class Menu
     static #btnMenu = null;
     static #btnMenuImg = null;
     static #enabled = false;
+    static #toggling = false;
     static #menu = null;
     static #overlay = null;
     static #dropdowns = [];
@@ -349,6 +387,7 @@ class Menu
         #dropdown = null;
         #ddHeight = null;
         #enabled = false;
+        #toggling = false;
         
         get isEnabled ()
         {
@@ -366,9 +405,11 @@ class Menu
             this.#thisObj.onclick = () => { this.Toggle(); };
         }
         
-        Toggle ()
+        async Toggle ()
         {
-            if (this.#thisObj.onclick != null) this.#thisObj.onclick = () => { };
+            if (this.#toggling) return;
+            
+            this.#toggling = true;
             
             if (!this.#enabled)
             {
@@ -376,30 +417,23 @@ class Menu
                 this.#arrowImg.style.transition = "transform steps(8) 0.25s";
                 this.#dropdown.style.maxHeight = `${this.#ddHeight}px`;
                 this.#dropdown.style.transition = "max-height 0.25s";
-                
-                setTimeout(() => {
-                    this.#arrowImg.style.transition = "none";
-                    this.#dropdown.style.transition = "none";
-                    
-                    this.#enabled = true;
-                    this.#thisObj.onclick = () => { this.Toggle(); };
-                }, 250 + data.performance);
-                
-                return;
+            }
+            else
+            {
+                this.#arrowImg.style.transform = "none";
+                this.#arrowImg.style.transition = "transform steps(8) 0.25s";
+                this.#dropdown.style.maxHeight = "0";
+                this.#dropdown.style.transition = "max-height 0.25s";
             }
             
-            this.#arrowImg.style.transform = "none";
-            this.#arrowImg.style.transition = "transform steps(8) 0.25s";
-            this.#dropdown.style.maxHeight = "0";
-            this.#dropdown.style.transition = "max-height 0.25s";
+            await data.delay(250);
             
-            setTimeout(() => {
-                this.#arrowImg.style.transition = "none";
-                this.#dropdown.style.transition = "none";
-                
-                this.#enabled = false;
-                this.#thisObj.onclick = () => { this.Toggle(); };
-            }, 250 + data.performance);
+            this.#arrowImg.style.transition = "none";
+            this.#dropdown.style.transition = "none";
+            
+            this.#enabled = !this.#enabled;
+            
+            this.#toggling = false;
         }
     }
     
@@ -415,14 +449,14 @@ class Menu
         
         for (let iA = 0; iA < data.menuList.length; iA++)
         {
-            var link = "/coming-soon";
-            var subOutput;
+            let link = "/coming-soon";
+            let subOutput;
             
             switch (data.menuList[iA].type)
             {
                 case "link":
-                    let aObject = document.createElement("a");
-                    let divObject = document.createElement("div");
+                    const aObject = document.createElement("a");
+                    const divObject = document.createElement("div");
                     
                     if (data.menuList[iA].content != null) link = data.menuList[iA].content;
                     
@@ -443,8 +477,8 @@ class Menu
                     
                     for (let iB = 0; iB < data.menuList[iA].content.length; iB++)
                     {
-                        let aObject = document.createElement("a");
-                        let divObject = document.createElement("div");
+                        const aObject = document.createElement("a");
+                        const divObject = document.createElement("div");
                         
                         if (data.menuList[iA].content[iB].link != null)
                         {
@@ -459,11 +493,11 @@ class Menu
                         aObject.appendChild(divObject);
                         subOutput.appendChild(aObject);
                         
-                        if (iB == data.menuList[iA].content.length - 1)
+                        if (iB === data.menuList[iA].content.length - 1)
                         {
-                            let menuList = document.createElement("div");
-                            let dropDiv = document.createElement("div");
-                            let dropImg = document.createElement("img");
+                            const menuList = document.createElement("div");
+                            const dropDiv = document.createElement("div");
+                            const dropImg = document.createElement("img");
                             
                             menuList.id = `menuList_${this.#listIndex}`;
                             menuList.classList.add("menuList");
@@ -492,9 +526,11 @@ class Menu
         }
     }
     
-    static Toggle ()
+    static async Toggle ()
     {
-        if (this.#btnMenu.onclick != null) this.#btnMenu.onclick = () => { };
+        if (this.#toggling) return;
+        
+        this.#toggling = true;
         
         if (!Header.isEnabled) Header.Toggle(true);
         
@@ -506,30 +542,30 @@ class Menu
             this.#btnMenuImg.style.transition = "transform steps(8) 0.5s";
             
             this.#menu = document.createElement("div");
-            let menuSocials = document.createElement("div");
+            const menuSocials = document.createElement("div");
             
-            let aSocialBtn = [
+            const aSocialBtn = [
                 document.createElement("a"),
                 document.createElement("a"),
                 document.createElement("a")
             ];
             
-            let imgSocialBtn = [
+            const imgSocialBtn = [
                 document.createElement("img"),
                 document.createElement("img"),
                 document.createElement("img")
             ];
             
-            let divSiteInfo = document.createElement("div");
-            let aSiteInfo = document.createElement("a");
+            const divSiteInfo = document.createElement("div");
+            const aSiteInfo = document.createElement("a");
             this.#overlay = document.createElement("hr");
             
             this.#menu.id = "menu";
             menuSocials.id = "menuSocials";
             
-            aSocialBtn[0].href = data.socials.youtube;
-            aSocialBtn[1].href = data.socials.twitter;
-            aSocialBtn[2].href = data.socials.instagram;
+            aSocialBtn[0].href = data.socials.links.youtube;
+            aSocialBtn[1].href = data.socials.links.twitter;
+            aSocialBtn[2].href = data.socials.links.instagram;
             
             for (let i = 0; i < aSocialBtn.length; i++)
             {
@@ -544,7 +580,7 @@ class Menu
             for (let i = 0; i < imgSocialBtn.length; i++)
             {
                 imgSocialBtn[i].classList.add("unselectable");
-                imgSocialBtn[i].src = data.sprites.socials;
+                imgSocialBtn[i].src = data.socials.imgCached;
                 
                 aSocialBtn[i].appendChild(imgSocialBtn[i]);
                 menuSocials.appendChild(aSocialBtn[i]);
@@ -564,7 +600,7 @@ class Menu
             
             for (let i = 0; i < this.#listIndex; i++)
             {
-                if (this.#dropdowns.length == 0) this.#dropdowns[0] = new this.#managed(i);
+                if (this.#dropdowns.length === 0) this.#dropdowns[0] = new this.#managed(i);
                 else this.#dropdowns.push(new this.#managed(i));
             }
             
@@ -577,17 +613,20 @@ class Menu
             
             data.html.main.style.transition = "max-width 0.5s, transform 0.5s";
             
-            setTimeout(() => {
-                this.#btnMenuImg.style.transition = "initial";
-                this.#menu.style.transition = "initial";
-                this.#overlay.style.transition = "initial";
-                
-                data.html.main.style.transition = "initial";
-                
-                this.#enabled = true;
-                this.#btnMenu.onclick = () => { this.Toggle(); };
-                this.#overlay.onclick = () => { this.Toggle(); };
-            }, 500 + data.performance);
+            await data.delay(500);
+            
+            this.#btnMenuImg.style.transition = "initial";
+            this.#menu.style.transition = "initial";
+            this.#overlay.style.transition = "initial";
+            
+            data.html.main.style.transition = "initial";
+            
+            this.#enabled = true;
+            
+            this.#toggling = false;
+            
+            this.#btnMenu.onclick = () => { this.Toggle(); };
+            this.#overlay.onclick = () => { this.Toggle(); };
             
             return;
         }
@@ -595,10 +634,7 @@ class Menu
         this.#btnMenuImg.style.transform = "none";
         this.#btnMenuImg.style.transition = "transform steps(8) 0.25s";
         
-        for (let i = 0; i < this.listCount; i++)
-        {
-            if (this.#dropdowns[i].isEnabled) this.#dropdowns[i].Toggle();
-        }
+        for (let i = 0; i < this.listCount; i++) if (this.#dropdowns[i].isEnabled) this.#dropdowns[i].Toggle();
         
         this.#menu.style.transform = "translateX(-100%)";
         this.#menu.style.transition = "transform 0.25s";
@@ -609,19 +645,20 @@ class Menu
         
         data.html.main.style.transition = "max-width 0.25s, transform 0.25s";
         
-        setTimeout(() => {
-            this.#btnMenuImg.style.transition = "none";
-            
-            this.#menu.remove();
-            this.#overlay.remove();
-            
-            data.html.body.setAttribute("data-scrollable", "true");
-            
-            data.html.main.style.transition = "initial";
-            
-            this.#enabled = false;
-            this.#btnMenu.onclick = () => { this.Toggle(); };
-        }, 250 + data.performance);
+        await data.delay(250);
+        
+        this.#btnMenuImg.style.transition = "none";
+        
+        this.#menu.remove();
+        this.#overlay.remove();
+        
+        data.html.body.setAttribute("data-scrollable", "true");
+        
+        data.html.main.style.transition = "initial";
+        
+        this.#enabled = false;
+        
+        this.#toggling = false;
     }
 }
 
@@ -637,41 +674,39 @@ class screenTrans
         return this.#clickedId;
     }
     
-    static Set ()
+    static async Set ()
     {
         this.#fadeEl = document.querySelector(".fadeObject");
         
         this.#fadeEl.style.opacity = "0.0";
         this.#fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
         
-        setTimeout(() => {
-            this.#fadeEl.style.pointerEvents = "none";
-            this.#fadeEl.style.transition = "initial";
-            
-            data.html.body.setAttribute("data-scrollable", "true");
-        }, (250 * this.fadeTime));
+        await data.delay(250 * this.fadeTime);
         
-        setInterval(() => { this.ScanAnchors(); }, 16.67);
+        this.#fadeEl.style.pointerEvents = "none";
+        this.#fadeEl.style.transition = "initial";
+        
+        data.html.body.setAttribute("data-scrollable", "true");
+        
+        Loop.append(() => { this.ScanAnchors(); });
     }
     
     static ScanAnchors ()
     {
-        let pageAnc = document.querySelectorAll("a:not([target='_blank'])");
+        const pageAnc = document.querySelectorAll("a:not([target='_blank'])");
         
         for (let iA = 0; iA < pageAnc.length; iA++)
         {
-            var valid = true;
+            let valid = true;
             
-            for (let iB = 0; iB < pageAnc[iA].href.length; iB++)
-            {
-                if (pageAnc[iA].href[iB] == "#") valid = false;
-            }
+            for (let iB = 0; iB < pageAnc[iA].href.length; iB++) if (pageAnc[iA].href[iB] === "#") valid = false;
             
             if (!valid) return;
             
-            pageAnc[iA].onclick = e => {
+            pageAnc[iA].onclick = async e => {
                 e.preventDefault();
-                let target = pageAnc[iA].href;
+                
+                const target = pageAnc[iA].href;
                 
                 data.html.body.setAttribute("data-scrollable", "false");
                 
@@ -679,9 +714,9 @@ class screenTrans
                 this.#fadeEl.style.opacity = "1.0";
                 this.#fadeEl.style.transition = `opacity ${0.25 * this.fadeTime}s`;
                 
-                setTimeout(() => {
-                    window.location.href = target;
-                }, 250 * this.fadeTime + data.performance);
+                await data.delay(250 * this.fadeTime);
+                
+                window.location.href = target;
             };
         }
     }
@@ -699,7 +734,7 @@ Data.once("OnDataLoad", () => {
 
 function ThrowError (errorCode)
 {
-    var errorText;
+    let errorText;
     
     switch (errorCode)
     {

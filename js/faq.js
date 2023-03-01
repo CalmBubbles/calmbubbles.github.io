@@ -1,5 +1,5 @@
 Data.once("WhileDataLoading", () => {
-    FAQ.();
+    FAQ.init();
 });
 
 
@@ -13,12 +13,12 @@ class FAQ
         return this.#loaded;
     }
     
-    static setFAQ ()
+    static Set ()
     {
         for (let i = 0; i < data.faq.length; i++)
         {
-            let question = document.createElement("h3");
-            let answer = document.createElement("div");
+            const question = document.createElement("strong");
+            const answer = document.createElement("div");
             
             question.classList.add("faq-question");
             question.append(data.faq[i].question);
@@ -32,14 +32,14 @@ class FAQ
         this.#loaded = true;
     }
     
-    static async Set ()
+    static async init ()
     {
         this.#mainContent = document.querySelector("#faq");
         
-        let faqResponse = await fetch("/data/faq.json");
+        const faqResponse = await fetch("/data/faq.json");
         
         data.faq = await faqResponse.json();
         
-        this.setFAQ();
+        this.Set();
     }
 }
