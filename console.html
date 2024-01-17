@@ -397,7 +397,7 @@ class Help
     {
         if (input.length === 0)
         {
-            Console.WriteLine("Gives info about certain commands.\n\nhelp {command}\n\n\tcommand - command that needs help.\n\n\nGlobal commands:\n\n\t?           vec2\n\tblink\n\tcoinflip\n\tclear\n\tconsole\n\teval\n\texit\n\thelp\n\tquad\n\trolldie\n");
+            Console.WriteLine("Gives info about certain commands.\n\nhelp {command}\n\n\tcommand - command that needs help.\n\n\nGlobal commands:\n\n\t?           vec2\n\tblink       ver\n\tcoinflip\n\tclear\n\tconsole\n\teval\n\texit\n\thelp\n\tquad\n\trolldie\n");
             
             return;
         }
@@ -407,6 +407,9 @@ class Help
             case "?":
             case "help":
                 Console.WriteLine("Gives info about certain commands.");
+                break;
+            case "ver":
+                Console.WriteLine("Shows the console version.")
                 break;
             case "clear":
                 Console.WriteLine("Clears the console.");
