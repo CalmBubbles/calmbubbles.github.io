@@ -94,26 +94,78 @@ body
         
         <script>
 
+// Version : 0.5a
+
+class CookieJar
+{
+    static GetCookie (name)
+    {
+        const cookies = document.cookie;
+        const cookieList = cookies.split("; ");
+        
+        for (let i = 0; i < cookieList.length; i++)
+        {
+            const cookie = cookieList[i];
+            const properties = cookie.split("=");
+            
+            if (properties[0] === name) return decodeURIComponent(properties[1]);
+        }
+        
+        return "";
+    }
+    
+    static SetCookie (name, value, path, expiration)
+    {
+        let expires = "";
+        
+        if (expiration != null) expires = `; expires=${expiration.toUTCString()}`;
+        
+        document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; path=${path ?? "/"}${expires}`;
+    }
+    
+    static RemoveCookie (name, path)
+    {
+        this.SetCookie(name, 0, path, new Date(0));
+    }
+}
+
+        </script>
+        <script>
+
 class Program
 {
-    static #colors = [
-        "black",
-        "blue",
-        "green",
-        "aqua",
-        "red",
-        "purple",
-        "yellow",
-        "white",
-        "gray",
-        "lightblue",
-        "lightgreen",
-        "#82fff3",
-        "#ff7f7f",
-        "#cbc3e3",
-        "#ffffe0",
-        "#fdfeff"
-    ];
+    static #ver = "2024.2a";
+    
+    static #root = null;
+    static #cookieExp = null;
+    
+    static #SetBg (id)
+    {
+        CookieJar.SetCookie("background", id, "/", this.#cookieExp);
+        
+        Console.globalBgColor = id;
+    }
+    
+    static #SetFg (id)
+    {
+        CookieJar.SetCookie("color", id, "/", this.#cookieExp);
+        
+        Console.globalFgColor = id;
+    }
+    
+    static #SetBlinkSmooth (state)
+    {
+        CookieJar.SetCookie("blinkSmooth", state, "/", this.#cookieExp);
+        
+        this.#root.style.setProperty("--blink-smooth", state);
+    }
+    
+    static #SetBlinkSpeed (time)
+    {
+        CookieJar.SetCookie("blinkSpeed", time, "/", this.#cookieExp);
+        
+        this.#root.style.setProperty("--blink-speed", `${time}s`);
+    }
     
     static #Con (input)
     {
@@ -142,11 +194,9 @@ class Program
                 Console.WriteLine(`${parseInt(performance.now())}ms`);
                 break;
             case "color":
-                const root = document.documentElement;
+                this.#SetBg(1 + parseInt(input[0][0], 16));
                 
-                root.style.setProperty("--background", this.#colors[parseInt(input[0][0], 16)]);
-                
-                if (input[0].length === 2) root.style.setProperty("--color", this.#colors[parseInt(input[0][1], 16)]);
+                if (input[0].length === 2) this.#SetFg(1 + parseInt(input[0][1], 16));
                 break;
             case "create":
                 window.open(window.location, null, "location = 0");
@@ -156,17 +206,15 @@ class Program
     
     static #Blink (input)
     {
-        const root = document.documentElement;
-        
         switch (input.shift())
         {
             case "smooth":
-                root.style.setProperty("--blink-smooth", input[0] === "true" ? "ease" : "steps(1)");
+                this.#SetBlinkSmooth(input[0] === "true" ? "ease" : "steps(1)");
                 
                 Console.WriteLine(`Cursor animation smooth settings changed to ${input[0]}.`);
                 break;
             case "speed":
-                root.style.setProperty("--blink-speed", `${input[0]}s`);
+                this.#SetBlinkSpeed(input[0]);
                 
                 Console.WriteLine(`Cursor blink speed changed to ${input[0]}s.`);
                 break;
@@ -236,7 +284,7 @@ class Program
         switch (input.shift())
         {
             case "ver":
-                Console.WriteLine("Calmsole [Version 2024.1a]");
+                Console.WriteLine(`Calmsole [Version ${this.#ver}]`);
                 break;
             case "clear":
                 Console.Clear();
@@ -246,7 +294,16 @@ class Program
                 window.close();
                 break;
             case "eval":
-                Console.WriteLine(eval(input.join(" ")));
+                try
+                {
+                    const func = new Function(input.join(" "));
+                    
+                    Console.WriteLine(func());
+                }
+                catch (event)
+                {
+                    Console.WriteError(event);
+                }
                 break;
             case "coinflip":
                 Console.Write("Flipping");
@@ -293,7 +350,18 @@ class Program
     
     static Main ()
     {
-        Console.WriteLine("Calmsole [Version 2024.1a]\n");
+        this.#root = document.documentElement;
+        
+		this.#cookieExp = new Date();
+        
+        this.#cookieExp.setFullYear(this.#cookieExp.getFullYear() + 420);
+        
+        this.#SetBg(parseInt(CookieJar.GetCookie("background")) || 1);
+        this.#SetFg(parseInt(CookieJar.GetCookie("color")) || 16);
+        this.#SetBlinkSmooth(CookieJar.GetCookie("blinkSmooth") || "steps(1)");
+        this.#SetBlinkSpeed(CookieJar.GetCookie("blinkSpeed") || "0.5");
+        
+        Console.WriteLine(`Calmsole [Version ${this.#ver}]\n`);
         
         this.#Redraw();
     }
@@ -397,7 +465,7 @@ class Help
     {
         if (input.length === 0)
         {
-            Console.WriteLine("Gives info about certain commands.\n\nhelp {command}\n\n\tcommand - command that needs help.\n\n\nGlobal commands:\n\n\t?           vec2\n\tblink       ver\n\tcoinflip\n\tclear\n\tconsole\n\teval\n\texit\n\thelp\n\tquad\n\trolldie\n");
+            Console.WriteLine("Gives info about certain commands.\n\n? {command}\nhelp {command}\n\n\tcommand - command that needs help.\n\n\nGlobal commands:\n\n\t?           vec2\n\tblink       ver\n\tcoinflip\n\tclear\n\tconsole\n\teval\n\texit\n\thelp\n\tquad\n\trolldie\n");
             
             return;
         }
@@ -444,19 +512,87 @@ class Help
         </script>
         <script>
 
+class ConsoleColor
+{
+    static get Inherit () { return 0; }
+    static get Black () { return 1; }
+    static get Blue () { return 2; }
+    static get Green () { return 3; }
+    static get Aqua () { return 4; }
+    static get Red () { return 5; }
+    static get Purple () { return 6; }
+    static get Yellow () { return 7; }
+    static get White () { return 8; }
+    static get Gray () { return 9; }
+    static get LightBlue () { return 10; }
+    static get LightGreen () { return 11; }
+    static get LightAqua () { return 12; }
+    static get LightRed () { return 13; }
+    static get LightPurple () { return 14; }
+    static get LightYellow () { return 15; }
+    static get BrightWhite () { return 16; }
+}
+
 class Console
 {
-    static #con = null;
-    static #cout = null;
-    static #cin = null;
-    static #cinCursor = null;
-    static #cinInput = null;
     static #canType = false;
-    static #cinCharCount = 0;
-    static #cinText = "";
-    static #cinFinishCall = () => { };
-    static #callQueue = [];
     static #callQueueActive = false;
+    static #cinCharCount = 0;
+    static #globalBg = 1;
+    static #globalFg = 16;
+    static #cinText = "";
+    static #callQueue = [];
+    static #colors = [
+        "black",
+        "#000080",
+        "#008000",
+        "#008080",
+        "#800000",
+        "#800080",
+        "#808000",
+        "#c0c0c0",
+        "#808080",
+        "#0000ff",
+        "#00ff00",
+        "#00ffff",
+        "#ff0000",
+        "#ff00ff",
+        "#ffff00",
+        "white"
+    ];
+    static #cinFinishCall = () => { };
+    
+    static #root = null;
+    static #cursor = null;
+    static #input = null;
+    
+    static get globalBgColor ()
+    {
+        return this.#globalBg;
+    }
+    
+    static set globalBgColor (value)
+    {
+        if (value === 0) return;
+        
+        this.#globalBg = value;
+        
+        this.#root.style.setProperty("--background", this.#colors[value - 1]);
+    }
+    
+    static get globalFgColor ()
+    {
+        return this.#globalFg;
+    }
+    
+    static set globalFgColor (value)
+    {
+        if (value === 0) return;
+        
+        this.#globalFg = value;
+        
+        this.#root.style.setProperty("--color", this.#colors[value - 1]);
+    }
     
     static #CursorElement ()
     {
@@ -486,7 +622,7 @@ class Console
     {
         if (!this.#canType) return;
         
-        this.#cinInput.focus();
+        this.#input.focus();
     }
     
     static #SetCin (state)
@@ -495,18 +631,18 @@ class Console
         
         if (state)
         {
-            this.#cinCursor = this.#CursorElement();
-            this.#cinInput = this.#InputElement();
+            this.#cursor = this.#CursorElement();
+            this.#input = this.#InputElement();
             
-            this.#cin.append(this.#cinCursor, this.#cinInput);
+            cin.append(this.#cursor, this.#input);
         }
         else
         {
-            this.#cinCursor.remove();
-            this.#cinInput.remove();
+            this.#cursor.remove();
+            this.#input.remove();
         }
         
-        this.#cin.style.display = state ? "inline" : "none";
+        cin.style.display = state ? "inline" : "none";
         
         this.#canType = state;
     }
@@ -527,7 +663,7 @@ class Console
             
             if (text[i] !== "\n") newChar.append(text[i] === "\t" ? "    " : text[i]);
             
-            this.#cout.append(newChar);
+            cout.append(newChar);
         }
     }
     
@@ -535,7 +671,7 @@ class Console
     {
         const height = window.innerHeight - 20;
         
-        this.#con.style.height = `${height - 13 + (height % 13)}px`;
+        con.style.height = `${height - 13 + (height % 13)}px`;
     }
     
     static async #CallQueueIterate ()
@@ -555,9 +691,7 @@ class Console
     
     static Init ()
     {
-        this.#con = document.querySelector("#con");
-        this.#cout = this.#con.querySelector("#cout");
-        this.#cin = this.#con.querySelector("#cin");
+        this.#root = document.documentElement;
         
         document.addEventListener("keydown", event => {
             if (!this.#canType) return;
@@ -567,7 +701,7 @@ class Console
                 case "Backspace":
                     if (this.#cinCharCount > 0)
                     {
-                        const lastChar = this.#cin.querySelector(`#cin_char_${this.#cinCharCount - 1}`);
+                        const lastChar = cin.querySelector(`#cin_char_${this.#cinCharCount - 1}`);
                         
                         lastChar.remove();
                         
@@ -577,11 +711,11 @@ class Console
                 case "Enter":
                     this.#SetCin(false);
                     
-                    this.#cinText = this.#cin.textContent;
+                    this.#cinText = cin.textContent;
                     
                     this.#SendCout(`${this.#cinText}\n`);
                     
-                    while (this.#cin.firstChild) this.#cin.removeChild(this.#cin.firstChild);
+                    while (cin.firstChild) cin.removeChild(cin.firstChild);
                     
                     this.#cinCharCount = 0;
                     
@@ -594,9 +728,9 @@ class Console
         document.addEventListener("keyup", event => {
             if (!this.#canType) return;
             
-            const charContent = this.#cinInput.value;
+            const charContent = this.#input.value;
             
-            this.#cinInput.value = "";
+            this.#input.value = "";
             
             event.preventDefault();
             
@@ -607,12 +741,13 @@ class Console
                 
                 newChar.append(charContent[i]);
                 
-                this.#cin.insertBefore(newChar, this.#cinCursor);
+                cin.insertBefore(newChar, this.#cursor);
                 
                 this.#cinCharCount++;
             }
 		});
         
+        window.onerror = event => this.WriteError(event.stack ?? event);
         window.onresize = () => this.#RecalcHeight();
         window.onclick = () => this.#FocusCin();
         
@@ -635,12 +770,23 @@ class Console
         this.Write(`${text}\n`);
     }
     
+    static WriteError (text)
+    {
+        this.#SetCin(false);
+        
+        while (cin.firstChild) cin.removeChild(cin.firstChild);
+        
+        this.#cinCharCount = 0;
+        
+        this.#SendCout(`${text}\n\n`);
+    }
+    
     static Clear ()
     {
         this.#CallQueueAppend(() => {
             this.#SetCin(false);
             
-            while (this.#cout.firstChild) this.#cout.removeChild(this.#cout.firstChild);
+            while (cout.firstChild) cout.removeChild(cout.firstChild);
         });
     }
     
@@ -672,7 +818,7 @@ class Console
     }
 }
 
-window.onload = () => { Console.Init(); };
+window.onload = () => Console.Init();
 
         </script>
     </body>
