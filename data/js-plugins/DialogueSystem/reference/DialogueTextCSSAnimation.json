@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Scripting Reference",
+        "content": "../DialogueSystem"
+    },
+    {
+        "name": "DialogueTextCSSAnimation",
+        "content": "DialogueTextCSSAnimation"
+    },
+    {
+        "name": "Inherited Properties",
+        "content": [
+            {
+                "name": "name",
+                "link": "NamedItem/name"
+            },
+            {
+                "name": "loop",
+                "link": "DialogueTextAnimation/loop"
+            },
+            {
+                "name": "wait",
+                "link": "DialogueTextAnimation/wait"
+            },
+            {
+                "name": "duration",
+                "link": "DialogueTextAnimation/duration"
+            },
+            {
+                "name": "hasEnded",
+                "link": "DialogueTextAnimation/hasEnded"
+            },
+            {
+                "name": "name",
+                "link": "DialogueTextAnimation/name"
+            },
+            {
+                "name": "index",
+                "link": "DialogueTextAnimation/index1"
+            },
+            {
+                "name": "time",
+                "link": "DialogueTextAnimation/time"
+            },
+            {
+                "name": "loopCount",
+                "link": "DialogueTextAnimation/loopCount"
+            },
+            {
+                "name": "dialogueChar",
+                "link": "DialogueTextAnimation/dialogueChar"
+            }
+        ]
+    },
+    {
+        "name": "Inherited Methods",
+        "dir": "DialogueTextAnimation/",
+        "content": [
+            "Animate",
+            "OnSet",
+            "Update",
+            "OnEnd"
+        ]
+    }
+]

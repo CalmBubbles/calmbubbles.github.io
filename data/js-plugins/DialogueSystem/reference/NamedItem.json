@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Scripting Reference",
+        "content": "../"
+    },
+    {
+        "name": "NamedItem",
+        "content": "../NamedItem"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "name"
+        ]
+    }
+]

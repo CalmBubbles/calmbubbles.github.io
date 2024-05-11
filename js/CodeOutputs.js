@@ -1,24 +1,34 @@
-Data.once("OnDataLoad", () => {
+/**
+ * Max width : full
+ * Min width : 220px
+ */
+
+
+Data.Once("OnDataLoad", () => {
     CodeOutputs.Set();
 });
 
 
 class CodeOutputs
 {
-    static #frames = null;
     static #outputs = [];
     
-    static #managed = class
+    static #frames = null;
+    
+    static #Managed = class
     {
-        #codeOutput = null
-        #codeFrame = null;
+        #loadedOnce = false;
         #currentScale = 1;
         
-        constructor (id, source, refreshable, width, height, scale)
+        #codeOutput = null
+        #codeFrame = null;
+        
+        constructor (id, source, refreshable, width, height, relHeight, scale)
         {
             this.src = source;
             this.width = width;
             this.height = height;
+            this.relHeight = relHeight;
             this.initialScale = scale ?? 1;
             
             this.#codeOutput = document.querySelector(`#codeOutput_${id}`);
@@ -31,21 +41,22 @@ class CodeOutputs
                 refreshElement.textContent = "Run";
                 
                 refreshElement.onclick = () => {
-                    this.runOutput();
+                    this.RunOutput();
                     
                     refreshElement.onclick = () => { this.#codeFrame.contentWindow.location.href = this.src; };
                     
                     refreshElement.textContent = "Reset";
                 };
                 
-                this.#codeOutput.appendChild(refreshElement);
+                this.#codeOutput.append(refreshElement);
             }
-            
-            this.runOutput();
+            else this.RunOutput();
         }
         
-        runOutput ()
+        RunOutput ()
         {
+            if (this.#loadedOnce) return;
+            
             let sizeElement = [
                 document.createElement("div"),
                 document.createElement("div")
@@ -57,32 +68,49 @@ class CodeOutputs
             sizeElement[0].append("Size -");
             sizeElement[1].append("Size +");
             
-            sizeElement[0].onclick = () => { this.sizeDown(); };
-            sizeElement[1].onclick = () => { this.sizeUp(); };
+            sizeElement[0].onclick = () => this.SizeDown();
+            sizeElement[1].onclick = () => this.SizeUp();
             
-            this.#codeOutput.append(sizeElement[0], sizeElement[1]);
-            
-            let frameElement = document.createElement("div");
+            const frameElement = document.createElement("div");
             this.#codeFrame = document.createElement("iframe");
             
             frameElement.classList.add("codeframe");
+            
             this.#codeFrame.src = this.src;
             
-            if (this.width != null) this.#codeFrame.style.width = this.width;
-            if (this.height != null) this.#codeFrame.style.height = this.height;
+            if (this.width != null)
+            {
+                if (this.width === "full") this.#codeOutput.style.width = "85%";
+
+                this.#codeFrame.style.width = this.width === "full" ? "100%" : this.width;
+            }
+
+            if (this.relHeight != null) Loop.Append(() => this.#codeFrame.style.height = `${this.#codeFrame.clientWidth * this.relHeight * 0.01}px`);
+            else if (this.height != null) this.#codeFrame.style.height = this.height;
             
-            frameElement.appendChild(this.#codeFrame);
-            this.#codeOutput.appendChild(frameElement);
+            frameElement.append(this.#codeFrame);
             
-            this.resizeTo(this.initialScale);
+            const srcLink = document.createElement("a");
+            
+            srcLink.href = this.src;
+            
+            srcLink.append("Source↗");
+            
+            this.#codeOutput.append(sizeElement[0], sizeElement[1], frameElement, srcLink);
+            
+            this.RescaleTo(this.initialScale);
+            
+            this.#loadedOnce = true;
         }
         
-        resizeTo (value)
+        RescaleTo (value)
         {
             this.#currentScale = value;
             
+            if (value < 1) this.#codeFrame.style.transformOrigin = "center";
+            else if (value > 1) this.#codeFrame.style.transformOrigin = "0 0";
+            
             this.#codeFrame.style.transform = `scale(${value}, ${value})`;
-            this.#codeFrame.style.transition = "transform 0.125s";
             
             switch (this.#currentScale)
             {
@@ -100,8 +128,8 @@ class CodeOutputs
                     return;
             }
             
-            this.#codeOutput.querySelector(".codedec").onclick = () => { this.sizeDown(); };
-            this.#codeOutput.querySelector(".codeinc").onclick = () => { this.sizeUp(); };
+            this.#codeOutput.querySelector(".codedec").onclick = () => this.SizeDown();
+            this.#codeOutput.querySelector(".codeinc").onclick = () => this.SizeUp();
             
             this.#codeOutput.querySelector(".codedec").style.cursor = "pointer";
             this.#codeOutput.querySelector(".codeinc").style.cursor = "pointer";
@@ -110,14 +138,14 @@ class CodeOutputs
             this.#codeOutput.querySelector(".codeinc").style.background = "black";
         }
         
-        sizeDown ()
+        SizeDown ()
         {
-            this.resizeTo(this.#currentScale - 0.125);
+            this.RescaleTo(this.#currentScale - 0.125);
         }
         
-        sizeUp ()
+        SizeUp ()
         {
-            this.resizeTo(this.#currentScale + 0.125);
+            this.RescaleTo(this.#currentScale + 0.125);
         }
     }
     
@@ -127,16 +155,18 @@ class CodeOutputs
         
         for (let i = 0; i < this.#frames.length; i++)
         {
+            while (this.#frames[i].firstChild != null) this.#frames[i].firstChild.remove();
+            
             this.#frames[i].id = `codeOutput_${i}`;
             
             const source = this.#frames[i].getAttribute("data-src");
             const refreshable = this.#frames[i].getAttribute("data-refreshable") ?? false;
             const width = this.#frames[i].getAttribute("data-width");
             const height = this.#frames[i].getAttribute("data-height");
+            const relHeight = this.#frames[i].getAttribute("data-relHeight");
             const scale = this.#frames[i].getAttribute("data-scale");
             
-            if (this.#outputs.length === 0) this.#outputs[0] = new this.#managed(i, source, refreshable, width, height, scale);
-            else this.#outputs.push(new this.#managed(i, source, refreshable, width, height, scale));
+            this.#outputs.push(new this.#Managed(i, source, refreshable, width, height, relHeight, scale));
         }
     }
 }

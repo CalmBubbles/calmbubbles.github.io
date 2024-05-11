@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Scripting Reference",
+        "content": "../"
+    },
+    {
+        "name": "DialogueDirectory",
+        "content": "../DialogueDirectory"
+    },
+    {
+        "name": "Static Methods",
+        "content": [
+            "GetCurrentPath"
+        ]
+    }
+]

@@ -1,0 +1,55 @@
+[
+    {
+        "name": "Scripting Reference",
+        "content": "../"
+    },
+    {
+        "name": "DialogueManager",
+        "content": "../DialogueManager"
+    },
+    {
+        "name": "Constructor",
+        "content": "ctor"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "waitDisableClear",
+            "portraitPosition",
+            "characters",
+            "config",
+            "style",
+            "audioSource",
+            "animation",
+            "isLoaded",
+            "isActive",
+            "isInUse",
+            "portraitEnabled",
+            "currentEvent",
+            "charCount",
+            "wordCount",
+            "dialogueBox",
+            "dialoguePortrait",
+            "dialogueLine"
+        ]
+    },
+    {
+        "name": "Methods",
+        "content": [
+            "Finish",
+            "BreakLine",
+            "On",
+            "Once",
+            "UpdateSpaces"
+        ]
+    },
+    {
+        "name": "Asynchronous Methods",
+        "content": [
+            "SetActive",
+            "Type",
+            "ClearText",
+            "Clear"
+        ]
+    }
+]

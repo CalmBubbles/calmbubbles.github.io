@@ -1,0 +1,20 @@
+{
+    "menuList" : [
+        {
+            "name" : "js-plugins",
+            "content" : "/works/js-plugins"
+        },
+        {
+            "name" : "DialogueSystem.js",
+            "content" : "/works/js-plugins/DialogueSystem"
+        },
+        {
+            "name" : "Manual",
+            "content" : "/docs/js-plugins/manual/DialogueSystem"
+        },
+        {
+            "name" : "Reference",
+            "content" : "/docs/js-plugins/reference/DialogueSystem"
+        }
+    ]
+}

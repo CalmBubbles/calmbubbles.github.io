@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Scripting Reference",
+        "content": "../"
+    },
+    {
+        "name" : "DialogueAudioArray",
+        "content" : "../DialogueAudioArray"
+    },
+    {
+        "name" : "Constructor",
+        "content" : "ctor"
+    },
+    {
+        "name" : "Inherited Properties",
+        "content" : [
+            {
+                "name" : "items",
+                "link" : "../NamedArray/items"
+            }
+        ]
+    },
+    {
+        "name" : "Inherited Methods",
+        "content" : [
+            {
+                "name" : "Find",
+                "link" : "../NamedArray/Find"
+            }
+        ]
+    }
+]

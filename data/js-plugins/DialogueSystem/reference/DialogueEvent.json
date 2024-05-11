@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Scripting Reference",
+        "content": "../"
+    },
+    {
+        "name": "DialogueEvent",
+        "content": "../DialogueEvent"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "None",
+            "Load",
+            "Enable",
+            "Disable",
+            "TypingEnter",
+            "TypingExit",
+            "PortraitEnable",
+            "ClearText",
+            "Clear"
+        ]
+    }
+]

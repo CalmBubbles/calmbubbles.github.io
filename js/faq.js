@@ -1,45 +1,35 @@
-Data.once("WhileDataLoading", () => {
-    FAQ.init();
+Data.Once("WhileDataLoading", async () => {
+    await FAQ.Init();
 });
 
 
 class FAQ
 {
-    static #mainContent = null;
     static #loaded = false;
     
-    static get isLoaded ()
+    static async Init ()
     {
-        return this.#loaded;
-    }
-    
-    static Set ()
-    {
-        for (let i = 0; i < data.faq.length; i++)
+        if (this.#loaded) return;
+        
+        const content = document.querySelector("#faq");
+        
+        const response = await fetch("/data/faq.json");
+        const data = await response.json();
+        
+        for (let i = 0; i < data.length; i++)
         {
             const question = document.createElement("strong");
-            const answer = document.createElement("div");
+            const answer = document.createElement("blockquote");
             
             question.classList.add("faq-question");
-            question.append(data.faq[i].question);
+            question.append(data[i].question);
             
-            answer.classList.add("faq-answer", "quote");
-            answer.append(data.faq[i].answer);
+            answer.classList.add("faq-answer");
+            answer.append(data[i].answer);
             
-            this.#mainContent.append(question, answer);
+            content.append(question, answer);
         }
         
         this.#loaded = true;
-    }
-    
-    static async init ()
-    {
-        this.#mainContent = document.querySelector("#faq");
-        
-        const faqResponse = await fetch("/data/faq.json");
-        
-        data.faq = await faqResponse.json();
-        
-        this.Set();
     }
 }

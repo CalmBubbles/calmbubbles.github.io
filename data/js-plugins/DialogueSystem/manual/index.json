@@ -1,0 +1,42 @@
+[
+    {
+        "name": "DialogueSystem.js",
+        "content": "/works/js-plugins/DialogueSystem"
+    },
+    {
+        "name": "Manual",
+        "content": "/docs/js-plugins/manual/DialogueSystem"
+    },
+    {
+        "name": "Getting Started",
+        "content": "/docs/js-plugins/manual/DialogueSystem/start"
+    },
+    {
+        "name": "Events",
+        "content": "/docs/js-plugins/manual/DialogueSystem/events"
+    },
+    {
+        "name": "Time and Update",
+        "content": "/docs/js-plugins/manual/DialogueSystem/time"
+    },
+    {
+        "name": "Text Styles",
+        "content": "/docs/js-plugins/manual/DialogueSystem/styles"
+    },
+    {
+        "name": "Resources",
+        "content": "/docs/js-plugins/manual/DialogueSystem/resources"
+    },
+    {
+        "name": "Sprites",
+        "content": "/docs/js-plugins/manual/DialogueSystem/sprites"
+    },
+    {
+        "name": "Audios",
+        "content": "/docs/js-plugins/manual/DialogueSystem/audios"
+    },
+    {
+        "name": "Animations",
+        "content": "/docs/js-plugins/manual/DialogueSystem/animations"
+    }
+]

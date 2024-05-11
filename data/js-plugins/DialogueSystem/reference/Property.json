@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Scripting Reference",
+        "content": "../"
+    },
+    {
+        "name": "Property",
+        "content": "../Property"
+    },
+    {
+        "name": "Constructor",
+        "content": "ctor"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "value"
+        ]
+    },
+    {
+        "name": "Inherited Properties",
+        "content": [
+            {
+                "name": "name",
+                "link": "../NamedItem/name"
+            }
+        ]
+    }
+]

@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Scripting Reference",
+        "content": "../"
+    },
+    {
+        "name": "DialogueAudioSource",
+        "content": "../DialogueAudioSource"
+    },
+    {
+        "name": "Static Properties",
+        "content": [
+            "global"
+        ]
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "volume",
+            "audioContext"
+        ]
+    },
+    {
+        "name": "Methods",
+        "content": [
+            "Play"
+        ]
+    }
+]

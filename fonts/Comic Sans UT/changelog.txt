@@ -1,0 +1,2 @@
+﻿2015-12-06: initial release
+2015-12-09: copied ' (U+0027) glyph to ‘ (U+2018) and ’ (U+2019); copied " (U+0022) glyph to “ (U+201C) and ” (U+201D)
