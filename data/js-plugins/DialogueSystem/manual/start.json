@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Manual Homepage",
+        "content": "../"
+    },
+    {
+        "name": "Getting Started",
+        "content": [
+            {
+                "name": "Setting up",
+                "link": "setting"
+            },
+            {
+                "name": "Enabling/disabling",
+                "link": "enabling"
+            },
+            {
+                "name": "The Type method",
+                "link": "typing"
+            },
+            {
+                "name": "Adding line breaks",
+                "link": "breaks"
+            },
+            {
+                "name": "Clearing text",
+                "link": "clear-text"
+            },
+            "DialogueData",
+            {
+                "name": "Adding delays",
+                "link": "delays"
+            },
+            {
+                "name": "Clearing everything",
+                "link": "clear-all"
+            },
+            {
+                "name": "Speeding up tasks",
+                "link": "finish"
+            }
+        ]
+    },
+    {
+        "name": "Events",
+        "content": "../events"
+    },
+    {
+        "name": "Time and Update",
+        "content": "../time"
+    },
+    {
+        "name": "Text Styles",
+        "content": "../styles"
+    },
+    {
+        "name": "Resources",
+        "content": "../resources"
+    },
+    {
+        "name": "Sprites",
+        "content": "../sprites"
+    },
+    {
+        "name": "Audios",
+        "content": "../audios"
+    },
+    {
+        "name": "Animations",
+        "content": "../animations"
+    }
+]

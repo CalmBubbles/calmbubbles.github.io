@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialoguePortraitPosition",
+        "content": "../DialoguePortraitPosition"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "Left",
+            "Right"
+        ]
+    }
+]

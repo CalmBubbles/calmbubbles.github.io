@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueData",
+        "content": "../DialogueData"
+    },
+    {
+        "name": "Constructor",
+        "content": "ctor"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "delayBefore",
+            "delayAfter",
+            "animationParams",
+            "animation",
+            "style",
+            "audio",
+            "portrait"
+        ]
+    }
+]

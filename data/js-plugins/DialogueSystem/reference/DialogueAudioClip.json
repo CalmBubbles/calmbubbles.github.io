@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueAudioClip",
+        "content": "../DialogueAudioClip"
+    },
+    {
+        "name": "Constructor",
+        "content": "ctor"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "isLoaded",
+            "audioBuffer"
+        ]
+    },
+    {
+        "name": "Inherited Properties",
+        "content": [
+            {
+                "name": "name",
+                "link": "../NamedItem/name"
+            },
+            {
+                "name": "src",
+                "link": "../DialogueResource/src"
+            }
+        ]
+    }
+]

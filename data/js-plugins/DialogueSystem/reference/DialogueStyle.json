@@ -1,0 +1,131 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueStyle",
+        "content": "../DialogueStyle"
+    },
+    {
+        "name": "Constructor",
+        "content": "ctor"
+    },
+    {
+        "name": "Properties",
+        "dir": "https://developer.mozilla.org/docs/Web/CSS/",
+        "content": [
+            {
+                "name": "backdropFilter",
+                "link": "backdrop-filter"
+            },
+            "background",
+            "bottom",
+            "color",
+            {
+                "name": "fontFamily",
+                "link": "font-family"
+            },
+            {
+                "name": "fontFeatureSettings",
+                "link": "font-feature-settings"
+            },
+            {
+                "name": "fontKerning",
+                "link": "font-kerning"
+            },
+            {
+                "name": "fontSize",
+                "link": "font-size"
+            },
+            {
+                "name": "fontSizeAdjust",
+                "link": "font-size-adjust"
+            },
+            {
+                "name": "fontStretch",
+                "link": "font-stretch"
+            },
+            {
+                "name": "fontStyle",
+                "link": "font-style"
+            },
+            {
+                "name": "fontVariant",
+                "link": "font-variant"
+            },
+            {
+                "name": "fontVariantCaps",
+                "link": "font-variant-caps"
+            },
+            {
+                "name": "fontWeight",
+                "link": "font-weight"
+            },
+            "left",
+            {
+                "name": "letterSpacing",
+                "link": "letter-spacing"
+            },
+            "right",
+            {
+                "name": "textDecoration",
+                "link": "text-decoration"
+            },
+            {
+                "name": "textDecorationColor",
+                "link": "text-decoration-color"
+            },
+            {
+                "name": "textDecorationLine",
+                "link": "text-decoration-line"
+            },
+            {
+                "name": "textDecorationStyle",
+                "link": "text-decoration-style"
+            },
+            {
+                "name": "textDecorationThickness",
+                "link": "text-decoration-thickness"
+            },
+            {
+                "name": "textEmphasis",
+                "link": "text-emphasis"
+            },
+            {
+                "name": "textShadow",
+                "link": "text-shadow"
+            },
+            {
+                "name": "textTransform",
+                "link": "text-transform"
+            },
+            "transform",
+            "transition",
+            "top",
+            {
+                "name": "verticalAlign",
+                "link": "vertical-align"
+            },
+            {
+                "name": "writingMode",
+                "link": "writing-mode"
+            },
+            {
+                "name": "wordSpacing",
+                "link": "word-spacing"
+            },
+            {
+                "name": "zIndex",
+                "link": "z-index"
+            }
+        ]
+    },
+    {
+        "name": "Methods",
+        "content": [
+            "Set",
+            "Create"
+        ]
+    }
+]

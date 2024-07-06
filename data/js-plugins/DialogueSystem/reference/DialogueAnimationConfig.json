@@ -1,0 +1,19 @@
+[
+    {
+        "name" : "Scripting Reference Homepage",
+        "content" : "../"
+    },
+    {
+        "name" : "DialogueAnimationConfig",
+        "content" : "../DialogueAnimationConfig"
+    },
+    {
+        "name" : "Properties",
+        "content" : [
+            "box",
+            "portrait",
+            "lineClear",
+            "text"
+        ]
+    }
+]

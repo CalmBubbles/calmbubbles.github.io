@@ -1,0 +1,19 @@
+{
+    "menuList" : [
+        {
+            "name" : "Coming Soon"
+        }
+    ],
+    "socials" : {
+        "youtube" : "https://www.youtube.com/@CalmBubbles",
+        "twitter" : "https://twitter.com/MarcPhilip8",
+        "instagram" : "https://instagram.com/marcphiliplan"
+    },
+    "menus" : [
+        "js-plugins/DialogueSystem/reference",
+        "js-plugins/DialogueSystem/manual",
+        "docs.json",
+        "js-plugins/DialogueSystem/data.json"
+    ],
+    "k" : "subskijcvud x gudbjyef judo know "
+}

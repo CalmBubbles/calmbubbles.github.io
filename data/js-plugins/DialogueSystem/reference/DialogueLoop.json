@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueLoop",
+        "content": "../DialogueLoop"
+    },
+    {
+        "name": "Static Properties",
+        "content": [
+            "targetFrameRate",
+            "timeScale",
+            "maximumDeltaTime",
+            "frameCount",
+            "unscaledTime",
+            "unscaledDeltaTime",
+            "time",
+            "deltaTime"
+        ]
+    },
+    {
+        "name": "Static Methods",
+        "content": [
+            "Append"
+        ]
+    },
+    {
+        "name": "Static Asynchronous Methods",
+        "content": [
+            "Delay"
+        ]
+    }
+]

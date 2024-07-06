@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueChar",
+        "content": "../DialogueChar"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "animations",
+            "audio",
+            "isEnabled",
+            "delay",
+            "target",
+            "style"
+        ]
+    }
+]

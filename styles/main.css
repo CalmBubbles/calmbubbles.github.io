@@ -1,0 +1,634 @@
+/*----------Variables*/
+:root
+{
+    --pixel-unit : 0.75px;
+}
+
+
+/*----------Elements*/
+html, body
+{
+    padding : 0;
+    margin : 0;
+    font-family : "Roboto", sans-serif;
+    scroll-behavior : smooth;
+    scrollbar-color : white black;
+    background : black;
+}
+
+body
+{
+    overflow : hidden;
+    text-size-adjust : none;
+}
+
+body[data-scrollable="true"],
+body[data-scrollable="menu"]
+{
+    overflow-y : visible;
+}
+
+:not(.selectable)
+{
+    user-select : none;
+}
+
+/*-----Sections*/
+header
+{
+    position : fixed;
+    display : flex;
+    width : 100%;
+    padding: 10px 0;
+    border-bottom : 1px solid white;
+    z-index : 10;
+    background : black;
+}
+
+main
+{
+    position : relative;
+    overflow-wrap : break-word;
+    max-width : 100%;
+    top : 65px;
+    padding : 14px;
+    background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61), rgba(3, 0, 31));
+    background-size : 100% 200%;
+    color : white;
+}
+
+body[data-scrollable="menu"] > main
+{
+    max-width : calc(100% - 329px);
+    transform : translateX(301px);
+}
+
+body[data-scrollable="menu"] #menuSection
+{
+    pointer-events : initial !important;
+}
+
+#menu
+{
+    position : fixed;
+    width : 300px;
+    height : 100%;
+    top : 0;
+    left : 0;
+    padding : calc(120 * var(--pixel-unit)) 0 14px 0;
+    border-right : 1px solid white;
+    transform : translateX(-100%);
+    scroll-behavior : smooth;
+    z-index : 9;
+    background : black;
+    color : white;
+}
+
+body[data-scrollable="menu"] #menu
+{
+    transform : none;
+}
+
+#menuNav
+{
+    overflow-y : scroll;
+    height : 67%;
+}
+
+/*-----Components*/
+h3, h4
+{
+    margin : 16px auto 8px;
+}
+
+p, ul, blockquote
+{
+    margin : 0 0 24px;
+    line-height : 22px;
+}
+
+img:not(.anti-aliased)
+{
+    image-rendering : pixelated;
+}
+
+iframe
+{
+    display : block;
+    min-width : 208px;
+    border : none;
+    background : white;
+}
+
+blockquote
+{
+    width : 87%;
+    margin : 16px 0 16px 8px;
+    border-left : 3px solid rgba(255, 255, 255, 0.75);
+    padding-left : 12px;
+    line-height : 22px;
+}
+
+h1, h2, h3
+{
+    margin : 10px auto;
+}
+
+/*Anchors*/
+a
+{
+    text-decoration : none;
+    color : orange;
+}
+
+a:hover
+{
+    text-decoration : underline;
+}
+
+#menu a
+{
+    text-decoration : none;
+    color : inherit;
+}
+
+/*Tables*/
+table
+{
+   display : inline-block;
+   margin : 12px 0 10px;
+   max-width : 100%;
+   border : 1px solid white;
+   border-collapse : collapse;
+   overflow : auto;
+}
+
+tr, td
+{
+    padding : 10px;
+    border : 1px solid white;
+}
+
+tr
+{
+    background : rgba(255, 255, 255, 0.4);
+}
+
+tr:nth-child(even)
+{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+tr:nth-child(odd) a
+{
+    color : gold;
+}
+
+td:nth-child(2)
+{
+    vertical-align : top;
+}
+
+/*Code*/
+code
+{
+    padding : 3px 5px;
+    border-radius : 8px;
+    color : white;
+    background : rgba(255, 255, 255, 0.3);
+    font-size : 13px;
+    font-weight : bold;
+    user-select : text !important;
+}
+
+code:not(pre code)
+{
+    position: relative;
+    bottom: 1px;
+}
+
+pre code
+{
+    display : block;
+    overflow : auto;
+    max-width : 84vw;
+    padding : 24px 12px !important;
+    border-radius : 10px;
+    color : #c9d1d9;
+    background : #0d1117;
+    font-size : 12px;
+    font-weight : normal;
+}
+
+pre code *
+{
+    user-select : auto !important;
+}
+
+/*No Script*/
+noscript
+{
+    position : fixed;
+    top : 0;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    z-index : 690;
+    display : flex;
+    flex-direction : column;
+    background : rgba(13, 5, 61);
+    color : white;
+}
+
+noscript div
+{
+    position : relative;
+    text-align : center;
+    margin : auto;
+    animation : linear fadeIO 1s infinite;
+}
+
+
+/*----------Instances*/
+/*-----Header and Menu*/
+#icon
+{
+    position : relative;
+    display : none;
+    margin : auto;
+}
+
+#icon_freeaspect
+{
+    position : relative;
+    display : inline-block;
+    margin : auto auto auto calc(90 * var(--pixel-unit));
+}
+
+#sideicon
+{
+    position : absolute;
+    display : inline-block;
+    right : 10px;
+    margin : auto;
+}
+
+#btnMenu
+{
+    position : absolute;
+    overflow : clip;
+    width : calc(56.4705882353 * var(--pixel-unit));
+    left : 10px;
+    cursor : pointer;
+    background : white;
+}
+
+body[data-scrollable="menu"] #btnMenu img
+{
+    transform : translateX(calc(-338.823529412 * var(--pixel-unit)));
+}
+
+#menuOverlay
+{
+    display : none;
+}
+
+/*Socials*/
+#menuSocials
+{
+    position : absolute;
+    display : flex;
+    width : calc(225.882352941 * var(--pixel-unit));
+    padding : 12px;
+    bottom : 18%;
+}
+
+#menuSocials a
+{
+    display : block;
+    overflow : clip;
+    width : calc(56.4705882353 * var(--pixel-unit));
+    margin : auto;
+}
+
+#menuSocials img
+{
+    position : relative;
+}
+
+#menuBtnTwt
+{
+    left : calc(-56.4 * var(--pixel-unit));;
+}
+
+#menuBtnInsta
+{
+    left : calc(-112.941176471 * var(--pixel-unit));;
+}
+
+
+/*----------Classes*/
+/*-----Markdown*/
+.line
+{
+    margin : 0;
+    border : none;
+    width : 100%;
+    height : 2px;
+    background : rgba(255, 255, 255, 0.75);
+}
+
+.small-text
+{
+    font-size : 13px;
+}
+
+/*-----Menu*/
+.currentPage .menuList,
+.currentPage .menuSubList
+{
+    background : white;
+    color : black;
+}
+
+.menuList
+{
+    font-family : "small-spaces";
+    position : relative;
+    width : auto;
+    overflow-wrap : break-word;
+    padding : 15px;
+    font-size : 22px;
+    text-transform : uppercase;
+    cursor : pointer;
+}
+
+.menuList span
+{
+    display : block;
+    width : 80%;
+}
+
+.menuList div
+{
+    position : absolute;
+    display : inline-block;
+    overflow : clip;
+    bottom : 8px;
+    right : 12px;
+    width : calc(60 * var(--pixel-unit));
+}
+
+.menuDropdown
+{
+    max-height : 0;
+    overflow : clip;
+    overflow-wrap : break-word;
+}
+
+.menuSubList
+{
+    padding : 13px;
+    margin-left : 30px;
+    font-size : 20px;
+    background : rgba(255, 255, 255, 0.25);
+    font-weight : bold;
+}
+
+/*-----FAQ*/
+.faq-question
+{
+    margin : 0;
+}
+
+.faq-answer
+{
+    margin-top : 4px;
+}
+
+/*-----Docs Related*/
+.doc h1 a
+{
+    text-decoration : none;
+}
+
+.doc td:first-child
+{
+    font-weight : bold;
+}
+
+.doc td .tags
+{
+    background : #151515;
+    color : white;
+    padding : 5px 10px;
+    border-radius : 8px;
+    display : inline-block;
+    margin-bottom : 10px;
+    font-size : 12px;
+    text-decoration : none;
+    font-family : monospace;
+}
+
+.doc td .tags[href="/docs/tags#experimental"]
+{
+    color : #00e6c7;
+}
+
+.doc td .tags[href="/docs/tags#deprecated"]
+{
+    color : #e84d43;
+}
+
+.doc-embed
+{
+    overflow : auto;
+    margin : 12px auto;
+    padding : 12px;
+    border : 1px solid white;
+    border-radius : 4px;
+    background : rgba(255, 255, 255, 0.3);
+}
+
+.doc-embed a
+{
+    color : gold;
+}
+
+.doc-embed.link-list
+{
+    color : gold;
+}
+
+.doc-embed.link-list a
+{
+    display : block;
+    margin : 3px auto;
+}
+
+.doc-embed .doc-sublink-list a
+{
+    display : block;
+    margin : 3px auto 3px 24px;
+}
+
+.doc-info,
+.doc-info a
+{
+    margin : -10px 0 40px;
+    color : rgb(190, 190, 190);
+}
+
+.doc-info a
+{
+    text-decoration : underline;
+}
+
+.doc-declare
+{
+    margin : 20px 0 40px;
+}
+
+.doc-control
+{
+    display : flex;
+}
+
+.doc-control:first-child
+{
+    margin-bottom : 50px;
+}
+
+.doc-control:last-child
+{
+    margin-top : 50px;      
+}
+
+.doc-control div
+{
+    color : white;
+    font-size : 13px;
+    margin-bottom : 5px;
+}
+
+.doc-control a
+{
+    text-decoration : none;
+    padding : 10px;
+    border : 2px solid orange;
+    min-width : 100px;
+    max-width : 40%;
+    border-radius : 6px;
+    align-self: flex-start;
+}
+
+.doc-control a:hover
+{
+    background : orange;
+    color : white;
+}
+
+.doc-control:last-child a
+{
+    align-self: flex-end;
+}
+
+.doc-control .next
+{
+    text-align : right;
+    margin-left : auto;
+}
+
+/*-----Objects*/
+.unselectable,
+.currentPage,
+#menuSection
+{
+    pointer-events : none;
+}
+
+.icon img,
+.menuList div,
+.menuList div img,
+header,
+#btnMenu,
+#btnMenu img,
+#menuSocials,
+#menuSocials a,
+#menuSocials img
+{
+    height : calc(56.4705882353 * var(--pixel-unit));
+}
+
+.fadeObject
+{
+    background : black;
+    border : none;
+    position : fixed;
+    margin : 0;
+    padding : 0;
+    top : 0;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    z-index : 420;
+}
+
+/*Text Button*/
+.textbtn
+{
+    display : inline-block;
+    margin : auto 8px 8px auto;
+    padding : 10px;
+    border-radius : 4px;
+    cursor : pointer;
+    color : white;
+    background : black;
+    text-decoration: none !important;
+    transition: all 0.2s;
+}
+
+.textbtn[clicked="1"]
+{
+    background: #777777;
+    color: #cccccc;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/*Code Output Frame*/
+.codeoutputframe
+{
+    display : table;
+    min-width : 210px;
+    margin-bottom : 14px;
+    padding : 16px;
+    padding-bottom : 12px;
+    border-radius : 4px;
+    background : black;
+}
+
+.codeoutputframe .codeframe
+{
+    overflow : auto;
+    border : 1px solid white;
+    margin-bottom : 4px;
+    background : rgba(255, 255, 255, 0.5);
+}
+
+.codeoutputframe iframe
+{
+    background : none;
+    transition : transform 0.125s;
+}
+
+.codeoutputframe a
+{
+    color : rgba(255, 255, 255, 0.75);
+}
+
+.codeoutputframe .textbtn
+{
+    background: white;
+    color: black;
+}

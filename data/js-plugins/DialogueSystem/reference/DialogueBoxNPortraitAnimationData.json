@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueBoxNPortraitAnimationData",
+        "content": "../DialogueBoxNPortraitAnimationData"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "onEnable",
+            "onDisable"
+        ]
+    }
+]

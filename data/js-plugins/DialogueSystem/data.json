@@ -1,0 +1,26 @@
+[
+    {
+        "name" : "DialogueSystem.js",
+        "content" : "/works/js-plugins/DialogueSystem"
+    },
+    {
+        "name": "Documentation",
+        "content": [
+            {
+                "name": "Manual",
+                "link": "/docs/js-plugins/manual/DialogueSystem"
+            },
+            {
+                "name" : "Scripting Reference",
+                "link" : "/docs/js-plugins/reference/DialogueSystem"
+            }
+        ]
+    },
+    {
+        "name" : "Templates",
+        "content" : "/works/js-plugins/DialogueSystem/templates"
+    },
+    {
+        "name" : "More Coming Soon"
+    }
+]

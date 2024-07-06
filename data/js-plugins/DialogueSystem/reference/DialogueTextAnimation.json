@@ -1,0 +1,49 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueTextAnimation",
+        "content": "../DialogueTextAnimation"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "loop",
+            "wait",
+            "duration",
+            "hasEnded",
+            {
+                "name": "index",
+                "link": "index1"
+            },
+            "time",
+            "loopCount",
+            "dialogueChar"
+        ]
+    },
+    {
+        "name": "Methods",
+        "content": [
+            "Animate"
+        ]
+    },
+    {
+        "name": "Overridable Methods",
+        "content": [
+            "OnSet",
+            "Update",
+            "OnEnd"
+        ]
+    },
+    {
+        "name": "Inherited Properties",
+        "content": [
+            {
+                "name": "name",
+                "link": "../NamedItem/name"
+            }
+        ]
+    }
+]

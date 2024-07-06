@@ -1,0 +1,47 @@
+[
+    {
+        "name": "DialogueSystem.js",
+        "content": "/works/js-plugins/DialogueSystem"
+    },
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../DialogueSystem"
+    },
+    {
+        "name": "Enumerations",
+        "content": [
+            "DialoguePortraitPosition",
+            "DialogueDirectoryType",
+            "DialogueEvent"
+        ]
+    },
+    {
+        "name": "Classes",
+        "content": [
+            "DialogueSystem",
+            "NamedItem",
+            "NamedArray",
+            "Property",
+            "DialogueLoop",
+            "DialogueManager",
+            "DialogueManagerConfig",
+            "DialogueData",
+            "DialogueChar",
+            "DialogueStyle",
+            "DialogueTextAnimation",
+            "DialogueTextCSSAnimation",
+            "DialogueResource",
+            "DialogueDirectory",
+            "DialogueAudioClip",
+            "DialogueAudioSource",
+            "DialogueAudioArray",
+            "DialogueSprite",
+            "DialogueSpriteArray",
+            "DialogueAnimationPreset",
+            "DialogueAnimation",
+            "DialogueBoxNPortraitAnimationData",
+            "DialogueTextAnimationData",
+            "DialogueAnimationConfig"
+        ]
+    }
+]

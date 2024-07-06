@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueSystem",
+        "content": "../DialogueSystem"
+    },
+    {
+        "name": "Static Properties",
+        "content": [
+            "experimental"
+        ]
+    }
+]

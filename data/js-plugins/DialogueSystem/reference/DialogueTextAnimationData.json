@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueTextAnimationData",
+        "content": "../DialogueTextAnimationData"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "onAppend",
+            "onClear"
+        ]
+    }
+]

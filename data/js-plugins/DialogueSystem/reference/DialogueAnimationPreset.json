@@ -1,0 +1,24 @@
+[
+    {
+        "name" : "Scripting Reference Homepage",
+        "content" : "../"
+    },
+    {
+        "name" : "DialogueAnimationPreset",
+        "content" : "../DialogueAnimationPreset"
+    },
+    {
+        "name" : "Constructor",
+        "content" : "ctor"
+    },
+    {
+        "name" : "Properties",
+        "content" : [
+            "wait",
+            "duration",
+            "animationParams",
+            "callback",
+            "animation"
+        ]
+    }
+]

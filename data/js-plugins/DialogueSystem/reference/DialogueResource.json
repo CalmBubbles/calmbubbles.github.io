@@ -1,0 +1,25 @@
+[
+    {
+        "name": "Scripting Reference Homepage",
+        "content": "../"
+    },
+    {
+        "name": "DialogueResource",
+        "content": "../DialogueResource"
+    },
+    {
+        "name": "Properties",
+        "content": [
+            "src"
+        ]
+    },
+    {
+        "name": "Inherited Properties",
+        "content": [
+            {
+                "name": "name",
+                "link": "../NamedItem/name"
+            }
+        ]
+    }
+]

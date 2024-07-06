@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Manual Homepage",
+        "content": "../"
+    },
+    {
+        "name": "Getting Started",
+        "content": "../start"
+    },
+    {
+        "name": "Events",
+        "content": "../events"
+    },
+    {
+        "name": "Time and Update",
+        "content": "../time"
+    },
+    {
+        "name": "Text Styles",
+        "content": "../styles"
+    },
+    {
+        "name": "Resources",
+        "content": "../resources"
+    },
+    {
+        "name": "Sprites",
+        "content": "../sprites"
+    },
+    {
+        "name": "Audios",
+        "content": [
+            {
+                "name": "Using audios",
+                "link": "using"
+            },
+            {
+                "name": "Playing and audio sources",
+                "link": "playing"
+            }
+        ]
+    },
+    {
+        "name": "Animations",
+        "content": "../animations"
+    }
+]

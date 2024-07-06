@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Manual Homepage",
+        "content": "../"
+    },
+    {
+        "name": "Getting Started",
+        "content": "../start"
+    },
+    {
+        "name": "Events",
+        "content": "../events"
+    },
+    {
+        "name": "Time and Update",
+        "content": "../time"
+    },
+    {
+        "name": "Text Styles",
+        "content": [
+            {
+                "name": "Adding styles",
+                "link": "adding"
+            },
+            {
+                "name": "Style object",
+                "link": "object"
+            },
+            {
+                "name": "Making a mix",
+                "link": "mixing"
+            }
+        ]
+    },
+    {
+        "name": "Resources",
+        "content": "../resources"
+    },
+    {
+        "name": "Sprites",
+        "content": "../sprites"
+    },
+    {
+        "name": "Audios",
+        "content": "../audios"
+    },
+    {
+        "name": "Animations",
+        "content": "../animations"
+    }
+]
