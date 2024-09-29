@@ -43,7 +43,7 @@ class CodeOutputs
                 refreshElement.onclick = () => {
                     this.RunOutput();
                     
-                    refreshElement.onclick = () => { this.#codeFrame.contentWindow.location.href = this.src; };
+                    refreshElement.onclick = () => this.#codeFrame.contentWindow.location.reload();
                     
                     refreshElement.textContent = "Refresh";
                 };
