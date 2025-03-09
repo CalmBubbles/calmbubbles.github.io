@@ -2,8 +2,7 @@ window.onload = () => {
     Loop.Init();
     Data.Init();
 };
-
-document.addEventListener("pageshow", event => {
+window.addEventListener("pageshow", event => {
     if (event.persisted) window.location.reload();
 });
 
