@@ -3,6 +3,10 @@ window.onload = () => {
     Data.Init();
 };
 
+document.addEventListener("pageshow", event => {
+    if (event.persisted) window.location.reload();
+});
+
 
 class Data
 {
