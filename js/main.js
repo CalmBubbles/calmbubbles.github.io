@@ -344,7 +344,11 @@ class Header
         Data.html.main.style.minHeight = `${window.innerHeight - 93}px`;
         Data.html.main.style.height = Data.html.main.clientHeight - window.innerHeight < 0 ? `${window.innerHeight - 93}px` : "";
 
-        window.addEventListener("resize", () => {
+        window.addEventListener("resize", async () => {
+            Data.html.main.style.height = "";
+
+            await new Promise(resolve => requestAnimationFrame(resolve));
+
             Data.html.main.style.minHeight = `${window.innerHeight - 93}px`;
             Data.html.main.style.height = Data.html.main.clientHeight - window.innerHeight < 0 ? `${window.innerHeight - 93}px` : "";
         });
