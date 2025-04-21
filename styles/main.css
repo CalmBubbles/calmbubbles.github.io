@@ -8,6 +8,7 @@
 /*----------Elements*/
 html, body
 {
+    height: 100%;
     padding : 0;
     margin : 0;
     font-family : "Roboto", sans-serif;
@@ -28,9 +29,10 @@ body[data-scrollable="menu"]
     overflow-y : visible;
 }
 
-:not(.selectable)
+::selection
 {
-    user-select : none;
+    color: black;
+    background: white;
 }
 
 /*-----Sections*/
@@ -43,18 +45,19 @@ header
     border-bottom : 1px solid white;
     z-index : 10;
     background : black;
+    user-select : none;
 }
 
 main
 {
-    position : relative;
+    position: relative;
     overflow-wrap : break-word;
     max-width : 100%;
-    top : 65px;
-    padding : 14px;
-    background : linear-gradient(rgb(15, 60, 134), rgba(13, 5, 61), rgba(3, 0, 31));
-    background-size : 100% 200%;
+    padding : 0 14px;
+    padding-top: 75px;
+    background : rgb(20, 20, 20);
     color : white;
+    min-height: calc(100% - 75px);
 }
 
 body[data-scrollable="menu"] > main
@@ -76,12 +79,12 @@ body[data-scrollable="menu"] #menuSection
     top : 0;
     left : 0;
     padding : calc(120 * var(--pixel-unit)) 0 14px 0;
-    border-right : 1px solid white;
     transform : translateX(-100%);
     scroll-behavior : smooth;
     z-index : 9;
     background : black;
     color : white;
+    user-select : none;
 }
 
 body[data-scrollable="menu"] #menu
@@ -118,6 +121,7 @@ iframe
     min-width : 208px;
     border : none;
     background : white;
+    user-select: none;
 }
 
 blockquote
@@ -137,13 +141,25 @@ h1, h2, h3
 /*Anchors*/
 a
 {
-    text-decoration : none;
-    color : orange;
+    /* text-decoration : none; */
+    color : #a587ff;
 }
 
 a:hover
 {
-    text-decoration : underline;
+    text-decoration : none;
+    color: #004fff;
+}
+
+a::selection
+{
+    color: black;
+    background: #a587ff;
+}
+
+a:hover::selection
+{
+    background: #004fff;
 }
 
 #menu a
@@ -171,22 +187,17 @@ tr, td
 
 tr
 {
-    background : rgba(255, 255, 255, 0.4);
+    background : rgba(255, 255, 255, 0.2);
 }
 
 tr:nth-child(even)
 {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 tr:hover
 {
     background: black;
-}
-
-tr:nth-child(odd) a
-{
-    color : gold;
 }
 
 td:nth-child(2)
@@ -203,7 +214,6 @@ code
     background : rgba(255, 255, 255, 0.3);
     font-size : 13px;
     font-weight : bold;
-    user-select : text !important;
 }
 
 code:not(pre code)
@@ -225,9 +235,11 @@ pre code
     font-weight : normal;
 }
 
-pre code *
+code::selection,
+pre code::selection,
+pre code ::selection
 {
-    user-select : auto !important;
+    background: green;
 }
 
 /*No Script*/
@@ -400,26 +412,15 @@ body[data-scrollable="menu"] #btnMenu img
     font-weight : bold;
 }
 
-/*-----FAQ*/
-.faq-question
-{
-    margin : 0;
-}
-
-.faq-answer
-{
-    margin-top : 4px;
-}
-
 /*-----Docs Related*/
 .doc h1 a
 {
     text-decoration : none;
 }
 
-.doc td:first-child
+.doc h1 a:hover
 {
-    font-weight : bold;
+    text-decoration : underline;
 }
 
 .doc td .tags
@@ -482,11 +483,18 @@ body[data-scrollable="menu"] #btnMenu img
 {
     margin : -10px 0 40px;
     color : rgb(190, 190, 190);
+    user-select : none;
 }
 
 .doc-info a
 {
     text-decoration : underline;
+}
+
+.doc-info a:hover
+{
+    text-decoration: none;
+    color: #004fff;
 }
 
 .doc-declare
@@ -497,6 +505,7 @@ body[data-scrollable="menu"] #btnMenu img
 .doc-control
 {
     display : flex;
+    user-select: none;
 }
 
 .doc-control:first-child
@@ -520,7 +529,7 @@ body[data-scrollable="menu"] #btnMenu img
 {
     text-decoration : none;
     padding : 10px;
-    border : 2px solid orange;
+    border : 2px solid #a587ff;
     min-width : 100px;
     max-width : 40%;
     border-radius : 6px;
@@ -529,7 +538,8 @@ body[data-scrollable="menu"] #btnMenu img
 
 .doc-control a:hover
 {
-    background : orange;
+    background : #004fff;
+    border : 2px solid #004fff;
     color : white;
 }
 
@@ -591,6 +601,7 @@ header,
     background : black;
     text-decoration: none !important;
     transition: all 0.2s;
+    user-select : none;
 }
 
 .textbtn[clicked="1"]
@@ -613,7 +624,7 @@ header,
     background : black;
 }
 
-.codeoutputframe .codeframe
+.codeoutputframe > .codeframe
 {
     overflow : auto;
     border : 1px solid white;
@@ -621,18 +632,19 @@ header,
     background : rgba(255, 255, 255, 0.5);
 }
 
-.codeoutputframe iframe
+.codeframe > iframe
 {
     background : none;
     transition : transform 0.125s;
 }
 
-.codeoutputframe a
+.codeoutputframe > div a
 {
     color : rgba(255, 255, 255, 0.75);
+    user-select: none;
 }
 
-.codeoutputframe .textbtn
+.codeoutputframe > .textbtn
 {
     background: white;
     color: black;

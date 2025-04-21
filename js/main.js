@@ -290,100 +290,6 @@ class Loop
     }
 }
 
-class Background
-{
-    static #loaded = false;
-    
-    static Set ()
-    {
-        if (this.#loaded) return;
-        
-        this.#loaded = true;
-        
-        Loop.Append(() => this.Update());
-    }
-    
-    static Update ()
-    {
-        if (this.innerHeight === window.innerHeight && this.scrollHeight === Data.html.body.scrollHeight) return;
-        
-        this.innerHeight = window.innerHeight;
-        this.scrollHeight = Data.html.body.scrollHeight;
-        
-        const newTime = (60 - (1 - this.scrollHeight / this.innerHeight) * 60) / Loop.timeScale;
-        
-        Data.html.main.style.animation = `${newTime}s linear bg infinite`;
-        Data.html.body.style.animation = `${newTime}s linear body infinite`;
-    }
-}
-
-class Header
-{
-    static #loaded = false;
-    static #enabled = true;
-    static #scrollPos = 0;
-    static #mainTop = "";
-    
-    static #header = null;
-    
-    static get isEnabled ()
-    {
-        return this.#enabled;
-    }
-    
-    static Set ()
-    {
-        if (this.#loaded) return;
-        
-        this.#header = document.querySelector("header");
-        this.#mainTop = Data.html.main.style.top;
-        this.#scrollPos = window.pageYOffset;
-        
-        this.#loaded = true;
-        
-        Data.html.main.style.minHeight = `${window.innerHeight - 93}px`;
-
-        window.addEventListener("resize", () => Data.html.main.style.minHeight = `${window.innerHeight - 93}px`);
-        
-        Loop.Append(() => this.Update());
-    }
-    
-    static Update ()
-    {
-        const deltaPos = window.pageYOffset - this.#scrollPos;
-
-        if (deltaPos > 0 && !Menu.isEnabled) this.Toggle(false);
-        else if (deltaPos < 0 && deltaPos < -10) this.Toggle(true);
-        
-        this.#scrollPos = window.pageYOffset;
-    }
-    
-    static Toggle (state)
-    {
-        if (this.#enabled === state) return;
-        
-        if (!state)
-        {
-            this.#header.style.transform = "translateY(-100%)";
-            Data.html.main.style.top = "34px";
-            Data.html.main.style.minHeight = "calc(100vh - 62px)";
-        }
-        else
-        {
-            this.#header.style.transform = "none";
-            Data.html.main.style.top = this.#mainTop;
-            Data.html.main.style.minHeight = "calc(100vh - (125 * var(--pixel-unit))";
-        }
-        
-        const time = 0.25 / Loop.timeScale;
-        
-        this.#header.style.transition = `transform ${time}s`;
-        Data.html.main.style.transition = `top ${time}s`;
-        
-        this.#enabled = state;
-    }
-}
-
 class Menu
 {
     static #loaded = false;
@@ -503,8 +409,6 @@ class Menu
         if (!this.#loaded) return;
         
         this.#enabled = !this.#enabled;
-        
-        if (!Header.isEnabled) Header.Toggle(true);
         
         const uTime = (this.#enabled ? 0.5 : 0.25) * +!spedUp;
         const time = uTime / Loop.timeScale;
@@ -706,10 +610,7 @@ class ScreenTrans
 }
 
 
-Data.Once("WhileDataLoading", () => {
-    Background.Set();
-    Header.Set();
-});
+Data.Once("WhileDataLoading", () => { });
 
 Data.Once("OnDataLoad", async () => {
     await Menu.Set();
