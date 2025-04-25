@@ -10,6 +10,7 @@
     {
         "name": "Static Properties",
         "content": [
+            "vSyncCount",
             "targetFrameRate",
             "timeScale",
             "maximumDeltaTime",
