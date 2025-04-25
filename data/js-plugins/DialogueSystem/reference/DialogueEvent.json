@@ -17,7 +17,7 @@
             "TypingEnter",
             "TypingExit",
             "PortraitEnable",
-            "ClearText",
+            "LineClear",
             "Clear"
         ]
     }

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url><loc>https://calmbubbles.github.io/</loc></url>
+
+
+    <!-- Docs -->
+    <url><loc>https://calmbubbles.github.io/docs/tags</loc></url>
+    <url><loc>https://calmbubbles.github.io/docs/types</loc></url>
+    <url><loc>https://calmbubbles.github.io/docs/typeof-array</loc></url>
+
+
+    <!-- DialogueSystem.js -->
+    <url><loc>https://calmbubbles.github.io/works/js-plugins/DialogueSystem/</loc></url>
+
+    <!-- Templates -->
+    <url><loc>https://calmbubbles.github.io/works/js-plugins/DialogueSystem/templates/</loc></url>
+    <url><loc>https://calmbubbles.github.io/works/js-plugins/DialogueSystem/templates/dep</loc></url>
+    <url><loc>https://calmbubbles.github.io/works/js-plugins/DialogueSystem/templates/omori</loc></url>
+    <url><loc>https://calmbubbles.github.io/works/js-plugins/DialogueSystem/templates/oneshot</loc></url>
+    <url><loc>https://calmbubbles.github.io/works/js-plugins/DialogueSystem/templates/undertale</loc></url>
+
+    <!-- Manual -->
+    <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/</loc></url>
+        <!-- Getting Started -->
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/setting</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/enabling</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/typing</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/breaks</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/clear-text</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/DialogueData</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/delays</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/clear-all</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/start/finish</loc></url>
+
+        <!-- Events -->
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/events/</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/events/binding</loc></url>
+
+        <!-- Time and Update -->
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/wait</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/logic</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/loops</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/ctrl</loc></url>
+
+        <!-- Text Styles -->
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/styles/</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/styles/adding</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/styles/object</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/styles/mixing</loc></url>
+
+        <!-- Resources -->
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/resources/</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/resources/loading</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/resources/arrays</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/resources/paths</loc></url>
+
+        <!-- Sprites -->
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/sprites/</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/sprites/portraits</loc></url>
+        <url><loc>http://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/sprites/bug</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/sprites/position</loc></url>
+
+        <!-- Audios -->
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/audios/</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/audios/using</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/audios/playing</loc></url>
+        
+        <!-- Animations -->
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/animations/</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/animations/basics</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/animations/text</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/animations/params</loc></url>
+        <url><loc>https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/animations/custom</loc></url>
+
+    <!-- Scripting Reference -->
+    <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/</loc></url>
+        <!-- Enums -->
+            <!-- DialoguePortraitPosition -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialoguePortraitPosition/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialoguePortraitPosition/Left</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialoguePortraitPosition/Right</loc></url>
+
+            <!-- DialogueDirectoryType -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueDirectoryType/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueDirectoryType/Root</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueDirectoryType/Same</loc></url>
+
+            <!-- DialogueEvent -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/None</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/Load</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/Enable</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/Disable</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/TypingEnter</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/TypingExit</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/PortraitEnable</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/LineClear</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueEvent/Clear</loc></url>
+
+        <!-- Classes -->
+            <!-- DialogueSystem -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueSystem/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueSystem/experimental</loc></url>
+
+            <!-- NamedItem -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/NamedItem/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/NamedItem/name</loc></url>
+
+            <!-- NamedArray -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/NamedArray/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/NamedArray/items</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/NamedArray/Find</loc></url>
+
+            <!-- Property -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/Property/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/Property/ctor</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/Property/value</loc></url>
+
+            <!-- DialogueLoop -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/targetFrameRate</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/timeScale</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/maximumDeltaTime</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/frameCount</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/unscaledTime</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/unscaledDeltaTime</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/time</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/deltaTime</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/Append</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueLoop/Delay</loc></url>
+
+            <!-- DialogueManager -->
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/ctor</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/waitDisableClear</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/portraitPosition</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/soundInterval</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/characters</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/config</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/style</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/audioSource</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/animation</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/isLoaded</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/isActive</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/isInUse</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/portraitEnabled</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/currentEvent</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/charCount</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/wordCount</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/dialogueBox</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/dialoguePortrait</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/dialogueLine</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/Finish</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/BreakLine</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/On</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/Once</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/UpdateSpaces</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/SetActive</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/Type</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/ClearText</loc></url>
+            <url><loc>https://calmbubbles.github.io/docs/js-plugins/reference/DialogueSystem/DialogueManager/Clear</loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+            <url><loc></loc></url>
+</urlset>

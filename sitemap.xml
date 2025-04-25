@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url><loc>https://calmbubbles.github.io/</loc></url>
+
+
+    <!-- Docs -->
+    <url><loc>https://calmbubbles.github.io/docs/tags</loc></url>
+    <url><loc>https://calmbubbles.github.io/docs/types</loc></url>
+    <url><loc>https://calmbubbles.github.io/docs/typeof-array</loc></url>
+
+
+    <!-- DialogueSystem.js -->
+    <url><loc>https://calmbubbles.github.io/works/js-plugins/DialogueSystem/</loc></url>
+</urlset>
